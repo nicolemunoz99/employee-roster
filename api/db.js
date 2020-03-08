@@ -8,12 +8,12 @@ const Schema = mongoose.Schema;
 
 const EmployeeSchema = new Schema ({
   _id: {type: mongoose.Schema.Types.ObjectId, auto: true},
-  firstName: String,
-  middleInitial: {type: String, maxlength: 1, minlength: 1},
-  lastName: String,
-  dob: Number,
-  dateOfEmployment: Number,
-  status: Boolean
+  First_name: String,
+  MI: {type: String, maxlength: 1, minlength: 1},
+  Last_name: String,
+  DOB: Number,
+  Date_of_employment: Number,
+  Status: Boolean
 });
 
 const UserSchema = new Schema ({
@@ -23,8 +23,8 @@ const UserSchema = new Schema ({
   salt: String
 })
 
-const Employee = mongoose.model('EmployeeModel', EmployeeSchema);
-const User = mongoose.model('UserModel', UserSchema);
+const Employee = mongoose.model('Employee', EmployeeSchema);
+const User = mongoose.model('User', UserSchema);
 
 const models = {
   employee: Employee,

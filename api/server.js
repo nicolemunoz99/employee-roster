@@ -3,12 +3,12 @@ const cors = require('cors');
 const port = 7200;
 const app = express();
 const bcrypt = require('bcrypt');
-
+app.use('*', cors());
 const saltSize = 12; 
 
 const {insert, get, update} = require('./db.js');
 
-// app.use('*', cors());
+
 
 const bodyParser = require('body-parser');
 
