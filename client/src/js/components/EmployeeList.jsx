@@ -11,7 +11,6 @@ const EmployeeList = () => {
   const dispatch = useDispatch();
     
   useEffect (() => {
-    console.log('addEmp', addEmployee)
     getEmployees();
   }, []);
 

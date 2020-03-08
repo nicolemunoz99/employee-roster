@@ -1,4 +1,4 @@
-import { ADD_EMPLOYEE } from '../constants/action-types.js';
+import { ADD_EMPLOYEE, SELECT_EMPLOYEE } from '../constants/action-types.js';
 
 export const addEmployee = (payload) => {
   return { type: ADD_EMPLOYEE, payload}
