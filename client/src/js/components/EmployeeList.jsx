@@ -22,25 +22,32 @@ const EmployeeList = () => {
 
   return (
     <div className="container">
-      <div className="row">
-      <div className="col">EmployeeList</div>
-      {
-        employees.map(el => {
-          delete el._id;
-          delete el.__v;
-          return (
-            <div key={el._id}>
-              {
-                Object.keys(el).map(dataName => {
-                  return (
-                    <div>{`${dataName}: ${el[dataName]}`}</div>
-                  )
-                })
-              }
-            </div>
-          )
-        })
-      }
+      <div className="row justify-content-md-center">
+        <div className="col-12 text-center mb-4">Employee List</div>
+          {
+            employees.map(el => {
+                delete el.__v;
+                return (
+                  <div className="col-12">
+                    
+                    <div>{`${el.Last_name}, ${el.First_name} ${el.MI}`}</div>
+                    
+                    <div key={el._id} className="col-md-6 mr-auto ml-auto mb-4">
+
+                    {
+                      Object.keys(el).map(dataLabel => {
+                        let label = dataLabel.split('_').join(' ')
+                        return (
+                          <div>{`${label}: ${el[dataLabel]}`}</div> 
+                        )
+                      })
+                    }
+                    </div>
+                    <div className="w-100"></div>
+                  </div>
+                )              
+            })
+          }
       </div>
     </div>
   )
