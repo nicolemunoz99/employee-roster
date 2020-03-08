@@ -1,5 +1,9 @@
 import { ADD_EMPLOYEE } from '../constants/action-types.js';
 
-export function addEmployee(payload) {
+export const addEmployee = (payload) => {
   return { type: ADD_EMPLOYEE, payload}
+}
+
+export const selectEmployee = (payload) => {
+  return { type: SELECT_EMPLOYEE, payload}
 }

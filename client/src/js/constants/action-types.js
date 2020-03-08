@@ -1,1 +1,3 @@
 export const ADD_EMPLOYEE = "ADD_EMPLOYEE"
+
+export const SELECT_EMPLOYEE = "SELECT_EMPLOYEE"
