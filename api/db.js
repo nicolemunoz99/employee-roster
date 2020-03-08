@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://127.0.0.1/my_database';
+const shortid = require('shortid');
+
 mongoose.connect(mongoDB, { useNewUrlParser: true ,  useFindAndModify: false, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -7,12 +9,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const Schema = mongoose.Schema;
 
 const EmployeeSchema = new Schema ({
-  _id: {type: mongoose.Schema.Types.ObjectId, auto: true},
+  _id: {type: String, default: shortid.generate},
   First_name: String,
   MI: {type: String, maxlength: 1, minlength: 1},
   Last_name: String,
   DOB: Number,
-  Date_of_employment: Number,
+  Hire_date: Number,
   Status: Boolean
 });
 
@@ -21,7 +23,8 @@ const UserSchema = new Schema ({
   pw: String,
   username: {type: String, unique: true},
   salt: String
-})
+});
+
 
 const Employee = mongoose.model('Employee', EmployeeSchema);
 const User = mongoose.model('User', UserSchema);
@@ -30,6 +33,8 @@ const models = {
   employee: Employee,
   user: User
 };
+
+
 
 // collection: string of collection name
 // conditions: object with criteria to match;

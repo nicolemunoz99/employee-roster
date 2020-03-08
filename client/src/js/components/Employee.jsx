@@ -11,13 +11,13 @@ const Employee = (props) => {
       dispatch(selectEmployee( {} ));
       
     } else {
-      dispatch(selectEmployee(props.employee))
+      dispatch(selectEmployee(props.employee));
     }
   }
   
   return (
     <div className="col-12 no-gutters">
-      <div className="col-md-8 ml-auto mr-auto my-accordion mt-3">
+      <div className="col-md-8 ml-auto mr-auto mt-3">
         <button className="w-100 btn btn-secondary" onClick={handleEmployeeClick}>
           <span className="h4">{`${props.employee.Last_name}, ${props.employee.First_name} ${props.employee.MI}`}</span>
         </button>
@@ -26,13 +26,18 @@ const Employee = (props) => {
             <div className="col-12 position-absolute text-right mt-1 pointer">
               <i className="material-icons ml-auto">edit</i>
             </div>
-            <div key={props.employee._id} className="col-sm-7 mr-auto ml-auto my-3">
+            <div key={props.employee._id} className="col-sm-8 mr-auto ml-auto my-3">
 
               {
-                Object.keys(props.employee).map(dataLabel => {
+                Object.keys(props.employee).map((dataLabel, i) => {
                   let label = dataLabel.split('_').join(' ')
                   return (
-                    <div key={dataLabel}>{`${label}: ${props.employee[dataLabel]}`}</div>
+                    <div className="container">
+                    <div key={dataLabel} className={`row ${i%2 === 0 ? 'bg-light' : null}`}>
+                      <div className="col-5">{`${label}:`}</div>
+                      <div className="col-7">{`${props.employee[dataLabel]}`}</div>
+                    </div>
+                    </div>
                   )
                 })
               }
