@@ -8,4 +8,4 @@ export const UPDATE_EMPLOYEE = "UPDATE_EMPLOYEE";
 
 export const LOG_ERRORS = "LOG_ERRORS";
 
-export const RESET_EMPLOYEE_DATA = "RESET_EMPLOYEE_DATA";
+export const RESET_FORM = "RESET_FORM";

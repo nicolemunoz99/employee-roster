@@ -2,7 +2,7 @@ import React from 'react';
 import xDate from 'xDate';
 import ModalWrapper from './ModalWrapper.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateEmployee, logErrors, resetEmployeeData } from '../../actions/';
+import { updateEmployee, logErrors, resetForm } from '../../actions/';
 
 const EmployeeForm = () => {
   const selectedEmployee = useSelector(state => state.selectedEmployee);
@@ -16,6 +16,7 @@ const EmployeeForm = () => {
   }
 
   const inputText = (e) => {
+    console.log('e.val', typeof e.target.value)
     if (e.target.id === 'MI' && e.target.value.length > 1) return;
     if ((e.target.id === "Last_name" && e.target.value.length > 20) || 
         (e.target.id === "First_name" && e.target.value.length > 20)) return;
@@ -39,7 +40,6 @@ const EmployeeForm = () => {
     if (xDate(newEmp.DOB) > Date.now()) tempErrors.push('DOB');
     
     Object.keys(newEmp).forEach(field => {
-      console.log('field: ', field)
       if (!newEmp[field] && field !== 'MI') { tempErrors.push(field); }
     });
 
@@ -48,7 +48,7 @@ const EmployeeForm = () => {
     if (tempErrors.length === 0) {
       // reset state
       dispatch(toggleModal(activeModal));
-      dispatch(resetEmployeeData());
+      dispatch(resetForm());
       // send data
     }
   }
@@ -56,7 +56,7 @@ const EmployeeForm = () => {
 
 
   return (
-    <ModalWrapper width={6} title="Enter New Employee" modalName="newEmployee">
+    <ModalWrapper width={6} title="Enter New Employee">
       <form>
         <div className="form-group row my-3 no-gutters">
           <div className="col-sm-4"><label className="col-form-label">Name: </label></div>
@@ -106,9 +106,9 @@ const EmployeeForm = () => {
           <div className="col-sm-8">
           
             <div className="custom-control custom-radio custom-control-inline mr-5">
-              <input onClick={inputText} type="radio"
-                id="active" value="true" name="Status" className="custom-control-input"
-                defaultChecked={newEmp.Status === true ? false : true}
+              <input onClick={inputText} type="radio" 
+                id="active" value="active" name="Status" className="custom-control-input"
+                defaultChecked={newEmp.Status === "active" ? false : true}
               >
               </input>
               <label className="custom-control-label" htmlFor="active">Active</label>
@@ -116,8 +116,8 @@ const EmployeeForm = () => {
 
             <div className="custom-control custom-radio custom-control-inline">
               <input onClick={inputText} type="radio"
-                id="inactive" value="false" name="Status" className="custom-control-input"
-                defaultChecked={newEmp.Status === false ? true : false}
+                id="inactive" value="inactive" name="Status" className="custom-control-input"
+                defaultChecked={newEmp.Status === "inactive" ? true : false}
               >
               </input>
               <label className="custom-control-label" htmlFor="inactive">Inactive</label>

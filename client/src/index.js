@@ -1,5 +1,8 @@
 import React from 'react';
 
+import xDate from 'xdate';
+window.xdate = xDate
+
 import { render } from 'react-dom';
 import { Provider } from "react-redux";
 import store from './js/store/';

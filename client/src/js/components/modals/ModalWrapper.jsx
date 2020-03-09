@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleModal, resetEmployeeData } from '../../actions/';
+import { toggleModal, resetForm } from '../../actions/';
 
 const ModalWrapper = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const ModalWrapper = (props) => {
   const closeHandler = (e) => {
     if (e.target === e.currentTarget) {
       dispatch(toggleModal(activeModal));
-      dispatch(resetEmployeeData());
+      dispatch(resetForm());
     }
   };
 

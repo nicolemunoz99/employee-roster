@@ -13,8 +13,8 @@ const EmployeeSchema = new Schema ({
   First_name: String,
   MI: {type: String, maxlength: 1, minlength: 1},
   Last_name: String,
-  DOB: Number,
-  Hire_date: Number,
+  DOB: {type: String, maxlength: 10, minlength: 6},
+  Hire_date: {type: String, maxlength: 10, minlength: 6},
   Status: Boolean
 });
 
