@@ -1,3 +1,7 @@
-export const ADD_EMPLOYEE = "ADD_EMPLOYEE"
+export const ADD_EMPLOYEE = "ADD_EMPLOYEE";
 
-export const SELECT_EMPLOYEE = "SELECT_EMPLOYEE"
+export const SELECT_EMPLOYEE = "SELECT_EMPLOYEE";
+
+export const CHANGE_MODAL = "CHANGE_MODAL";
+
+export const UPDATE_EMPLOYEE = "UPDATE_EMPLOYEE";
