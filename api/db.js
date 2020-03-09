@@ -51,13 +51,19 @@ const insert = (collection, doc) => {
   });
 };
 
-const get = (collection, criteria) => {
-  return new Promise((resolve, reject) => {
-    models[collection].find(criteria, (err, employees) => {
-      if (err) reject(err);
-      else resolve(employees)
-    });
-  });
+const get = async (collection, criteria) => {
+  // return new Promise((resolve, reject) => {
+  //   models[collection].find(criteria, '-__v', (err, employees) => {
+  //     if (err) reject(err);
+  //     else {
+  //       resolve(employees);
+  //     }
+  //   });
+  // });
+  
+  let docs = await models[collection].find(criteria, '-__v').lean({ virtuals: true });
+  return docs
+
 }
 
 

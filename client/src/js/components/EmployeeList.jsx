@@ -29,7 +29,6 @@ const EmployeeList = () => {
         </div>
           {
             employees.map(el => {
-                delete el.__v; // TODO: move to api
                 return (
                   <Employee key={el._id} employee={el} />
                 )              

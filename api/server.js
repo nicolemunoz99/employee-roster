@@ -18,6 +18,9 @@ app.use(bodyParser.json());
 
 app.get('/employee', async (req, res) => {
   let employees = await get('employee', {});
+  employees.forEach(emp => {
+    emp.Status = emp.Status === true ? 'active' : 'inactive';
+  })
   res.send(employees);
 });
 
@@ -27,7 +30,6 @@ app.post('/employee', async (req, res) => {
 });
 
 app.put('/employee/:_id', async (req, res) => {
-  console.log('req.params', req.params)
   await update('employee', req.params, req.body);
   res.sendStatus(200);
 });
@@ -41,15 +43,12 @@ app.post('/user', async (req, res) => {
   }
   req.body.salt = await bcrypt.genSalt(saltSize);
   req.body.pw = await bcrypt.hash(req.body.pw, req.body.salt);
-  console.log(req.body)
   let user = await insert('user', req.body) 
   res.send(user);
 });
 
 app.get('/user', async (req, res) => {
-  console.log('req.body', req.body)
   let thisUser = (await get('user', {username: req.body.username}))[0];
-  console.log('thisUser', thisUser);
   if (Object.keys(thisUser).length === 0) {
     res.sendStatus(204); // user doesn't exist
     return;

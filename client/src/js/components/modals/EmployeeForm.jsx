@@ -1,27 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import xDate from 'xDate';
 import ModalWrapper from './ModalWrapper.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateEmployee, logErrors, resetForm } from '../../actions/';
 
+const initialForm = {
+  First_name: '',
+  Last_name: '',
+  MI: '',
+  DOB: '',
+  Hire_date: '',
+  Status: ''
+}
+
+
 const EmployeeForm = () => {
+  const [formData, updateForm] = useState(initialForm)
+  
   const selectedEmployee = useSelector(state => state.selectedEmployee);
   const modal = useSelector(state => state.modal);
-  const newEmp = useSelector(state => state.employeeData);
   const formErrors = useSelector(state => state.formErrors);
   const dispatch = useDispatch();
 
-  if (modal.editEmployee) {
-    dispatch(updateEmployee(selectedEmployee));
-  }
+  useEffect(() => {
+    if (modal.editEmployee) {
+      updateForm(selectedEmployee);
+    }
+  }, [])
+  
 
   const inputText = (e) => {
-    console.log('e.val', typeof e.target.value)
     if (e.target.id === 'MI' && e.target.value.length > 1) return;
     if ((e.target.id === "Last_name" && e.target.value.length > 20) || 
         (e.target.id === "First_name" && e.target.value.length > 20)) return;
     
-    let tempState = { ...newEmp };
+    let tempState = { ...formData };
     
     if (e.target.type === "radio") {
       tempState[e.target.name] = e.target.value; // radio buttons
@@ -29,7 +42,7 @@ const EmployeeForm = () => {
       tempState[e.target.id] = e.target.value;
     }
 
-    dispatch(updateEmployee(tempState));
+    updateForm(tempState);
   }
 
   const handleSubmit = (e) => {
@@ -37,22 +50,21 @@ const EmployeeForm = () => {
 
     let tempErrors = [];
 
-    if (xDate(newEmp.DOB) > Date.now()) tempErrors.push('DOB');
+    if (xDate(formData.DOB) > Date.now()) tempErrors.push('DOB');
     
-    Object.keys(newEmp).forEach(field => {
-      if (!newEmp[field] && field !== 'MI') { tempErrors.push(field); }
+    Object.keys(formData).forEach(field => {
+      if (!formData[field] && field !== 'MI') { tempErrors.push(field); }
     });
 
     dispatch(logErrors(tempErrors));
 
     if (tempErrors.length === 0) {
-      // reset state
+      // send data
+
       dispatch(toggleModal(activeModal));
       dispatch(resetForm());
-      // send data
     }
   }
-
 
 
   return (
@@ -63,15 +75,15 @@ const EmployeeForm = () => {
           <div className="col-sm-8">
             <div className="row">
               <div className="col-sm-12 mb-2">
-                <input onChange={inputText} value={newEmp.Last_name} type="text" className="form-control"
+                <input onChange={inputText} value={formData.Last_name} type="text" className="form-control"
                   id="Last_name" placeholder="Last"></input>
               </div>
               <div className="col-sm-8 mb-2">
-                <input onChange={inputText} value={newEmp.First_name} type="text" className="form-control"
+                <input onChange={inputText} value={formData.First_name} type="text" className="form-control"
                   id="First_name" placeholder="First"></input>
               </div>
               <div className="col-sm-4">
-                <input onChange={inputText} value={newEmp.MI} type="text" className="form-control"
+                <input onChange={inputText} value={formData.MI} type="text" className="form-control"
                   id="MI" placeholder="MI"></input>
               </div>
             </div>
@@ -83,7 +95,7 @@ const EmployeeForm = () => {
           <div className="col-sm-8">
             <div className="row">
               <div className="col-sm-12 mb-2">
-                <input onChange={inputText} value={newEmp.Hire_date} type="date" className="form-control"
+                <input onChange={inputText} value={formData.Hire_date} type="date" className="form-control"
                   id="Hire_date"></input>
               </div>
             </div>
@@ -94,7 +106,7 @@ const EmployeeForm = () => {
           <div className="col-sm-8">
             <div className="row">
               <div className="col-sm-12 mb-2">
-                <input onChange={inputText} value={newEmp.DOB} type="date" className="form-control"
+                <input onChange={inputText} value={formData.DOB} type="date" className="form-control"
                   id="DOB"></input>
               </div>
             </div>
@@ -106,18 +118,18 @@ const EmployeeForm = () => {
           <div className="col-sm-8">
           
             <div className="custom-control custom-radio custom-control-inline mr-5">
-              <input onClick={inputText} type="radio" 
+              <input onChange={inputText} type="radio" 
                 id="active" value="active" name="Status" className="custom-control-input"
-                defaultChecked={newEmp.Status === "active" ? false : true}
+                checked={formData.Status === "active" ? true : false}
               >
               </input>
               <label className="custom-control-label" htmlFor="active">Active</label>
             </div>
 
             <div className="custom-control custom-radio custom-control-inline">
-              <input onClick={inputText} type="radio"
+              <input onChange={inputText} type="radio"
                 id="inactive" value="inactive" name="Status" className="custom-control-input"
-                defaultChecked={newEmp.Status === "inactive" ? true : false}
+                checked={formData.Status === "inactive" ? true : false}
               >
               </input>
               <label className="custom-control-label" htmlFor="inactive">Inactive</label>

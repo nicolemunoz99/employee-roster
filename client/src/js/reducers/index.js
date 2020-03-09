@@ -5,7 +5,7 @@ const initialState = {
   employees: [],
   selectedEmployee: {},
   modal: {
-    newEmployee: false,
+    newEmployee: true,
     editEmployee: false
   },
   employeeData: {
@@ -33,7 +33,8 @@ function rootReducer(state = initialState, action) {
   }
 
   if (action.type === UPDATE_EMPLOYEE) {
-    return {...state, employeeData: action.payload};
+    let newState = {...state, employeeData: action.payload};
+    return newState;
   }
 
   if (action.type === LOG_ERRORS) {
