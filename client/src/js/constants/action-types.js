@@ -6,4 +6,6 @@ export const TOGGLE_MODAL = "CHANGE_MODAL";
 
 export const UPDATE_EMPLOYEE = "UPDATE_EMPLOYEE";
 
-export const LOG_ERRORS = "LOG_ERRORS"
+export const LOG_ERRORS = "LOG_ERRORS";
+
+export const RESET_EMPLOYEE_DATA = "RESET_EMPLOYEE_DATA";

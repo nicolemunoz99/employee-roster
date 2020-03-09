@@ -1,4 +1,4 @@
-import { ADD_EMPLOYEE, SELECT_EMPLOYEE, TOGGLE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS } from "../constants/action-types.js";
+import { ADD_EMPLOYEE, SELECT_EMPLOYEE, TOGGLE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS, RESET_EMPLOYEE_DATA } from "../constants/action-types.js";
 
 
 const initialState = {
@@ -38,6 +38,10 @@ function rootReducer(state = initialState, action) {
 
   if (action.type === LOG_ERRORS) {
     return {...state, formErrors: action.payload};
+  }
+
+  if (action.type === RESET_EMPLOYEE_DATA) {
+    return {...state, employeeData: initialState.employeeData};
   }
 
   return state;

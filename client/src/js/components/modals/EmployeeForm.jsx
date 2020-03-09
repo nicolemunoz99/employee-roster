@@ -2,9 +2,9 @@ import React from 'react';
 import xDate from 'xDate';
 import ModalWrapper from './ModalWrapper.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateEmployee, logErrors } from '../../actions/';
+import { updateEmployee, logErrors, resetEmployeeData } from '../../actions/';
 
-const NewEmployee = () => {
+const EmployeeForm = () => {
   const selectedEmployee = useSelector(state => state.selectedEmployee);
   const modal = useSelector(state => state.modal);
   const newEmp = useSelector(state => state.employeeData);
@@ -46,6 +46,9 @@ const NewEmployee = () => {
     dispatch(logErrors(tempErrors));
 
     if (tempErrors.length === 0) {
+      // reset state
+      dispatch(toggleModal(activeModal));
+      dispatch(resetEmployeeData());
       // send data
     }
   }
@@ -143,4 +146,4 @@ const NewEmployee = () => {
   )
 };
 
-export default NewEmployee;
+export default EmployeeForm;
