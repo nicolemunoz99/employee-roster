@@ -1,18 +1,19 @@
 import React from 'react';
 import xDate from 'xDate';
 import ModalWrapper from './ModalWrapper.jsx';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { updateEmployee, logErrors } from '../../actions/';
 
-const formFields = ['First_name', 'MI', 'Last_name', 'DOB', 'Hire_date', 'Status'];
-
 const NewEmployee = () => {
+  const selectedEmployee = useSelector(state => state.selectedEmployee);
+  const modal = useSelector(state => state.modal);
   const newEmp = useSelector(state => state.employeeData);
-  const formErrors = useSelector(state => state.formErrors)
+  const formErrors = useSelector(state => state.formErrors);
   const dispatch = useDispatch();
 
-
+  if (modal.editEmployee) {
+    dispatch(updateEmployee(selectedEmployee));
+  }
 
   const inputText = (e) => {
     if (e.target.id === 'MI' && e.target.value.length > 1) return;
@@ -47,8 +48,6 @@ const NewEmployee = () => {
     if (tempErrors.length === 0) {
       // send data
     }
-    
-    console.log('sub')
   }
 
 
@@ -105,14 +104,18 @@ const NewEmployee = () => {
           
             <div className="custom-control custom-radio custom-control-inline mr-5">
               <input onClick={inputText} type="radio"
-                id="active" value="true" name="Status" className="custom-control-input">
+                id="active" value="true" name="Status" className="custom-control-input"
+                defaultChecked={newEmp.Status === true ? false : true}
+              >
               </input>
               <label className="custom-control-label" htmlFor="active">Active</label>
             </div>
 
             <div className="custom-control custom-radio custom-control-inline">
               <input onClick={inputText} type="radio"
-                id="inactive" value="false" name="Status" className="custom-control-input">
+                id="inactive" value="false" name="Status" className="custom-control-input"
+                defaultChecked={newEmp.Status === false ? true : false}
+              >
               </input>
               <label className="custom-control-label" htmlFor="inactive">Inactive</label>
             </div>

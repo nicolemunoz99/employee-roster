@@ -1,13 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { changeModal } from '../../actions/';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleModal } from '../../actions/';
 
 const ModalWrapper = (props) => {
   const dispatch = useDispatch();
+
+  const activeModal = useSelector((state) => {
+    return Object.keys(state.modal).find( (el) => state.modal[el] );
+  });
   
   const closeHandler = (e) => {
     if (e.target === e.currentTarget) {
-      dispatch(changeModal(props.modalName))
+      dispatch(toggleModal(activeModal))
     }
   };
 

@@ -1,4 +1,4 @@
-import { ADD_EMPLOYEE, SELECT_EMPLOYEE, CHANGE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS } from '../constants/action-types.js';
+import { ADD_EMPLOYEE, SELECT_EMPLOYEE, TOGGLE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS } from '../constants/action-types.js';
 
 export const addEmployee = (payload) => {
   return { type: ADD_EMPLOYEE, payload }
@@ -8,8 +8,8 @@ export const selectEmployee = (payload) => {
   return { type: SELECT_EMPLOYEE, payload }
 }
 
-export const changeModal = (payload) => {
-  return { type: CHANGE_MODAL, payload }
+export const toggleModal = (payload) => {
+  return { type: TOGGLE_MODAL, payload }
 }
 
 export const updateEmployee = (payload) => {

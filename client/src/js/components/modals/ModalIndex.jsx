@@ -11,7 +11,7 @@ const ModalIndex = (props) => {
 
   return (
     <div>
-      {modal.newEmployee ?
+      {modal.newEmployee || modal.editEmployee ?
         <NewEmployee />
         :
         null

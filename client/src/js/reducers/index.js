@@ -1,11 +1,11 @@
-import { ADD_EMPLOYEE, SELECT_EMPLOYEE, CHANGE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS } from "../constants/action-types.js";
+import { ADD_EMPLOYEE, SELECT_EMPLOYEE, TOGGLE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS } from "../constants/action-types.js";
 
 
 const initialState = {
   employees: [],
   selectedEmployee: {},
   modal: {
-    newEmployee: true,
+    newEmployee: false,
     editEmployee: false
   },
   employeeData: {
@@ -28,7 +28,7 @@ function rootReducer(state = initialState, action) {
     return {...state, selectedEmployee: action.payload};
   }
 
-  if (action.type === CHANGE_MODAL) {
+  if (action.type === TOGGLE_MODAL) {
     return {...state, modal: { ...state.modal, [action.payload]: !state.modal[action.payload]}};
   }
 

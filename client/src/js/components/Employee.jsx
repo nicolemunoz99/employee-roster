@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectEmployee } from '../actions/';
+import { selectEmployee, changeModal } from '../actions/';
 
 const Employee = (props) => {
   const selectedEmployee = useSelector(state => state.selectedEmployee);
@@ -14,6 +14,10 @@ const Employee = (props) => {
       dispatch(selectEmployee(props.employee));
     }
   }
+
+  const handleEditClick = (e) => {
+    dispatch(changeModal('editEmployee'));
+  }
   
   return (
     <div className="col-12 no-gutters">
@@ -23,10 +27,10 @@ const Employee = (props) => {
         </button>
         {selectedEmployee._id === props.employee._id ?
           <div className="border">
-            <div className="col-12 position-absolute text-right mt-1 pointer">
+            <div onClick={handleEditClick} className="col-12 position-absolute text-right mt-1 pointer">
               <i className="material-icons ml-auto">edit</i>
             </div>
-            <div key={props.employee._id} className="col-sm-8 mr-auto ml-auto my-3">
+            <div key={props.employee._id} className="col-sm-8 mr-auto ml-auto my-3 z-neg">
 
               {
                 Object.keys(props.employee).map((dataLabel, i) => {
