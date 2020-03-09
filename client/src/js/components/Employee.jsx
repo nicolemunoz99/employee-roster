@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectEmployee, changeModal } from '../actions/';
+import { selectEmployee, toggleModal } from '../actions/';
 
 const Employee = (props) => {
   const selectedEmployee = useSelector(state => state.selectedEmployee);
@@ -16,7 +16,7 @@ const Employee = (props) => {
   }
 
   const handleEditClick = (e) => {
-    dispatch(changeModal('editEmployee'));
+    dispatch(toggleModal('editEmployee'));
   }
   
   return (
