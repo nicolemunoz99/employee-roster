@@ -1,4 +1,4 @@
-export const ADD_EMPLOYEE = "ADD_EMPLOYEE";
+export const ADD_EMPLOYEES = "ADD_EMPLOYEES";
 
 export const SELECT_EMPLOYEE = "SELECT_EMPLOYEE";
 

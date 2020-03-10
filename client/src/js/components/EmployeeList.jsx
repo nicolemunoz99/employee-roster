@@ -1,23 +1,15 @@
 import React, { useEffect } from 'react';
 import Employee from './Employee.jsx'
 import { useDispatch, useSelector } from 'react-redux';
-import { addEmployee, toggleModal } from '../actions/';
-import axios from 'axios';
+import { toggleModal, getAllEmployees } from '../actions/';
 
-let api = 'http://127.0.0.1:7200';
 
 const EmployeeList = () => {
   const employees = useSelector(state => state.employees);
   const dispatch = useDispatch();
   useEffect (() => {
-    getEmployees();
+    dispatch(getAllEmployees());
   }, []);
-
-  const getEmployees = async () => {
-    let data = (await axios.get(`${api}/employee`)).data;
-    console.log('data', data)
-    dispatch(addEmployee(data));
-  }
 
 
   return (

@@ -1,7 +1,9 @@
-import { ADD_EMPLOYEE, SELECT_EMPLOYEE, TOGGLE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS, RESET_FORM } from '../constants/action-types.js';
+import { ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS, RESET_FORM } from '../constants/action-types.js';
+import api from '../../../api.js';
+import axios from 'axios';
 
-export const addEmployee = (payload) => {
-  return { type: ADD_EMPLOYEE, payload }
+export const addEmployees = (payload) => {
+  return { type: ADD_EMPLOYEES, payload }
 }
 
 export const selectEmployee = (payload) => {
@@ -22,4 +24,9 @@ export const logErrors = (payload) => {
 
 export const resetForm = (payload) => {
   return { type: RESET_FORM, payload }
+}
+
+export const getAllEmployees = () => async dispatch => {
+  let employees = (await axios.get(`${api}/employee`)).data;
+  dispatch(addEmployees(employees));
 }

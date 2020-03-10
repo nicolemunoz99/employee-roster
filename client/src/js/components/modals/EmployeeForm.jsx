@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import xDate from 'xDate';
+import axios from 'axios';
 import ModalWrapper from './ModalWrapper.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateEmployee, logErrors, resetForm } from '../../actions/';
+import { logErrors, resetForm, getAllEmployees, toggleModal } from '../../actions/';
+import api from '../../../../api.js';
 
 const initialForm = {
   First_name: '',
@@ -24,10 +26,15 @@ const EmployeeForm = () => {
 
   useEffect(() => {
     if (modal.editEmployee) {
-      updateForm(selectedEmployee);
+      let formUpdate = {...selectedEmployee};
+      delete formUpdate._id
+      updateForm(formUpdate);
     }
-  }, [])
+  }, []);
   
+  const activeModal = useSelector((state) => {
+    return Object.keys(state.modal).find( (el) => state.modal[el] );
+  });
 
   const inputText = (e) => {
     if (e.target.id === 'MI' && e.target.value.length > 1) return;
@@ -45,9 +52,8 @@ const EmployeeForm = () => {
     updateForm(tempState);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     let tempErrors = [];
 
     if (xDate(formData.DOB) > Date.now()) tempErrors.push('DOB');
@@ -56,19 +62,28 @@ const EmployeeForm = () => {
       if (!formData[field] && field !== 'MI') { tempErrors.push(field); }
     });
 
-    dispatch(logErrors(tempErrors));
-
+    
     if (tempErrors.length === 0) {
-      // send data
+      if (modal.newEmployee) {
+        await axios.post(`${api}/employee`, formData);
+      } else {
+        await axios.put(`${api}/employee/${selectedEmployee._id}`, formData)
+      }
 
+      dispatch(getAllEmployees());
+      
       dispatch(toggleModal(activeModal));
       dispatch(resetForm());
+    } else {
+
+      dispatch(logErrors(tempErrors));
+
     }
   }
 
 
   return (
-    <ModalWrapper width={6} title="Enter New Employee">
+    <ModalWrapper width={6} title="Enter New Employee" activeModal={activeModal}>
       <form>
         <div className="form-group row my-3 no-gutters">
           <div className="col-sm-4"><label className="col-form-label">Name: </label></div>
