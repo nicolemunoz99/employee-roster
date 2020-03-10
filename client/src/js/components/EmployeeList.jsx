@@ -13,12 +13,13 @@ const EmployeeList = () => {
 
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row justify-content-md-center">
-        <div className="col-auto mr-auto ml-auto text-center mb-4 h2">Employee List</div>
-        <div className="col-auto h2" onClick={()=>dispatch(toggleModal("newEmployee"))}>
+        <div className="col-auto mr-auto ml-auto text-center mb-4 h2">Employees</div>
+        <div className="col-auto h2 mx-auto" onClick={()=>dispatch(toggleModal("newEmployee"))}>
           <i className="material-icons pointer h2">add_circle_outline</i>
         </div>
+        <div className="row list-wrapper py-4">
           {
             employees.map(el => {
                 return (
@@ -26,6 +27,7 @@ const EmployeeList = () => {
                 )              
             })
           }
+        </div>
       </div>
     </div>
   )

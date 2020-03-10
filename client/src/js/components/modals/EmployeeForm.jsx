@@ -13,7 +13,7 @@ const initialForm = {
   DOB: '',
   Hire_date: '',
   Status: ''
-}
+};
 
 
 const EmployeeForm = () => {

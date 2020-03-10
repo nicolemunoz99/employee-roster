@@ -1,5 +1,53 @@
+:root {
+  --main-bg-color: rgb(8, 173, 138);
+  --fade-bg-color: rgb(10, 92, 74);
+  --list-wrapper-bg-color: rgb(90, 89, 89);
+  --emp-main-bg-color: rgb(46, 45, 45);
+  --details-wrapper-bg-color: rgb(58, 58, 58);
+  --details-contrast-color: rgb(70, 70, 70);
+}
+
+
+html {
+  background-image: linear-gradient(to bottom right, var(--main-bg-color) , var(--fade-bg-color));
+  min-height: 100%;
+}
+
+body {
+  /* transparent bg */
+  background-color: rgba(255, 0, 0, 0);
+  color: white;
+}
+
+.list-wrapper {
+  border-radius: 1rem;
+  background-color: var(--list-wrapper-bg-color);
+}
+
+.details-wrapper {
+  background-color: var(--details-wrapper-bg-color);
+}
+
+.details-l1 {
+  background-color: var(--details-contrast-color);
+}
+.details-l2 {
+  
+}
+
 .pointer {
   cursor: pointer;
+}
+
+.my-border {
+  border: 1px solid var(--main-bg-color);
+}
+.employee {
+  background-color: var(--emp-main-bg-color);
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 0.3rem;
 }
 
 .my-modal-backdrop {
@@ -16,7 +64,6 @@
 .my-modal {
   position: fixed;
   background-color: rgb(44, 39, 39);
-  color: white;
   z-index: 1500;
   min-height: 60vh;
   max-height: 95vh;
@@ -24,5 +71,5 @@
 }
 
 .z-neg {
-  z-index: -1
+  /* z-index: -1 */
 }

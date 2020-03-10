@@ -6,7 +6,7 @@ const initialState = {
   employees: [],
   selectedEmployee: {},
   modal: {
-    newEmployee: true,
+    newEmployee: false,
     editEmployee: false
   },
   formErrors: [],

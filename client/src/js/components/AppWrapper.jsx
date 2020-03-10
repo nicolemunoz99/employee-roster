@@ -11,7 +11,7 @@ import ModalIndex from './modals/ModalIndex.jsx';
 const AppWrapper = (props) => {
 
   return (
-    <div>
+    <div className="app">
       <Router>
       
         <Switch>
