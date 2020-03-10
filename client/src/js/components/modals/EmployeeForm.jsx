@@ -31,10 +31,7 @@ const EmployeeForm = () => {
       updateForm(formUpdate);
     }
   }, []);
-  
-  const activeModal = useSelector((state) => {
-    return Object.keys(state.modal).find( (el) => state.modal[el] );
-  });
+
 
   const inputText = (e) => {
     if (e.target.id === 'MI' && e.target.value.length > 1) return;
@@ -71,8 +68,6 @@ const EmployeeForm = () => {
       }
 
       dispatch(getAllEmployees());
-      
-      dispatch(toggleModal(activeModal));
       dispatch(resetForm());
     } else {
 
@@ -83,7 +78,7 @@ const EmployeeForm = () => {
 
 
   return (
-    <ModalWrapper width={6} title="Enter New Employee" activeModal={activeModal}>
+    <ModalWrapper width={6} title="Enter New Employee">
       <form>
         <div className="form-group row my-3 no-gutters">
           <div className="col-sm-4"><label className="col-form-label">Name: </label></div>

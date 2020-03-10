@@ -34,7 +34,8 @@ function rootReducer(state = initialState, action) {
     return {
             ...state, 
             employeeData: initialState.employeeData,
-            formErrors: initialState.formErrors
+            formErrors: initialState.formErrors,
+            modal: initialState.modal
     };
   }
 

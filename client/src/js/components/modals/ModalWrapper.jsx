@@ -7,7 +7,6 @@ const ModalWrapper = (props) => {
   
   const closeHandler = (e) => {
     if (e.target === e.currentTarget) {
-      dispatch(toggleModal(props.activeModal));
       dispatch(resetForm());
     }
   };
