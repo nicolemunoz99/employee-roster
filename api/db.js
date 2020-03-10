@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 const EmployeeSchema = new Schema ({
   _id: {type: String, default: shortid.generate},
   First_name: String,
-  MI: {type: String, maxlength: 1, minlength: 1},
+  MI: {type: String, maxlength: 1},
   Last_name: String,
   DOB: {type: String, maxlength: 10, minlength: 6},
   Hire_date: {type: String, maxlength: 10, minlength: 6},
@@ -51,16 +51,7 @@ const insert = (collection, doc) => {
   });
 };
 
-const get = async (collection, criteria) => {
-  // return new Promise((resolve, reject) => {
-  //   models[collection].find(criteria, '-__v', (err, employees) => {
-  //     if (err) reject(err);
-  //     else {
-  //       resolve(employees);
-  //     }
-  //   });
-  // });
-  
+const get = async (collection, criteria) => {  
   let docs = await models[collection].find(criteria, '-__v').lean({ virtuals: true });
   return docs
 

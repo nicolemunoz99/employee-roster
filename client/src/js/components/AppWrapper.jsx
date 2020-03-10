@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import Home from './Home.jsx';
 import EmployeeList from './EmployeeList.jsx';

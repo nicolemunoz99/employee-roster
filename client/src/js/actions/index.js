@@ -1,4 +1,4 @@
-import { ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, UPDATE_EMPLOYEE, LOG_ERRORS, RESET_FORM } from '../constants/action-types.js';
+import { ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, LOG_ERRORS, RESET_FORM } from '../constants/action-types.js';
 import api from '../../../api.js';
 import axios from 'axios';
 
@@ -12,10 +12,6 @@ export const selectEmployee = (payload) => {
 
 export const toggleModal = (payload) => {
   return { type: TOGGLE_MODAL, payload }
-}
-
-export const updateEmployee = (payload) => {
-  return { type: UPDATE_EMPLOYEE, payload }
 }
 
 export const logErrors = (payload) => {

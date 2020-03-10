@@ -1,6 +1,6 @@
 import { 
   ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, 
-  UPDATE_EMPLOYEE, LOG_ERRORS, RESET_FORM } from "../constants/action-types.js";
+  LOG_ERRORS, RESET_FORM } from "../constants/action-types.js";
 
 const initialState = {
   employees: [],
@@ -9,15 +9,7 @@ const initialState = {
     newEmployee: true,
     editEmployee: false
   },
-  employeeData: {
-    First_name: '',
-    Last_name: '',
-    MI: '',
-    DOB: '',
-    Hire_date: '',
-    Status: ''
-  },
-  formErrors: []
+  formErrors: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -32,11 +24,6 @@ function rootReducer(state = initialState, action) {
 
   if (action.type === TOGGLE_MODAL) {
     return {...state, modal: { ...state.modal, [action.payload]: !state.modal[action.payload] }};
-  }
-
-  if (action.type === UPDATE_EMPLOYEE) {
-    let newState = {...state, employeeData: action.payload};
-    return newState;
   }
 
   if (action.type === LOG_ERRORS) {
