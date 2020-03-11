@@ -26,3 +26,11 @@ export const getAllEmployees = () => async dispatch => {
   let employees = (await axios.get(`${api}/employee`)).data;
   dispatch(addEmployees(employees));
 }
+
+export const updateDb = (payload, data, id) => async dispatch => {
+  if (payload === 'newEmployee') {
+    await axios.post(`${api}/employee`, data);
+  } else {
+    await axios.put(`${api}/employee/${id}`, data)
+  }
+}

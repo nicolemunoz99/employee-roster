@@ -18,7 +18,6 @@ const initialForm = {
 
 const EmployeeForm = () => {
   const [formData, updateForm] = useState(initialForm)
-  
   const selectedEmployee = useSelector(state => state.selectedEmployee);
   const modal = useSelector(state => state.modal);
   const formErrors = useSelector(state => state.formErrors);
@@ -78,12 +77,15 @@ const EmployeeForm = () => {
 
 
   return (
-    <ModalWrapper width={6} title="Enter New Employee">
+    <ModalWrapper width={6} title={modal.editEmployee ? 'Modify Employee' : 'Enter New Employee'}>
       <form>
+        <div className="pr-5">
         <div className="form-group row my-3 no-gutters">
           <div className="col-sm-4"><label className="col-form-label">Name: </label></div>
-          <div className="col-sm-8">
+          <div className="col-sm-8 pl-auto">
+          <div className="pl-2">
             <div className="row">
+              
               <div className="col-sm-12 mb-2">
                 <input onChange={inputText} value={formData.Last_name} type="text" className="form-control"
                   id="Last_name" placeholder="Last"></input>
@@ -97,57 +99,68 @@ const EmployeeForm = () => {
                   id="MI" placeholder="MI"></input>
               </div>
             </div>
+            </div>
           </div>
         </div>
 
         <div className="form-group row my-3 no-gutters">
           <div className="col-sm-4"><label className="col-form-label">Hire date: </label></div>
           <div className="col-sm-8">
+          <div className="pl-2">
             <div className="row">
               <div className="col-sm-12 mb-2">
                 <input onChange={inputText} value={formData.Hire_date} type="date" className="form-control"
                   id="Hire_date"></input>
               </div>
             </div>
+            </div>
           </div>
         </div>
         <div className="form-group row my-3 no-gutters">
           <div className="col-sm-4"><label className="col-form-label">DOB: </label></div>
+          
           <div className="col-sm-8">
+          <div className="pl-2">
             <div className="row">
               <div className="col-sm-12 mb-2">
                 <input onChange={inputText} value={formData.DOB} type="date" className="form-control"
                   id="DOB"></input>
               </div>
             </div>
+            </div>
           </div>
         </div>
 
         <div className="form-group row my-3 no-gutters">
-          <label className="col-sm-4 col-form-label">Status: </label>
+          <div className="col-sm-4"><label className="col-form-label">Status: </label></div>
           <div className="col-sm-8">
-          
-            <div className="custom-control custom-radio custom-control-inline mr-5">
-              <input onChange={inputText} type="radio" 
-                id="active" value="active" name="Status" className="custom-control-input"
-                checked={formData.Status === "active" ? true : false}
-              >
-              </input>
-              <label className="custom-control-label" htmlFor="active">Active</label>
-            </div>
+            <div className="pl-2">
+            <div className="row">
+              <div className="col mt-auto">
+              <div className="custom-control custom-radio custom-control-inline mr-5">
+                <input onChange={inputText} type="radio" 
+                  id="active" value="active" name="Status" className="custom-control-input"
+                  checked={formData.Status === "active" ? true : false}
+                >
+                </input>
+                <label className="custom-control-label" htmlFor="active">Active</label>
+              </div>
 
-            <div className="custom-control custom-radio custom-control-inline">
-              <input onChange={inputText} type="radio"
-                id="inactive" value="inactive" name="Status" className="custom-control-input"
-                checked={formData.Status === "inactive" ? true : false}
-              >
-              </input>
-              <label className="custom-control-label" htmlFor="inactive">Inactive</label>
+              <div className="custom-control custom-radio custom-control-inline">
+                <input onChange={inputText} type="radio"
+                  id="inactive" value="inactive" name="Status" className="custom-control-input"
+                  checked={formData.Status === "inactive" ? true : false}
+                >
+                </input>
+                <label className="custom-control-label" htmlFor="inactive"></label>
+              </div>
             </div>
-
+            </div>
+            </div>
           </div>
         </div>
-        <div className="row">
+        </div>
+        <div className="row no-gutters">
         <div className="col-auto mx-auto my-3 text-danger">
           
           {formErrors.length > 0 ?
@@ -162,7 +175,9 @@ const EmployeeForm = () => {
           }
         </div>
         </div>
-        <button onClick={handleSubmit} type="button" className="btn btn-light w-100">Submit</button>
+        <div className="px-3">
+          <button onClick={handleSubmit} type="button" className="btn btn-light w-100">Submit</button>
+        </div>
       </form>
     </ModalWrapper>
   )

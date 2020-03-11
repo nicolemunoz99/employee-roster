@@ -8,7 +8,7 @@ const Employee = (props) => {
 
   const handleEmployeeClick = (e) => {
     if (selectedEmployee._id === props.employee._id) {
-      dispatch(selectEmployee( {} ));
+      dispatch(selectEmployee({}));
     } else {
       dispatch(selectEmployee(props.employee));
     }
@@ -17,14 +17,22 @@ const Employee = (props) => {
   const handleEditClick = (e) => {
     dispatch(toggleModal('editEmployee'));
   };
-  
+
+  const handleClickActivate = (e) => {
+    console.log('p', props.employee)
+    props.employee.Status = props.employee.Status === 'active' ? 'inactive' : 'active';
+    // UPDATE DB
+  }
+
+  let active = props.employee.Status === 'active' ? true : false;
+
   return (
     <div className="col-12 no-gutters">
       <div className="col-md-8 mx-auto my-2">
         <div className="employee w-100">
           <div className="row justify-content-center my-2">
             <div className="col-8">
-              <span className="align-middle">{`${props.employee.Last_name}, ${props.employee.First_name} ${props.employee.MI}${props.employee.MI ? '.' : ''}`} </span> 
+              <span className={`align-middle ${!active ? 'inactive' : null}`}>{`${props.employee.Last_name}, ${props.employee.First_name} ${props.employee.MI}${props.employee.MI ? '.' : ''}`} </span>
             </div>
             <div className="col-auto pointer" onClick={handleEmployeeClick}>
               <i className="material-icons align-middle">
@@ -34,25 +42,44 @@ const Employee = (props) => {
           </div>
         </div>
         {selectedEmployee._id === props.employee._id ?
-          <div className="my-border details-wrapper">
-            <div onClick={handleEditClick} className="col-12 position-absolute text-right mt-1 pointer">
-              <i className="material-icons ml-auto">edit</i>
-            </div>
-            <div key={props.employee._id} className="col-sm-8 mr-auto ml-auto my-3 z-neg">
+          <div className="my-border details-wrapper p-1">
 
-              {
-                Object.keys(props.employee).map((dataLabel, i) => {
-                  let label = dataLabel.split('_').join(' ')
-                  return (
-                    <div className="container">
-                    <div key={dataLabel} className={`row ${i%2 === 0 ? 'details-l1' : 'details-l2'}`}>
-                      <div className="col-5">{`${label}:`}</div>
-                      <div className="col-7">{`${props.employee[dataLabel]}`}</div>
-                    </div>
-                    </div>
-                  )
-                })
-              }
+            <div className="row no-gutters">
+
+              <div key={props.employee._id} className="col-sm-8 mr-auto ml-auto my-3 z-neg">
+
+                {
+                  Object.keys(props.employee).map((dataLabel, i) => {
+                    let label = dataLabel.split('_').join(' ')
+                    return (
+                      <div className="container">
+                        <div key={dataLabel} className={`row ${i % 2 === 0 ? 'details-l1' : 'details-l2'}`}>
+                          <div className="col-5">{`${label}:`}</div>
+                          <div className="col-7">{`${props.employee[dataLabel]}`}</div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+
+              <div className="col-sm-4 p-2">
+                <div className="row control-wrapper">
+                <div className="col-6 col-sm-12 m-auto my-sm-2">
+                  <div className="details-btn text-center center-hack" onClick={handleEditClick}>
+                    <i className="material-icons h4 m-auto my-sm-3">edit</i> 
+                  </div>
+                  
+                </div>
+                <div className="col-6 col-sm-12 m-auto my-sm-2">
+                  <div className="details-btn text-center center-hack" onClick={handleClickActivate}>
+                    <div className="h4 d-inline-block m-auto my-sm-3">{active ? 'deactivate' : 'activate'}</div> 
+                  </div>
+                  
+                </div>
+                </div>
+              </div>
+              
             </div>
           </div>
           :
