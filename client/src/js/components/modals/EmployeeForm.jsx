@@ -65,9 +65,8 @@ const EmployeeForm = () => {
         payload = {modalName: "editEmployee", id: selectedEmployee._id}
       }
       payload.data = formData;
-      dispatch(submitEdits(payload));
       dispatch(resetForm());
-      // change modal to success
+      dispatch(submitEdits(payload));
     } else {
       dispatch(logErrors(tempErrors));
     }

@@ -7,9 +7,11 @@ const initialState = {
   selectedEmployee: {},
   modal: {
     newEmployee: false,
-    editEmployee: false
+    editEmployee: false,
+    submitResult: false
   },
-  formErrors: []
+  formErrors: [],
+  submitSuccess: true
 };
 
 function rootReducer(state = initialState, action) {
@@ -40,9 +42,12 @@ function rootReducer(state = initialState, action) {
   }
 
   if (action.type === UPDATE_EMPLOYEES) {
-    console.log('action.payload in reducer:', action.payload)
     // success modal
-    return {...state, employees: [...action.payload]};
+    return {
+            ...state, 
+            employees: [...action.payload], 
+            modal:  {...state.modal, submitResult: true}
+            };
   }
 
   return state;
