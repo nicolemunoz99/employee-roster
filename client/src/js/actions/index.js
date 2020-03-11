@@ -34,7 +34,6 @@ export const getAllEmployees = () => async (dispatch) => {
 };
 
 export const submitEdits = (payload) => async (dispatch) => {
-  console.log('payload in updateDb:', payload)
   if (payload.modalName === 'newEmployee') {
     await axios.post(`${api}/employee`, payload.data);
   } else {

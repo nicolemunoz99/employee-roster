@@ -29,6 +29,8 @@ services:
     image: mongo:4.0
     ports:
       - '27022:27022'
+    volumes: 
+      - ./mongo-volume:/data/db
     restart: 
       on-failure
   

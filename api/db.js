@@ -20,8 +20,7 @@ const EmployeeSchema = new Schema ({
 const Employee = mongoose.model('Employee', EmployeeSchema);
 
 const models = {
-  employee: Employee,
-  user: User
+  employee: Employee
 };
 
 
@@ -31,7 +30,6 @@ const models = {
 // doc: object to insert
 
 const insert = (collection, doc) => {
-  console.log(collection, doc)
   return new Promise((resolve, reject) => {
     let newDoc = new models[collection](doc);
     newDoc.save((err) => {
