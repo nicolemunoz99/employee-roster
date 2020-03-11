@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectEmployee, toggleModal } from '../actions/';
+import { selectEmployee, toggleModal, submitEdits } from '../actions/';
 
 const Employee = (props) => {
   const selectedEmployee = useSelector(state => state.selectedEmployee);
@@ -20,8 +20,15 @@ const Employee = (props) => {
 
   const handleClickActivate = (e) => {
     console.log('p', props.employee)
-    props.employee.Status = props.employee.Status === 'active' ? 'inactive' : 'active';
-    // UPDATE DB
+    let employeeData = {...selectedEmployee};
+    delete employeeData._id
+    employeeData.Status = props.employee.Status === 'active' ? 'inactive' : 'active';
+    let payload = {
+      modalName: 'editEmployee',
+      data: employeeData,
+      id: selectedEmployee._id
+    };
+    dispatch(submitEdits(payload));
   }
 
   let active = props.employee.Status === 'active' ? true : false;
