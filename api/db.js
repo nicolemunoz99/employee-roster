@@ -1,11 +1,9 @@
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb://127.0.0.1/my_database';
-// var mongoDB = 'db';
+const mongoose = require('mongoose');
+const mongoDB = 'mongodb://db:27017/roster';
 const shortid = require('shortid');
 
-mongoose.connect(mongoDB, { useNewUrlParser: true ,  useFindAndModify: false, useUnifiedTopology: true });
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+mongoose.connect(mongoDB, { useNewUrlParser: true,  useFindAndModify: false, useUnifiedTopology: true });
+const db = mongoose.connection;
 
 const Schema = mongoose.Schema;
 
@@ -19,16 +17,7 @@ const EmployeeSchema = new Schema ({
   Status: Boolean
 });
 
-const UserSchema = new Schema ({
-  _id: {type: mongoose.Schema.Types.ObjectId, auto: true},
-  pw: String,
-  username: {type: String, unique: true},
-  salt: String
-});
-
-
 const Employee = mongoose.model('Employee', EmployeeSchema);
-const User = mongoose.model('User', UserSchema);
 
 const models = {
   employee: Employee,

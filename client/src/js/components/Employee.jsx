@@ -19,7 +19,6 @@ const Employee = (props) => {
   };
 
   const handleClickActivate = (e) => {
-    console.log('p', props.employee)
     let employeeData = {...selectedEmployee};
     delete employeeData._id
     employeeData.Status = props.employee.Status === 'active' ? 'inactive' : 'active';
