@@ -1,13 +1,12 @@
 {
-  "name": "employee-roster",
+  "name": "client",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "fe-start": "webpack-dev-server",
-    "react-dev": "webpack -d --watch",
-    "be-start": "nodemon ./api/server.js"
+    "react-dev": "webpack -d --watch"
   },
   "keywords": [],
   "author": "",
@@ -26,11 +25,6 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "bcrypt": "^4.0.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.9.3",
-    "nodemon": "^2.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
