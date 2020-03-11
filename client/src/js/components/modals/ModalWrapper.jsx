@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { toggleModal, resetForm } from '../../actions/';
+import { resetForm } from '../../actions/';
 
 const ModalWrapper = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const ModalWrapper = (props) => {
   return (
 
     <div onClick={closeHandler} className="d-flex justify-content-center my-modal-backdrop no-gutters">
-      <div className="col-11 col-md-6 my-modal border rounded">
+      <div className="col-11 col-md-6 my-modal">
         <div className="col-12 position-absolute mt-3 pointer text-right">
           <i onClick={closeHandler} className="material-icons">close</i>
         </div>

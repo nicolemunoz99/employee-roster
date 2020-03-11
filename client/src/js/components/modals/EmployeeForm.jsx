@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import xDate from 'xDate';
-import axios from 'axios';
 import ModalWrapper from './ModalWrapper.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { logErrors, resetForm, getAllEmployees, toggleModal } from '../../actions/';
-import api from '../../../../api.js';
+import { logErrors, resetForm, submitEdits } from '../../actions/';
 
 const initialForm = {
   First_name: '',
@@ -60,24 +58,24 @@ const EmployeeForm = () => {
 
     
     if (tempErrors.length === 0) {
+      let payload;
       if (modal.newEmployee) {
-        await axios.post(`${api}/employee`, formData);
+        payload = {modalName: "newEmployee"}
       } else {
-        await axios.put(`${api}/employee/${selectedEmployee._id}`, formData)
+        payload = {modalName: "editEmployee", id: selectedEmployee._id}
       }
-
-      dispatch(getAllEmployees());
+      payload.data = formData;
+      dispatch(submitEdits(payload));
       dispatch(resetForm());
+      // change modal to success
     } else {
-
       dispatch(logErrors(tempErrors));
-
     }
   }
 
 
   return (
-    <ModalWrapper width={6} title={modal.editEmployee ? 'Modify Employee' : 'Enter New Employee'}>
+    <ModalWrapper width={6} title={modal.editEmployee ? 'Modify Employee' : 'New Employee'}>
       <form>
         <div className="pr-5">
         <div className="form-group row my-3 no-gutters">
@@ -152,7 +150,7 @@ const EmployeeForm = () => {
                   checked={formData.Status === "inactive" ? true : false}
                 >
                 </input>
-                <label className="custom-control-label" htmlFor="inactive"></label>
+                <label className="custom-control-label" htmlFor="inactive">Inactive</label>
               </div>
             </div>
             </div>
@@ -176,7 +174,7 @@ const EmployeeForm = () => {
         </div>
         </div>
         <div className="px-3">
-          <button onClick={handleSubmit} type="button" className="btn btn-light w-100">Submit</button>
+          <button onClick={handleSubmit} type="button" className="btn my-btn w-100">Submit</button>
         </div>
       </form>
     </ModalWrapper>

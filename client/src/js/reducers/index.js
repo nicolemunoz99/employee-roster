@@ -1,6 +1,6 @@
 import { 
   ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, 
-  LOG_ERRORS, RESET_FORM } from "../constants/action-types.js";
+  LOG_ERRORS, RESET_FORM, UPDATE_EMPLOYEES } from "../constants/action-types.js";
 
 const initialState = {
   employees: [],
@@ -9,7 +9,7 @@ const initialState = {
     newEmployee: false,
     editEmployee: false
   },
-  formErrors: [],
+  formErrors: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -37,6 +37,12 @@ function rootReducer(state = initialState, action) {
             formErrors: initialState.formErrors,
             modal: initialState.modal
     };
+  }
+
+  if (action.type === UPDATE_EMPLOYEES) {
+    console.log('action.payload in reducer:', action.payload)
+    // success modal
+    return {...state, employees: [...action.payload]};
   }
 
   return state;

@@ -97,14 +97,18 @@ body {
   min-height: 60vh;
   max-height: 95vh;
   overflow: auto;
+  border: 3px solid var(--details-wrapper-bg-color)
 }
 
-.z-neg {
-  /* z-index: -1 */
+.my-btn {
+  border: 1px solid var(--main-bg-color);
+  background-color: rgb(59, 59, 59);
+  /* background-color: white; */
+  color: white;
 }
 
 .inactive {
   color: rgb(167, 167, 167);
-  text-decoration: underline wavy
+  text-decoration: underline wavy;
 
 }
