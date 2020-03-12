@@ -6,6 +6,12 @@ View and interact with app at https://nicolemunoz.xyz
 You will need to create a user account and verify it through email.
 
 ### Features
+- Employee details toggle. 
+- Edit details button located in details component.
+- Toggle status in details component.
+- Inactive employee names displayed with a strike-through.
+
+
 ![features](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/details.jpg)
 
 
@@ -18,6 +24,7 @@ Same component as add-employee form. Auto-populates with selected employee detai
 
 ### Responsive design
 Edit and toggle-status buttons located below product details on smaller screens
+
 ![responsive](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/responsive.jpg)
 
 
