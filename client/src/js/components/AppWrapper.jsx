@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from './Home.jsx';
 import EmployeeList from './EmployeeList.jsx';
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
 import ModalIndex from './modals/ModalIndex.jsx';
 
 const AppWrapper = (props) => {
@@ -17,8 +15,6 @@ const AppWrapper = (props) => {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/employees" component={EmployeeList} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
         </Switch>
       </Router>
 

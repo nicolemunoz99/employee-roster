@@ -7,8 +7,8 @@ services:
     build: client/
     depends_on:
       - 'api'
-    ports:
-      - '8080:8080'
+    volumes: 
+      - './urls.js:/urls.js'
     restart: 
       on-failure
   
@@ -20,17 +20,15 @@ services:
     depends_on:
       - 'db'
     ports: 
-      - '7200:7200'
+      - '8080:8080'
     restart: 
       on-failure
   
   db:
     container_name: db
     image: mongo:4.0
-    ports:
-      - '27022:27022'
     volumes: 
-      - ./mongo-volume:/data/db
+      - ./data-volume:/data/db
     restart: 
       on-failure
   

@@ -5,7 +5,6 @@
   "main": "api.js",
   "scripts": {
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "fe-start": "webpack-dev-server",
     "react-dev": "webpack -d --watch"
   },
@@ -26,7 +25,6 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "express": "^4.17.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",

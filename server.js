@@ -1,14 +1,21 @@
+const port = 8080;
 const express = require ('express');
 const cors = require('cors');
-const port = 7200;
+const path = require('path');
 const app = express();
-const {insert, get, update} = require('./db.js');
+const bodyParser = require('body-parser');
+const {insert, get, update} = require('./api/db.js');
 
 app.use('*', cors());
 
-const bodyParser = require('body-parser');
-
 app.use(bodyParser.json());
+
+app.use(express.static(__dirname + '/client/dist'));
+
+app.get('/redirect', (req, res) => {
+  console.log('redirect');
+  res.redirect('/employees');
+});
 
 app.use((req, res, next)=>{
   req.body.Status = req.body.Status === 'active' ? true : false;
@@ -32,5 +39,10 @@ app.put('/employee/:_id', async (req, res) => {
   await update('employee', req.params, req.body);
   res.sendStatus(200);
 });
+
+app.get('*', (req, res) => { // all other get requests to front-end routing
+  res.sendFile(path.join(__dirname, './client/dist/index.html'));
+});
+
 
 app.listen(port, () => console.log('Server listening on port ' + port));

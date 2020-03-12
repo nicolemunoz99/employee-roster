@@ -28,6 +28,10 @@ html {
   min-height: 100%;
 }
 
+.white-link {
+  color:white !important;
+}
+
 body {
   /* transparent bg */
   background-color: rgba(255, 0, 0, 0);
@@ -109,6 +113,9 @@ body {
 
 .inactive {
   color: rgb(167, 167, 167);
-  text-decoration: underline wavy;
+  text-decoration: line-through;
+}
 
+.home-wrapper {
+  margin: 5rem;
 }

@@ -8,6 +8,6 @@ COPY . /src/app
 
 RUN npm install --only=prod
 
-EXPOSE 7200
+EXPOSE 8080
 
 CMD ["node", "server.js"]

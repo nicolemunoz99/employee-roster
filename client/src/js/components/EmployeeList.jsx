@@ -21,7 +21,7 @@ const EmployeeList = () => {
         <div className="col-auto h2 mx-auto" onClick={()=>dispatch(toggleModal("newEmployee"))}>
           <i className="material-icons pointer h2">add_circle_outline</i>
         </div>
-        
+      </div>
         <div className="row list-wrapper py-4 mx-1">
           {
             employees.map(el => {
@@ -32,7 +32,7 @@ const EmployeeList = () => {
           }
         </div>
 
-      </div>
+      
     </div>
   )
 };

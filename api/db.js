@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://db:27017/roster';
+// const mongoDB = 'mongodb://db:27017/roster';
+const mongoDB = 'mongodb://localhost:27017/my_database';
+
 const shortid = require('shortid');
 
 mongoose.connect(mongoDB, { useNewUrlParser: true,  useFindAndModify: false, useUnifiedTopology: true });
