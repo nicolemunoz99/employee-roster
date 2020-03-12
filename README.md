@@ -19,11 +19,12 @@ You will need to create a user account and verify it through email.
 ![add_form](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/add-employee.jpg)
 
 ### Edit employee form
-Same component as add-employee form. Auto-populates with selected employee details.
+Same component as add-employee form. Auto-populates with selected employee details for easy editing.
+
 ![edit_form](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/edit-employee.jpg)
 
 ### Responsive design
-Edit and toggle-status buttons located below product details on smaller screens
+Edit and toggle-status buttons located at bottom of details component on smaller screens
 
 ![responsive](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/responsive.jpg)
 
