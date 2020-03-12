@@ -5,6 +5,8 @@ View and interact with app at https://nicolemunoz.xyz
 
 You will need to create a user account and verify it through email.
 
+
+
 ### Built with
 - React 16.13.0
 - Redux 4.0.5
@@ -30,9 +32,14 @@ URLs for the server and database are in /urls.js and /api/urls.js, respectively.
 
 ### Future features
 - Allow user to sort employees by name, status.
+- Allow users to search for employees.
 - Right now the login doesn't protect data and you can bypass simply by visiting the /employees route. To secure the data,
 I would store a session Id as a cookie and include it as a query in the redirect url. When the login service redirects to my api,
 store the login-service code and session Id in database. When the client makes an api request, send the session id from local
 cookie and verify that it's associated with a valid login-service code before fulfilling request. If it isn't, redirect client
 to login page.
 - Ability to logout
+- Client handling of larger datasets
+ - don't send entire dataset to client
+ - paginate get request
+ - when user scrolls to bottom, automatically do another get request for next page
