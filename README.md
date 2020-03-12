@@ -35,3 +35,4 @@ I would store a session Id as a cookie and include it as a query in the redirect
 store the login-service code and session Id in database. When the client makes an api request, send the session id from local
 cookie and verify that it's associated with a valid login-service code before fulfilling request. If it isn't, redirect client
 to login page.
+- Ability to logout
