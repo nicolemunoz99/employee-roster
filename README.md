@@ -22,11 +22,11 @@ You will need to create a user account and verify it through email.
 - Fork and clone https://github.com/nicolemunoz99/employee-roster.git
 - $ cd into employee-roster
 - $ npm install
-- $ npm run be-start (to start api and client server)
-- $ npm run react-dev (to compile and watch client files)
+- $ npm run be-start (start api/client server)
+- $ npm run react-dev (compile and watch client files)
 - In browser go to http://localhost:8080 to view app
 
-URLS for the server and database are in /urls.js and /api/urls.js, respectively.
+URLs for the server and database are in /urls.js and /api/urls.js, respectively.
 
 ### Future features
 - Allow user to sort employees by name, status.
