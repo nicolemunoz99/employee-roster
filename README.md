@@ -50,6 +50,7 @@ Edit and toggle-status buttons located at bottom of details component on smaller
 - $ npm run be-start (start api/client server)
 - $ npm run react-dev (compile and watch client files)
 - In browser go to http://localhost:8080/employees to view app
+
 NOTE: login page redirects to the deployed version, so just visit the /employee route
 
 URLs for the server and database are in /urls.js and /api/urls.js, respectively.
