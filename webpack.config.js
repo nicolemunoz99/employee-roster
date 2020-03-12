@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './client/src/index.js',
   module: {
     rules: [
       {
@@ -20,11 +20,11 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/client/dist/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.join(__dirname, '/dist'),
+    contentBase: path.join(__dirname, 'client/dist'),
     compress: true,
     port: 9000,
     historyApiFallback: true

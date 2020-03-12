@@ -1,6 +1,4 @@
 node_modules
 bundle.js
 appClientId.js
-mongo-volume
 data-volume
-urls.js

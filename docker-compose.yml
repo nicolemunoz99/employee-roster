@@ -2,19 +2,9 @@ version: '3'
 
 services:
 
-  client:
-    container_name: client
-    build: client/
-    depends_on:
-      - 'api'
-    volumes: 
-      - './urls.js:/urls.js'
-    restart: 
-      on-failure
-  
-  api:
-    container_name: api
-    build: api/
+  app:
+    container_name: app
+    build: .
     links:
       - 'db:db'
     depends_on:

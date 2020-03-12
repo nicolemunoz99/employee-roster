@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-// const mongoDB = 'mongodb://db:27017/roster';
-const mongoDB = 'mongodb://localhost:27017/my_database';
+
+const {dbUrl} = require('./urls.js');
+
+const mongoDB = `mongodb://${dbUrl}:27017/my_database`;
 
 const shortid = require('shortid');
 
