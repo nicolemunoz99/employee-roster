@@ -5,6 +5,20 @@ View and interact with app at https://nicolemunoz.xyz
 
 You will need to create a user account and verify it through email.
 
+### Features
+![features](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/details.jpg)
+
+
+### Add employee form
+![add_form](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/add-employee.jpg)
+
+### Edit employee form
+Same component as add-employee form. Auto-populates with selected employee details.
+![edit_form](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/edit-employee.jpg)
+
+### Responsive design
+Edit and toggle-status buttons located below product details on smaller screens
+![responsive](https://github.com/nicolemunoz99/employee-roster/blob/master/readme-files/responsive.jpg)
 
 
 ### Built with
@@ -12,6 +26,7 @@ You will need to create a user account and verify it through email.
 - Redux 4.0.5
 - React Router
 - Webpack, Babel
+- Bootstrap (responsive design, form features)
 - Node
 - Express
 - Mongoose
