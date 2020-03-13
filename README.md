@@ -41,7 +41,7 @@ Edit and toggle-status buttons located at bottom of details component on smaller
 - Mongoose
 - AWS
   - Cognito (user identity management)
-  - Amplify (auth)
+  - Amplify (auth platform)
   - EC2, Route 53, TLS/SSL certification (deployed demo)
 
 
