@@ -19,10 +19,10 @@ const AppWrapper = () => {
       
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route path="/employees" component={EmployeeList} />
+          <Route exact path="/employees" component={EmployeeList} />
         </Switch>
       </Router>
-
+      
       <ModalIndex />
     </div>
   )
