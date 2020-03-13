@@ -5,6 +5,29 @@
   --emp-main-bg-color: rgb(46, 45, 45);
   --details-wrapper-bg-color: rgb(58, 58, 58);
   --details-contrast-color: rgb(70, 70, 70);
+  /* aws auth form */
+  --button-background-color: var(--list-wrapper-bg-color) !important;
+  --form-color: var(--emp-main-bg-color) !important;
+}
+
+.Section__sectionHeader___2djyg, .Input__inputLabel___3VF0S {
+  color: white !important;
+}
+
+.Button__button___vS7Mv {
+  border: 1px solid var(--main-bg-color) !important;
+}
+
+.Anchor__a___1_Iz8 {
+  text-decoration: underline !important;
+}
+
+.Nav__nav___2Dx2Y, .Nav__navBar___xtCFA {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.Nav__navBar___xtCFA {
+  border-width: 0px !important;
 }
 
 .col-form-label {
@@ -57,7 +80,6 @@ body {
   cursor: pointer;
   border-radius: 0.2rem;
   box-shadow: 5px 5px 3px rgb(22, 22, 22);
-  /* height: 100%; */
 }
 
 .center-hack {

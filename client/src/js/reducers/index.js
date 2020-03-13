@@ -8,7 +8,8 @@ const initialState = {
   modal: {
     newEmployee: false,
     editEmployee: false,
-    submitResult: false
+    submitResult: false,
+    
   },
   formErrors: [],
   submitSuccess: true

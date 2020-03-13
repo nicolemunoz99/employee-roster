@@ -1,19 +1,32 @@
 import React from 'react';
-import { login } from '../../../urls.js'
+import { login } from '../../../urls.js';
+import EmployeeList from './EmployeeList.jsx';
+import { Link, BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 
-const Home = (props) => {
+const Home = () => {
 
   return (
-    <div className="container-flex home-wrapper">
-      <div className="row">
-        <a className="col-12 text-center display-4 white-link"
-           href={login}
-        >
-          Click to log in
-        </a>
+    <Router>
+      <div className="container-flex home-wrapper">
+        <div className="row justify-content-md-center">
+          <div className="col-12 text-center display-4">
+            <Link to="/employees">
+              <span className="white-link">
+                Log in
+            </span>
+
+            </Link>
+          </div>
+
+          <Switch>
+            <Route exact path="/employees">
+              <EmployeeList />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   )
 }
 

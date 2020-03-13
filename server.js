@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
+const axios = require('axios');
 const {insert, get, update} = require('./api/db.js');
 
 app.use('*', cors());
@@ -12,8 +13,38 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/client/dist'));
 
-app.get('/redirect', (req, res) => {
-  console.log('redirect');
+app.get('/redirect', async (req, res) => {
+  try {
+    console.log('redirect', req.query);
+    if (req.query.code) {
+      let reqParams = {
+        grant_type: 'authorization_code',
+        client_id: '2pf8f80gs65gnsihmaeln6orab',
+        redirect_uri: 'http://localhost:8080/redirect',
+        code: req.query.code
+      }
+
+      // let result = await axios.post(`https://munoztest.auth.us-east-2.amazoncognito.com/oauth2/token`, {
+      //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      //   data: reqParams
+      // });
+
+
+      let result = await axios.post(`https://munoztest.auth.us-east-2.amazoncognito.com/oauth2/token/`, {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          data: reqParams
+        });
+
+
+      console.log('result.data', result.data)
+      console.log('result', result)
+    } 
+  }
+  
+  catch (err) {
+    console.log('ERROR', err)
+  }
+
   res.redirect('/employees');
 });
 
