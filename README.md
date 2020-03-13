@@ -53,7 +53,7 @@ Edit and toggle-status buttons located at bottom of details component on smaller
 - $ npm run react-dev (compile and watch client files)
 - In browser go to http://localhost:8080/employees to view app
 
-NOTE: login page redirects to the deployed /employees route
+NOTE: Login platform disabled in repo.
 
 URLs for the server and database are in /urls.js and /api/urls.js, respectively.
 
