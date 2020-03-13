@@ -46,6 +46,7 @@ Edit and toggle-status buttons located at bottom of details component on smaller
 
 
 ### Dev environment
+(assumes you have MongoDB on a running server)
 - Fork and clone https://github.com/nicolemunoz99/employee-roster.git
 - $ cd into employee-roster
 - $ npm install
