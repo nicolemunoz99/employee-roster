@@ -3,10 +3,10 @@ import Employee from './Employee.jsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal, getAllEmployees } from '../actions/';
 
-import Amplify from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react";
-import config from "../../../../aws-exports";
-Amplify.configure(config);
+// import Amplify from "aws-amplify";
+// import { withAuthenticator } from "aws-amplify-react";
+// import config from "../../../../aws-exports";
+// Amplify.configure(config);
 
 
 const EmployeeList = (props) => {
@@ -45,4 +45,5 @@ const EmployeeList = (props) => {
   )
 };
 
-export default withAuthenticator(EmployeeList, true);
+// export default withAuthenticator(EmployeeList, true);
+export default EmployeeList;
