@@ -6,7 +6,12 @@ import Home from './Home.jsx';
 import EmployeeList from './EmployeeList.jsx';
 import ModalIndex from './modals/ModalIndex.jsx';
 
-const AppWrapper = (props) => {
+// import Amplify from 'aws-amplify';
+// import aws_exports from '../../../../aws-exports.js';
+// import { withAuthenticator } from 'aws-amplify-react';
+// Amplify.configure(aws_exports);
+
+const AppWrapper = () => {
 
   return (
     <div className="app">

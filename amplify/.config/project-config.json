@@ -1,0 +1,17 @@
+{
+    "projectName": "employee-roster",
+    "version": "3.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react",
+        "config": {
+            "SourceDir": "/Users/anatase/coding-challenges/employee-roster",
+            "DistributionDir": "build",
+            "BuildCommand": "npm run-script build",
+            "StartCommand": "node server.js"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}
