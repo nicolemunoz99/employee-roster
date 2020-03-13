@@ -61,6 +61,6 @@ URLs for the server and database are in /urls.js and /api/urls.js, respectively.
 - Allow user to sort employees by name, status.
 - Allow users to search for employees.
 - Client handling of larger datasets
- - don't send entire dataset to client
- - paginate get request
- - when user scrolls to bottom, automatically do another get request for next page
+  - don't send entire dataset to client
+  - paginate get request
+  - when user scrolls to bottom, automatically do another get request for next page
