@@ -2,7 +2,7 @@ import { TOGGLE_MODAL } from '../actions/action-types.js';
 
 const initModalState = {
   employeeForm: false,
-  newEmployee: false,
+  newEmployeeForm: false,
   editEmployee: false,
   submitResult: false,
   dataStatus: false
@@ -12,7 +12,6 @@ const initModalState = {
 export const modalReducer = (state = initModalState, action) => {
   
   if (action.type === TOGGLE_MODAL) {
-    console.log('action.modalName', action, action.modalName)
     return {...state,  [action.modalName]: !state[action.modalName] };
   }
 

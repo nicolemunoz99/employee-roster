@@ -78,7 +78,7 @@ const EmployeeForm = () => {
 
   return (
     <ModalWrapper 
-      name="employeeForm"
+      name="newEmployeeForm"
       width={6} 
       title={modal.editEmployee ? 'Modify Employee' : 'New Employee'}
     >

@@ -27,7 +27,7 @@ const EmployeeList = () => {
         <div className="col-auto mr-auto ml-auto text-center mb-4 h2">
           Employees
         </div>
-        <div className="col-auto h2 mx-auto" onClick={()=>dispatch(toggleModal("employeeForm"))}>
+        <div className="col-auto h2 mx-auto" onClick={()=>dispatch(toggleModal("newEmployeeForm"))}>
           <i className="material-icons pointer h2">add_circle_outline</i>
         </div>
       </div>

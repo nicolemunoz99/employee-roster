@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import EmployeeForm from './EmployeeForm.jsx';
+import EmployeeForm from './EmployeeForm/EmployeeForm.jsx';
 import SubmitResult from './SubmitResult.jsx';
 
 const ModalIndex = () => {
@@ -13,7 +13,7 @@ const ModalIndex = () => {
   return (
     <div>
 
-      { modal.employeeForm && <EmployeeForm /> }
+      { modal.newEmployeeForm && <EmployeeForm /> }
       
       { modal.submitResult && <SubmitResult /> }
 

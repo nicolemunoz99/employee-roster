@@ -3,7 +3,7 @@ import {
   SELECT_EMPLOYEE, 
   TOGGLE_MODAL,
   TOGGLE_DATA_STATUS, 
-  LOG_ERRORS, RESET_FORM, 
+  UPDATE_FORM, LOG_ERRORS, RESET_FORM, 
   UPDATE_EMPLOYEES 
 } from './action-types.js';
 import axios from 'axios';
@@ -31,6 +31,10 @@ export const resetForm = (payload) => {
 export const updateEmployees = (payload) => {
   return { type: UPDATE_EMPLOYEES, payload };
 };
+
+export const updateForm = (dataObj) => {
+  return { type: UPDATE_FORM, dataObj }
+}
 
 // async/thunks
 
