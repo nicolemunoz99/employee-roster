@@ -1,8 +1,10 @@
 node_modules
+.env.*
 bundle.js
 appClientId.js
 data-volume
 .DS_Store
+
 
 #amplify
 amplify/\#current-cloud-backend

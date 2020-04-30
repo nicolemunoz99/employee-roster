@@ -1,11 +1,12 @@
-const port = 8080;
+require('custom-env').env(true);
+const port = process.env.PORT;
 const express = require ('express');
 const cors = require('cors');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const {insert, get, update} = require('./api/db.js');
+const { insert, get, update } = require('./api/db.js');
 
 app.use('*', cors());
 
@@ -62,7 +63,8 @@ app.put('/employee/:_id', async (req, res) => {
   res.sendStatus(200);
 });
 
-app.get('*', (req, res) => { // all other get requests to front-end routing
+// all other GET go to client
+app.get('*', (req, res) => { 
   res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 
