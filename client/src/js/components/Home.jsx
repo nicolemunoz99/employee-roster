@@ -5,9 +5,10 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 const Home = () => {
   const [showRedirect, updateShowRedirect] = useState(false);
+  
   const handleLoginClick = (e) => {
     updateShowRedirect(true);
-  }
+  };
 
   return (
     <Router>
@@ -19,7 +20,7 @@ const Home = () => {
               :
               <span className="white-link pointer" onClick={handleLoginClick}>
               Log in
-            </span>
+              </span>
             }
             
 

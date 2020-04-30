@@ -11,7 +11,7 @@ import ModalIndex from './modals/ModalIndex.jsx';
 // import { withAuthenticator } from 'aws-amplify-react';
 // Amplify.configure(aws_exports);
 
-const AppWrapper = () => {
+const App = () => {
 
   return (
     <div className="app">
@@ -20,7 +20,9 @@ const AppWrapper = () => {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/employees" component={EmployeeList} />
+          <Route component={Home} />
         </Switch>
+      
       </Router>
       
       <ModalIndex />
@@ -28,4 +30,4 @@ const AppWrapper = () => {
   )
 }
 
-export default AppWrapper;
+export default App;

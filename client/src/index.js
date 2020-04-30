@@ -5,11 +5,11 @@ import { render } from 'react-dom';
 import { Provider } from "react-redux";
 import store from './js/store/';
 
-import AppWrapper from './js/components/AppWrapper.jsx';
+import App from './js/components/App.jsx';
 
 render(
   <Provider store={store}>
-    <AppWrapper />
+    <App />
   </Provider>,
   document.getElementById('app')
 );
