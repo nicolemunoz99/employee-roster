@@ -1,5 +1,4 @@
 import { ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, LOG_ERRORS, RESET_FORM, UPDATE_EMPLOYEES } from '../constants/action-types.js';
-import { api } from '../../../urls.js';
 import axios from 'axios';
 
 export const addEmployees = (payload) => {
@@ -29,16 +28,16 @@ export const updateEmployees = (payload) => {
 // thunks
 
 export const getAllEmployees = () => async (dispatch) => {
-  let employees = (await axios.get(`${api}/employee`)).data;
+  let employees = (await axios.get(`${process.env.API}/employee`)).data;
   dispatch(addEmployees(employees));
 };
 
 export const submitEdits = (payload) => async (dispatch) => {
   if (payload.modalName === 'newEmployee') {
-    await axios.post(`${api}/employee`, payload.data);
+    await axios.post(`${process.env.API}/employee`, payload.data);
   } else {
-    await axios.put(`${api}/employee/${payload.id}`, payload.data);
+    await axios.put(`${process.env.API}/employee/${payload.id}`, payload.data);
   }
-  let employees = (await axios.get(`${api}/employee`)).data;
+  let employees = (await axios.get(`${process.env.API}/employee`)).data;
   dispatch(updateEmployees(employees));
 };

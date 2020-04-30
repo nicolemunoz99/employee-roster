@@ -56,7 +56,7 @@ Edit and toggle-status buttons located at bottom of details component on smaller
 
 NOTE: Login platform disabled in repo.
 
-URLs for the server and database are in /urls.js and /api/urls.js, respectively.
+COMPLETE .env.sample with your URLs and ports
 
 ### Future features
 - Allow user to sort employees by name, status.

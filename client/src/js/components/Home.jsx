@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { login } from '../../../urls.js';
 import EmployeeList from './EmployeeList.jsx';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 

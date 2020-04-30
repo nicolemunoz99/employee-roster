@@ -1,9 +1,0 @@
-{
-    "auth": {
-        "employeeRosterUsers": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": []
-        }
-    }
-}

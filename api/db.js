@@ -1,8 +1,6 @@
+require('custom-env').env(true);
 const mongoose = require('mongoose');
-
-const {dbUrl} = require('./urls.js');
-
-const mongoDB = `mongodb://${dbUrl}:27017/my_database`;
+const mongoDB = `mongodb://${process.env.DB_URL}`;
 
 const shortid = require('shortid');
 
