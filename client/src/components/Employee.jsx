@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectEmployee, toggleModal, submitEdits } from '../actions/';
+import { selectEmployee, toggleModal, submitEdits } from '../state/actions/actions.js';
 
 const Employee = (props) => {
   const selectedEmployee = useSelector(state => state.selectedEmployee);

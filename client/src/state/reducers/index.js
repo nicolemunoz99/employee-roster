@@ -1,6 +1,7 @@
 import { 
   ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, 
-  LOG_ERRORS, RESET_FORM, UPDATE_EMPLOYEES } from "../constants/action-types.js";
+  LOG_ERRORS, RESET_FORM, UPDATE_EMPLOYEES 
+} from "../actions/action-types.js";
 
 const initialState = {
   employees: [],

@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import Employee from './Employee.jsx'
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleModal, getAllEmployees } from '../actions/';
+import { toggleModal, getAllEmployees } from '../state/actions/actions.js';
 
 import Amplify from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
-import config from "../../../../aws-exports";
+import config from "../../../aws-exports";
 Amplify.configure(config);
 
 
 const EmployeeList = (props) => {
   const employees = useSelector(state => state.employees);
   const dispatch = useDispatch();
+  
   useEffect (() => {
     dispatch(getAllEmployees());
   }, []);
-
 
 
   return (

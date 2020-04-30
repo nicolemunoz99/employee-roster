@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import xDate from 'xDate';
 import ModalWrapper from './ModalWrapper.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { logErrors, resetForm, submitEdits } from '../../actions/';
+import { logErrors, resetForm, submitEdits } from '../../state/actions/actions.js';
 
 const initialForm = {
   First_name: '',

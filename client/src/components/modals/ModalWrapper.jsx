@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { resetForm } from '../../actions/';
+import { resetForm } from '../../state/actions/actions.js';
 
 const ModalWrapper = (props) => {
   const dispatch = useDispatch();
