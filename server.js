@@ -15,7 +15,6 @@ app.use(express.static(__dirname + '/client/dist'));
 
 app.get('/redirect', async (req, res) => {
   try {
-    console.log('redirect', req.query);
     if (req.query.code) {
       let reqParams = {
         grant_type: 'authorization_code',
@@ -24,20 +23,12 @@ app.get('/redirect', async (req, res) => {
         code: req.query.code
       }
 
-      // let result = await axios.post(`https://munoztest.auth.us-east-2.amazoncognito.com/oauth2/token`, {
-      //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      //   data: reqParams
-      // });
-
 
       let result = await axios.post(`https://munoztest.auth.us-east-2.amazoncognito.com/oauth2/token/`, {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           data: reqParams
         });
 
-
-      console.log('result.data', result.data)
-      console.log('result', result)
     } 
   }
   

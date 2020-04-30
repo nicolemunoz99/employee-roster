@@ -1,7 +1,7 @@
 import { ADD_EMPLOYEES, SELECT_EMPLOYEE, TOGGLE_MODAL, LOG_ERRORS, RESET_FORM, UPDATE_EMPLOYEES } from '../constants/action-types.js';
 import { api } from '../../../urls.js';
 import axios from 'axios';
-console.log('api', api)
+
 export const addEmployees = (payload) => {
   return { type: ADD_EMPLOYEES, payload };
 };

@@ -16,7 +16,7 @@ const EmployeeList = (props) => {
     dispatch(getAllEmployees());
   }, []);
 
-  console.log('props in List: ', props)
+
 
   return (
     <div>
