@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { resetForm } from '../../state/actions/actions.js';
+import { toggleModal } from '../../state/actions/';
 
-const ModalWrapper = (props) => {
+const ModalWrapper = ({ title, children, name }) => {
   const dispatch = useDispatch();
   
   const closeHandler = (e) => {
     if (e.target === e.currentTarget) {
-      dispatch(resetForm());
+      dispatch(toggleModal(name));
     }
   };
 
@@ -22,10 +22,10 @@ const ModalWrapper = (props) => {
         <div className="col-12 mt-4 my-5">
           <div className="row no-gutters justify-content-end">
             <div className="col-10 h3 mb-5 text-left modal-title pl-3">
-              {props.title}
+              { title }
             </div>
           </div>
-          {props.children}
+          { children }
         </div>
         </div>
       </div>

@@ -1,17 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectEmployee, toggleModal, submitEdits } from '../state/actions/actions.js';
+import { selectEmployee, toggleModal, submitEdits } from '../state/actions/';
 
-const Employee = (props) => {
-  const selectedEmployee = useSelector(state => state.selectedEmployee);
+const Employee = ({ employee }) => {
+  const selectedEmployee = useSelector(state => state.employee.selected);
   const dispatch = useDispatch();
 
   const handleEmployeeClick = (e) => {
-    if (selectedEmployee._id === props.employee._id) {
-      dispatch(selectEmployee({}));
-    } else {
-      dispatch(selectEmployee(props.employee));
-    }
+    dispatch(selectEmployee(employee));
   };
 
   const handleEditClick = (e) => {
@@ -21,7 +17,7 @@ const Employee = (props) => {
   const handleClickActivate = (e) => {
     let employeeData = {...selectedEmployee};
     delete employeeData._id
-    employeeData.Status = props.employee.Status === 'active' ? 'inactive' : 'active';
+    employeeData.Status = employee.Status === 'active' ? 'inactive' : 'active';
     let payload = {
       modalName: 'editEmployee',
       data: employeeData,
@@ -30,7 +26,7 @@ const Employee = (props) => {
     dispatch(submitEdits(payload));
   }
 
-  let active = props.employee.Status === 'active' ? true : false;
+  let active = employee.Status === 'active' ? true : false;
 
   return (
     <div className="col-12 no-gutters">
@@ -38,30 +34,30 @@ const Employee = (props) => {
         <div className="employee w-100">
           <div className="row justify-content-center my-2">
             <div className="col-8">
-              <span className={`align-middle ${!active ? 'inactive' : null}`}>{`${props.employee.Last_name}, ${props.employee.First_name} ${props.employee.MI}${props.employee.MI ? '.' : ''}`} </span>
+              <span className={`align-middle ${!active ? 'inactive' : null}`}>{`${employee.Last_name}, ${employee.First_name} ${employee.MI}${employee.MI ? '.' : ''}`} </span>
             </div>
             <div className="col-auto pointer" onClick={handleEmployeeClick}>
               <i className="material-icons align-middle">
-                {props.employee._id === selectedEmployee._id ? 'expand_less' : 'expand_more'}
+                {employee._id === selectedEmployee._id ? 'expand_less' : 'expand_more'}
               </i>
             </div>
           </div>
         </div>
-        {selectedEmployee._id === props.employee._id ?
+        {selectedEmployee._id === employee._id ?
           <div className="my-border details-wrapper p-1">
 
             <div className="row no-gutters">
 
-              <div key={props.employee._id} className="col-sm-8 mr-auto ml-auto my-3 z-neg">
+              <div key={employee._id} className="col-sm-8 mr-auto ml-auto my-3 z-neg">
 
                 {
-                  Object.keys(props.employee).map((dataLabel, i) => {
+                  Object.keys(employee).map((dataLabel, i) => {
                     let label = dataLabel.split('_').join(' ')
                     return (
-                      <div className="container">
+                      <div key={i} className="container">
                         <div key={dataLabel} className={`row ${i % 2 === 0 ? 'details-l1' : 'details-l2'}`}>
                           <div className="col-5">{`${label}:`}</div>
-                          <div className="col-7">{`${props.employee[dataLabel]}`}</div>
+                          <div className="col-7">{`${employee[dataLabel]}`}</div>
                         </div>
                       </div>
                     )

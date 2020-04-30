@@ -1,15 +1,12 @@
 import React from 'react';
-
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import _ from 'lodash';
 
 import Home from './Home.jsx';
 import EmployeeList from './EmployeeList.jsx';
-import ModalIndex from './modals/ModalIndex.jsx';
+import ModalIndex from './modals/Index.jsx';
 
-// import Amplify from 'aws-amplify';
-// import aws_exports from '../../../../aws-exports.js';
-// import { withAuthenticator } from 'aws-amplify-react';
-// Amplify.configure(aws_exports);
 
 const App = () => {
 
@@ -26,6 +23,7 @@ const App = () => {
       </Router>
       
       <ModalIndex />
+    
     </div>
   )
 }

@@ -1,8 +1,9 @@
-export const ADD_EMPLOYEES = "ADD_EMPLOYEES";
+export const SET_EMPLOYEES = "ADD_EMPLOYEES";
 export const UPDATE_EMPLOYEES = "UPDATE_EMPLOYEES";
 export const SELECT_EMPLOYEE = "SELECT_EMPLOYEE";
 
 export const TOGGLE_MODAL = "CHANGE_MODAL";
+export const TOGGLE_DATA_STATUS = "TOGGLE_DATA_STATUS";
 
 export const LOG_ERRORS = "LOG_ERRORS";
 export const RESET_FORM = "RESET_FORM";

@@ -12,16 +12,11 @@ const ModalIndex = () => {
 
   return (
     <div>
-      {modal.newEmployee || modal.editEmployee ?
-        <EmployeeForm />
-        :
-        null
-      }
-      {modal.submitResult ?
-        <SubmitResult />
-        :
-        null
-      }
+
+      { modal.employeeForm && <EmployeeForm /> }
+      
+      { modal.submitResult && <SubmitResult /> }
+
     </div>
   )
 };

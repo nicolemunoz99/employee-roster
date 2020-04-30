@@ -1,22 +1,23 @@
 import { 
-  ADD_EMPLOYEES, 
+  SET_EMPLOYEES, 
   SELECT_EMPLOYEE, 
-  TOGGLE_MODAL, 
+  TOGGLE_MODAL,
+  TOGGLE_DATA_STATUS, 
   LOG_ERRORS, RESET_FORM, 
   UPDATE_EMPLOYEES 
 } from './action-types.js';
 import axios from 'axios';
 
-export const addEmployees = (payload) => {
-  return { type: ADD_EMPLOYEES, payload };
+export const setEmployees = (payload) => {
+  return { type: SET_EMPLOYEES, payload };
 };
 
 export const selectEmployee = (payload) => {
   return { type: SELECT_EMPLOYEE, payload };
 };
 
-export const toggleModal = (payload) => {
-  return { type: TOGGLE_MODAL, payload };
+export const toggleModal = (modalName) => {
+  return { type: TOGGLE_MODAL, modalName };
 };
 
 export const logErrors = (payload) => {
@@ -31,11 +32,11 @@ export const updateEmployees = (payload) => {
   return { type: UPDATE_EMPLOYEES, payload };
 };
 
-// thunks
+// async/thunks
 
 export const getAllEmployees = () => async (dispatch) => {
   let employees = (await axios.get(`${process.env.API}/employee`)).data;
-  dispatch(addEmployees(employees));
+  dispatch(setEmployees(employees));
 };
 
 export const submitEdits = (payload) => async (dispatch) => {
@@ -47,3 +48,8 @@ export const submitEdits = (payload) => async (dispatch) => {
   let employees = (await axios.get(`${process.env.API}/employee`)).data;
   dispatch(updateEmployees(employees));
 };
+
+export const closeForm = () => (dispatch) => {
+  dispatch(resetForm);
+  dispatch(toggleModal('employeeForm'));
+}

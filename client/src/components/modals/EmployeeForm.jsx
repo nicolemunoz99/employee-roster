@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import xDate from 'xDate';
 import ModalWrapper from './ModalWrapper.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { logErrors, resetForm, submitEdits } from '../../state/actions/actions.js';
+import { logErrors, resetForm, submitEdits } from '../../state/actions/';
 
 const initialForm = {
   First_name: '',
@@ -18,7 +18,7 @@ const EmployeeForm = () => {
   const [formData, updateForm] = useState(initialForm)
   const selectedEmployee = useSelector(state => state.selectedEmployee);
   const modal = useSelector(state => state.modal);
-  const formErrors = useSelector(state => state.formErrors);
+  const formErrors = useSelector(state => state.form.errors);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,6 +26,10 @@ const EmployeeForm = () => {
       let formUpdate = {...selectedEmployee};
       delete formUpdate._id
       updateForm(formUpdate);
+    }
+
+    return () => {
+      dispatch(resetForm());
     }
   }, []);
 
@@ -65,7 +69,6 @@ const EmployeeForm = () => {
         payload = {modalName: "editEmployee", id: selectedEmployee._id}
       }
       payload.data = formData;
-      dispatch(resetForm());
       dispatch(submitEdits(payload));
     } else {
       dispatch(logErrors(tempErrors));
@@ -74,7 +77,11 @@ const EmployeeForm = () => {
 
 
   return (
-    <ModalWrapper width={6} title={modal.editEmployee ? 'Modify Employee' : 'New Employee'}>
+    <ModalWrapper 
+      name="employeeForm"
+      width={6} 
+      title={modal.editEmployee ? 'Modify Employee' : 'New Employee'}
+    >
       <form>
         <div className="pr-5">
         <div className="form-group row my-3 no-gutters">
