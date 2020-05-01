@@ -12,3 +12,14 @@ export const isValid = {
   },
   Status: (x) => !!x
 }
+
+export const errors = {
+  data: {
+    First_name: 'First name required',
+    Last_name: 'Last name required',
+    MI: null,
+    DOB: 'Enter a valid date (before today)',
+    Hire_date: 'Enter a valid date (before today)',
+    Status: 'Select status'
+  }
+}
