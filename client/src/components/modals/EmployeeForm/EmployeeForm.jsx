@@ -4,11 +4,11 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import { FieldHeader, CustomControl, CustomFormGroup, FormFieldCol, CustomRadioGroup } from '../../ComponentBits.jsx';
 import ModalWrapper from '../ModalWrapper.jsx';
 
-import { updateForm, resetForm, validateField, validateForm } from '../../../state/actions/';
+import { updateField, resetForm, validateField, validateForm } from '../../../state/actions/';
 
 
 const EmployeeForm = ({ title, modalName, submitAction }) => {
-  const { data, formIsValid } = useSelector(state => state.form);
+  const { data } = useSelector(state => state.form);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const EmployeeForm = ({ title, modalName, submitAction }) => {
     }
   }, []);
 
-  const handleInput = (e) => dispatch(updateForm({ [e.target.id]: e.target.value }));
+  const handleInput = (e) => dispatch(updateField({ fieldName: e.target.id, value: e.target.value }));
 
   const handleBlur = (e) => dispatch(validateField( [e.target.id] ));
 

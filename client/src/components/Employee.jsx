@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { selectEmployee, toggleModal, submitEditedEmployee } from '../state/actions/';
 
 const Employee = ({ employee }) => {
@@ -67,18 +68,26 @@ const Employee = ({ employee }) => {
 
               <div className="col-sm-4 p-2">
                 <div className="row control-wrapper">
-                <div className="col-6 col-sm-12 m-auto my-sm-2">
-                  <div className="details-btn text-center center-hack" onClick={handleEditClick}>
-                    <i className="material-icons h4 m-auto my-sm-3">edit</i> 
-                  </div>
-                  
+                  <div className="col-6 col-sm-12 m-auto my-sm-2">
+
+              <OverlayTrigger
+                placement={'top'}
+                overlay={
+                  <Tooltip id='edit'>Edit Employee</Tooltip>
+                }
+              >
+                <div className="details-btn text-center center-hack" onClick={handleEditClick}>
+                  <i className="material-icons h4 m-auto my-sm-3">edit</i> 
                 </div>
-                <div className="col-6 col-sm-12 m-auto my-sm-2">
-                  <div className="details-btn text-center center-hack" onClick={handleClickActivate}>
-                    <div className="h4 d-inline-block m-auto my-sm-3">{active ? 'deactivate' : 'activate'}</div> 
+              </OverlayTrigger>
+
                   </div>
-                  
-                </div>
+                  <div className="col-6 col-sm-12 m-auto my-sm-2">
+                    <div className="details-btn text-center center-hack" onClick={handleClickActivate}>
+                      <div className="h4 d-inline-block m-auto my-sm-3">{active ? 'deactivate' : 'activate'}</div> 
+                    </div>
+                    
+                  </div>
                 </div>
               </div>
               

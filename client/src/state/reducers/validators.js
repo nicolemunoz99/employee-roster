@@ -3,7 +3,7 @@ window.xDate = xDate;
 
 export const isValid = {
   First_name: (x) => !!x,
-  MI: () => true,
+  MI: () => true, // field not required
   Last_name: (x) => !!x,
   DOB: (x) => xDate(x) < xDate(),
   Hire_date: (x) => xDate(x) < xDate(),
@@ -13,7 +13,7 @@ export const isValid = {
 export const errs = {
   First_name: 'First name required',
   Last_name: 'Last name required',
-  MI: null,
+  MI: null, // field not required
   DOB: 'Enter a valid date (before today)',
   Hire_date: 'Enter a valid date (before today)',
   Status: 'Select status'

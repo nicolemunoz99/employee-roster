@@ -3,7 +3,7 @@ import {
   SELECT_EMPLOYEE, 
   TOGGLE_MODAL,
   TOGGLE_DATA_STATUS, 
-  UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
+  UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
   UPDATE_EMPLOYEES 
 } from './action-types.js';
 import axios from 'axios';
@@ -27,6 +27,10 @@ export const resetForm = (payload) => {
 
 export const updateEmployees = (payload) => {
   return { type: UPDATE_EMPLOYEES, payload };
+};
+
+export const updateField = (data) => {
+  return { type: UPDATE_FIELD, data };
 };
 
 export const updateForm = (dataObj) => {

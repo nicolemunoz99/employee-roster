@@ -1,5 +1,5 @@
 import { 
-  RESET_FORM, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID
+  RESET_FORM, UPDATE_FORM, UPDATE_FIELD, VALIDATE_FIELD, SET_FORM_IS_VALID
 } from "../actions/action-types.js";
 
 import { isValid , errs} from './validators.js';
@@ -25,6 +25,14 @@ const initFormState = {
 }
 
 const formReducer = (state = initFormState, action) => {
+
+  if (action.type === UPDATE_FIELD) {
+    let { fieldName, value } = action.data;
+    // limit input size
+    if (fieldName === 'MI' && value.length > 1) return state;
+    else if (value.length > 15) return state;
+    else return { ...state, data: { ...state.data, [fieldName]: value} };
+  }
   
   if (action.type === UPDATE_FORM) {
     return { ...state, data: { ...state.data, ...action.dataObj }};
