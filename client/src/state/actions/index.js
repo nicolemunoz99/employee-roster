@@ -59,45 +59,40 @@ export const getAllEmployees = () => async (dispatch) => {
 
 };
 
-export const submitNewEmployee = () => async (dispatch, getState) => {
-  try {  
-    dispatch(toggleModal('isWaitingForData'));
-    let formIsValid = getState().form.formIsValid;
-    if (!formIsValid) return;
-    let newEmployee = getState().form.data;
-
-    await axios.post(`${process.env.API}/employee`, newEmployee);
-    
-    dispatch(toggleModal('newEmployeeForm'));
-    dispatch(toggleModal('isWaitingForData'));
+export const submitNewEmployee = () => async (dispatch) => {
+  const apiRequest = async (data) => {
+    await axios.post(`${process.env.API}/employee`, data);
   }
-  catch {
-    dispatch(toggleModal('dataError'));
-  }
-  
-  await dispatch(getAllEmployees());
-  dispatch(toggleModal('success'));
+  await dispatch(sendForm(apiRequest, 'new'));
 };
 
-export const submitEditedEmployee = () => async (dispatch, getState) => {
+export const submitEditedEmployee = () => async (dispatch) => {
+  const apiRequest = async (data) => {
+    await axios.put(`${process.env.API}/employee/${data._id}`, data);
+  }
+  await dispatch(sendForm(apiRequest, 'edit'));
+};
+
+const sendForm = (apiRequest2, formType) => async(dispatch, getState) => {
   try {
     dispatch(toggleModal('isWaitingForData'));
+
     let formIsValid = getState().form.formIsValid;
     if (!formIsValid) return;
-    let updatedEmployee = getState().form.data;
+    let data = getState().form.data;
+    await apiRequest2(data);
     
-    await axios.put(`${process.env.API}/employee/${updatedEmployee._id}`, updatedEmployee);
-    
-    dispatch(toggleModal('editEmployeeForm'));
+    dispatch(toggleModal(`${formType}EmployeeForm`));
     dispatch(toggleModal('isWaitingForData'));
+    await dispatch(getAllEmployees());
+    
+    dispatch(toggleModal('success'));
   }
   catch {
     dispatch(toggleModal('dataError'));
   }
 
-  await dispatch(getAllEmployees());
-  dispatch(toggleModal('success'));
-};
+}
 
 export const validateForm = () => (dispatch, getState) => {
   dispatch(validateField());

@@ -14,7 +14,7 @@ export const DataStatus = ({ body, ...otherProps }) => {
 }
 
 
-export const Confirm = () => {
+export const Confirm = ({ submitAction }) => {
   return (
     <ModalWrapper
       title="Confirm"

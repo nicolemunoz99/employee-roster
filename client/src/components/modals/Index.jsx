@@ -19,7 +19,8 @@ const ModalIndex = () => {
       { modal.isWaitingForData && 
         <DataStatus
           title="Please wait"
-          body="Waiting..."
+          body="Patience."
+          name="isWaitingForData"
           cancelClose={true}
          /> 
       }
@@ -28,6 +29,7 @@ const ModalIndex = () => {
       <DataStatus
         title="Error"
         body="Oops. Something went wrong."
+        name="dataError"
        /> 
       }
       
@@ -35,6 +37,7 @@ const ModalIndex = () => {
       <DataStatus 
         title="Success"
         body="Success."
+        name="success"
       /> 
       }
 
