@@ -6,6 +6,7 @@ export const TOGGLE_MODAL = "CHANGE_MODAL";
 export const TOGGLE_DATA_STATUS = "TOGGLE_DATA_STATUS";
 
 export const UPDATE_FORM = "UPDATE_FORM";
-export const VALIDATE = "VALIDATE";
+export const VALIDATE_FIELD = "VALIDATE_FIELD";
+export const SET_FORM_IS_VALID = "SET_FORM_IS_VALID"
 export const RESET_FORM = "RESET_FORM";
 

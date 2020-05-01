@@ -1,5 +1,5 @@
 import { 
-  RESET_FORM, UPDATE_FORM, VALIDATE
+  RESET_FORM, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID
 } from "../actions/action-types.js";
 
 import { isValid , errs} from './validators.js';
@@ -21,7 +21,7 @@ const initFormState = {
     Hire_date: '',
     Status: ''
   },
-  submitSuccess: null
+  formIsValid: false
 }
 
 const formReducer = (state = initFormState, action) => {
@@ -34,7 +34,7 @@ const formReducer = (state = initFormState, action) => {
     return { ...initFormState };
   }
 
-  if (action.type === VALIDATE) {
+  if (action.type === VALIDATE_FIELD) {
     let fieldNameArr = action.fieldNameArr ? action.fieldNameArr : Object.keys(state.errors);
     let updatedErrs = { ...state.errors };
     fieldNameArr.forEach((name) => {
@@ -42,6 +42,10 @@ const formReducer = (state = initFormState, action) => {
       else updatedErrs[name] = initFormState.errors[name]
     });
     return { ...state, errors: updatedErrs };
+  }
+
+  if (action.type === SET_FORM_IS_VALID) {
+    return { ...state, formIsValid: action.isValid };
   }
 
   return state;

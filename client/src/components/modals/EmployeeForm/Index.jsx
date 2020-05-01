@@ -9,7 +9,7 @@ export const NewEmployeeForm = () => {
   return (
     <EmployeeForm 
       title="New Employee" 
-      handleSubmit={ () => dispatch(submitNewEmployee()) }
+      submitAction={ () => dispatch(submitNewEmployee()) }
       modalName="newEmployeeForm"
     />
   );
@@ -29,7 +29,7 @@ export const EditEmployeeForm = () => {
   return (
     <EmployeeForm
       title="Edit Employee"
-      handleSubmit={ () => dispatch(submitEditedEmployee()) }
+      submitAction={ () => dispatch(submitEditedEmployee()) }
       modalName="editEmployeeForm"
     />
   );

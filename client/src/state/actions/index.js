@@ -3,7 +3,7 @@ import {
   SELECT_EMPLOYEE, 
   TOGGLE_MODAL,
   TOGGLE_DATA_STATUS, 
-  UPDATE_FORM, VALIDATE, RESET_FORM, 
+  UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
   UPDATE_EMPLOYEES 
 } from './action-types.js';
 import axios from 'axios';
@@ -33,8 +33,12 @@ export const updateForm = (dataObj) => {
   return { type: UPDATE_FORM, dataObj };
 };
 
-export const validate = (fieldNameArr) => {
-  return { type: VALIDATE, fieldNameArr };
+export const validateField = (fieldNameArr) => {
+  return { type: VALIDATE_FIELD, fieldNameArr };
+};
+
+export const setFormIsValid = (isValid) => {
+  return { type: SET_FORM_IS_VALID, isValid };
 };
 
 // ...async/thunks...
@@ -45,12 +49,8 @@ export const getAllEmployees = () => async (dispatch) => {
 };
 
 export const submitNewEmployee = () => async (dispatch, getState) => {
-  dispatch(validate());
-  let errors = getState().form.errors;
-  if ( !(_.every(errors, (err) => !err)) ) {
-    return;
-  }
-
+  let formIsValid = getState().form.formIsValid;
+  if (!formIsValid) return;
   let newEmployee = getState().form.data;
   await axios.post(`${process.env.API}/employee`, newEmployee);
   await dispatch(getAllEmployees());
@@ -58,13 +58,17 @@ export const submitNewEmployee = () => async (dispatch, getState) => {
 };
 
 export const submitEditedEmployee = () => async (dispatch, getState) => {
-  dispatch(validate());
-  let errors = getState().form.errors;
-  if ( !(_.every(errors, (err) => !err)) ) {
-    return;
-  }
+  let formIsValid = getState().form.formIsValid;
+  if (!formIsValid) return;
   let updatedEmployee = getState().form.data;
   await axios.put(`${process.env.API}/employee/${updatedEmployee._id}`, updatedEmployee);
   await dispatch(getAllEmployees());
   dispatch(toggleModal('editEmployeeForm'));
 };
+
+export const validateForm = () => (dispatch, getState) => {
+  dispatch(validateField());
+  let errors = getState().form.errors;
+  if ( !(_.every(errors, (err) => !err)) ) dispatch(setFormIsValid(false));
+  else dispatch(setFormIsValid(true));
+}
