@@ -46,7 +46,7 @@ Edit and toggle-status buttons located at bottom of details component on smaller
 
 
 ### Dev environment
-(assumes you have MongoDB on a running server)
+(assumes you have MongoDB on a running server and [AWS Amplify configured](https://blog.logrocket.com/authentication-react-apps-aws-amplify-cognito/))
 - Fork and clone https://github.com/nicolemunoz99/employee-roster.git
 - $ cd into employee-roster
 - $ npm install
