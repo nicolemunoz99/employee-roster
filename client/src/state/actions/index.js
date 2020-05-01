@@ -50,8 +50,9 @@ export const submitNewEmployee = () => async (dispatch, getState) => {
   dispatch(toggleModal('newEmployeeForm'));
 };
 
-export const submitEditedEmployee = (employeeData) => async (dispatch) => {
-  await axios.put(`${process.env.API}/employee/${employeeData._id}`, employeeData);
+export const submitEditedEmployee = () => async (dispatch, getState) => {
+  let updatedEmployee = getState().form.data;
+  await axios.put(`${process.env.API}/employee/${updatedEmployee._id}`, updatedEmployee);
   await dispatch(getAllEmployees());
   dispatch(toggleModal('editEmployeeForm'));
 };

@@ -4,10 +4,10 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import { FieldHeader, CustomFormGroup, FormFieldCol } from '../../ComponentBits.jsx';
 import ModalWrapper from '../ModalWrapper.jsx';
 
-import { updateForm, resetForm, submitEdits } from '../../../state/actions/';
+import { updateForm, resetForm } from '../../../state/actions/';
 
 
-const EmployeeForm = ({ title, handleSubmit }) => {
+const EmployeeForm = ({ title, modalName, handleSubmit }) => {
   const { data, errors: formErrors } = useSelector(state => state.form);
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ const EmployeeForm = ({ title, handleSubmit }) => {
 
   return (
     <ModalWrapper
-      name="newEmployeeForm"
+      name={modalName}
       width={6}
       title={title}
     >
