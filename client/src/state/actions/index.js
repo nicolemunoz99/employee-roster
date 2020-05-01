@@ -36,7 +36,7 @@ export const updateForm = (dataObj) => {
   return { type: UPDATE_FORM, dataObj }
 }
 
-// async/thunks
+// ...async/thunks...
 
 export const getAllEmployees = () => async (dispatch) => {
   let employees = (await axios.get(`${process.env.API}/employee`)).data;
