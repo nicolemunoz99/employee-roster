@@ -26,10 +26,12 @@ const ModalWrapper = ({ title, children, name }) => {
           <ModalTitle title={title}/>
 
           { children }
-          
+
         </div>
 
         </div>
+
+        {/* <div className="scroll-more" /> */}
       </div>
 
     </div>

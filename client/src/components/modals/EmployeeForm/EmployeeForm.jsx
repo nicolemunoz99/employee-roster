@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
-import { FieldHeader, CustomFormGroup } from '../../ComponentBits.jsx';
+import { Form, Row, Col, Button } from 'react-bootstrap';
+import { FieldHeader, CustomFormGroup, FormFieldCol } from '../../ComponentBits.jsx';
 import ModalWrapper from '../ModalWrapper.jsx';
 
 import { updateForm, resetForm, submitEdits } from '../../../state/actions/';
 
 
 const EmployeeForm = () => {
-  const selectedEmployee = useSelector(state => state.selectedEmployee);
-  const modal = useSelector(state => state.modal);
   const { data, errors: formErrors } = useSelector(state => state.form);
   const dispatch = useDispatch();
 
@@ -22,7 +20,11 @@ const EmployeeForm = () => {
 
   const handleInput = (e) => {
     dispatch(updateForm({ [e.target.id]: e.target.value }))
-  }
+  };
+
+  const handleSubmit = () => {
+
+  };
 
 
   return (
@@ -31,12 +33,12 @@ const EmployeeForm = () => {
       width={6}
       title="New Employee"
     >
-      <Form className="pr-5">
+      <Form className="pr-5" onSubmit={handleSubmit}>
 
         <Form.Group as={CustomFormGroup}>
-          <FieldHeader name="Name" sm={4} />
+          <FieldHeader name="Name" />
 
-          <Col sm={8} className="pl-auto">
+          <Col as={FormFieldCol}>
             <Form.Control
               type="text"
               placeholder="Last"
@@ -72,8 +74,8 @@ const EmployeeForm = () => {
 
 
         <Form.Group as={CustomFormGroup}>
-          <FieldHeader name="Hire date" sm={4} />
-          <Col sm={8}>
+          <FieldHeader name="Hire date" />
+          <Col as={FormFieldCol}>
             <Form.Control
               type="date"
               onChange={handleInput}
@@ -85,8 +87,8 @@ const EmployeeForm = () => {
 
 
         <Form.Group as={CustomFormGroup}>
-          <FieldHeader name="DOB" sm={4} />
-          <Col sm={8}>
+          <FieldHeader name="DOB" />
+          <Col as={FormFieldCol}>
             <Form.Control
               type="date"
               onChange={handleInput}
@@ -98,10 +100,10 @@ const EmployeeForm = () => {
 
 
         <Form.Group as={CustomFormGroup}>
-          <FieldHeader name="Status" sm={4} />
-          <Col sm={8}>
-            <Row>
-              <Col sm="4">
+          <FieldHeader name="Status" />
+          <Col as={FormFieldCol}>
+            <Row className="align-items-center">
+              <Col sm="4" className="align-items-center">
                 <Form.Check
                   type="radio"
                   label="Active"
@@ -109,6 +111,7 @@ const EmployeeForm = () => {
                   value="active"
                   checked={data.Status === 'active' ? true : false}
                   onChange={handleInput}
+                  className="my-auto"
                 />
               </Col>
               <Col sm="4">
@@ -124,8 +127,14 @@ const EmployeeForm = () => {
             </Row>
           </Col>
         </Form.Group>
-
       </Form>
+
+      <Row className="px-5">
+        <Col>
+          <Button bsPrefix="my-btn" onClick={handleSubmit} type="button" className="btn my-btn w-100">Submit</Button>
+        </Col>
+      </Row>
+      
     </ModalWrapper>
   )
 };

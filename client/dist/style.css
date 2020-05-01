@@ -5,6 +5,7 @@
   --emp-main-bg-color: rgb(46, 45, 45);
   --details-wrapper-bg-color: rgb(58, 58, 58);
   --details-contrast-color: rgb(70, 70, 70);
+  --modal-bg-rgb: 44, 39, 39;
   /* aws auth form */
   --button-background-color: var(--list-wrapper-bg-color) !important;
   --form-color: var(--emp-main-bg-color) !important;
@@ -36,7 +37,6 @@
   background-image: linear-gradient(to bottom right, var(--main-bg-color) , var(--fade-bg-color));
   border-radius: 0rem 7rem 7rem 0rem;
   width: 80%;
-  margin-bottom:0.2rem;
 }
 
 .modal-title {
@@ -111,14 +111,14 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(43, 38, 38, 0.644);
+  background-color: rgba(var(--modal-bg-rgb), 0.8);
   align-items: center;
   z-index: 1500;
 }
 
 .my-modal {
   position: fixed;
-  background-color: rgb(44, 39, 39);
+  background-color: rgb(var(--modal-bg-rgb));
   z-index: 1500;
   min-height: 60vh;
   max-height: 95vh;
@@ -129,7 +129,6 @@ body {
 .my-btn {
   border: 1px solid var(--main-bg-color);
   background-color: rgb(59, 59, 59);
-  /* background-color: white; */
   color: white;
 }
 
@@ -140,4 +139,15 @@ body {
 
 .home-wrapper {
   margin: 5rem;
+}
+
+.scroll-more {
+  position: absolute;
+
+  background-image: linear-gradient(rgba(var(--modal-bg-rgb), 0), rgb(var(--modal-bg-rgb)));
+  bottom: 0px;
+  left: 0px;
+  height: 10rem;
+  width: 100%;
+  pointer-events: none;
 }
