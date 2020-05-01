@@ -2,7 +2,6 @@ import {
   SET_EMPLOYEES, 
   SELECT_EMPLOYEE, 
   TOGGLE_MODAL,
-  TOGGLE_DATA_STATUS, 
   UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
   UPDATE_EMPLOYEES 
 } from './action-types.js';
@@ -17,7 +16,6 @@ export const selectEmployee = (payload) => {
   return { type: SELECT_EMPLOYEE, payload };
 };
 
- 
 export const toggleModal = (modalName) => {
   return { type: TOGGLE_MODAL, modalName };
 };
@@ -49,17 +47,28 @@ export const setFormIsValid = (isValid) => {
 // ...async/thunks...
 
 export const getAllEmployees = () => async (dispatch) => {
-  let employees = (await axios.get(`${process.env.API}/employee`)).data;
-  dispatch(setEmployees(employees));
+  try {
+    dispatch(toggleModal('isWaitingForData'));
+    let employees = (await axios.get(`${process.env.API}/employee`)).data;
+    dispatch(setEmployees(employees));
+    dispatch(toggleModal('isWaitingForData'));
+  }
+  catch {
+    dispatch(toggleModal('dataError'));
+  }
+
 };
 
 export const submitNewEmployee = () => async (dispatch, getState) => {
-  let formIsValid = getState().form.formIsValid;
-  if (!formIsValid) return;
-  let newEmployee = getState().form.data;
-  try {
+  try {  
     dispatch(toggleModal('isWaitingForData'));
+    let formIsValid = getState().form.formIsValid;
+    if (!formIsValid) return;
+    let newEmployee = getState().form.data;
+
     await axios.post(`${process.env.API}/employee`, newEmployee);
+    
+    dispatch(toggleModal('newEmployeeForm'));
     dispatch(toggleModal('isWaitingForData'));
   }
   catch {
@@ -67,16 +76,27 @@ export const submitNewEmployee = () => async (dispatch, getState) => {
   }
   
   await dispatch(getAllEmployees());
-  dispatch(toggleModal('newEmployeeForm'));
+  dispatch(toggleModal('success'));
 };
 
 export const submitEditedEmployee = () => async (dispatch, getState) => {
-  let formIsValid = getState().form.formIsValid;
-  if (!formIsValid) return;
-  let updatedEmployee = getState().form.data;
-  await axios.put(`${process.env.API}/employee/${updatedEmployee._id}`, updatedEmployee);
+  try {
+    dispatch(toggleModal('isWaitingForData'));
+    let formIsValid = getState().form.formIsValid;
+    if (!formIsValid) return;
+    let updatedEmployee = getState().form.data;
+    
+    await axios.put(`${process.env.API}/employee/${updatedEmployee._id}`, updatedEmployee);
+    
+    dispatch(toggleModal('editEmployeeForm'));
+    dispatch(toggleModal('isWaitingForData'));
+  }
+  catch {
+    dispatch(toggleModal('dataError'));
+  }
+
   await dispatch(getAllEmployees());
-  dispatch(toggleModal('editEmployeeForm'));
+  dispatch(toggleModal('success'));
 };
 
 export const validateForm = () => (dispatch, getState) => {

@@ -1,12 +1,12 @@
 import { TOGGLE_MODAL } from '../actions/action-types.js';
 
 const initModalState = {
-  employeeForm: false,
   newEmployeeForm: false,
   editEmployee: false,
-  submitResult: false,
+  success: false,
   isWaitingForData: false,
-  dataError: false
+  dataError: false,
+  confirmToggleStatus: false
 };
 
 

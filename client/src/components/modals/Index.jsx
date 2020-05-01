@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Waiting, DataError } from './DataStatus.jsx';
+import {DataStatus, Confirm } from './DataModals.jsx';
 import { NewEmployeeForm, EditEmployeeForm } from './EmployeeForm/Index.jsx';
-import SubmitResult from './SubmitResult.jsx';
 
 const ModalIndex = () => {
   const modal = useSelector(state => state.modal);
@@ -15,11 +14,29 @@ const ModalIndex = () => {
 
       { modal.editEmployeeForm && <EditEmployeeForm /> }
 
-      { modal.isWaitingForData && <Waiting /> }
+      { modal.confirmToggleStatus && <Confirm/> }
 
-      { modal.dataError && <DataError /> }
+      { modal.isWaitingForData && 
+        <DataStatus
+          title="Please wait"
+          body="Waiting..."
+          cancelClose={true}
+         /> 
+      }
+
+      { modal.dataError && 
+      <DataStatus
+        title="Error"
+        body="Oops. Something went wrong."
+       /> 
+      }
       
-      { modal.submitResult && <SubmitResult /> }
+      { modal.success && 
+      <DataStatus 
+        title="Success"
+        body="Success."
+      /> 
+      }
 
     </>
   );
