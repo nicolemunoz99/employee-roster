@@ -21,7 +21,7 @@ export const EditEmployeeForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // load employee data into form on load
+    // load data into form on load
     dispatch(updateForm(employee));
   }, []);
 

@@ -1,6 +1,8 @@
 import { 
-  LOG_ERRORS, RESET_FORM, UPDATE_FORM
+  RESET_FORM, UPDATE_FORM, VALIDATE
 } from "../actions/action-types.js";
+
+import { isValid , errs} from './validators.js';
 
 const initFormState = {
   data: {
@@ -13,6 +15,7 @@ const initFormState = {
   },
   errors: {
     First_name: '',
+    MI: '',
     Last_name: '',
     DOB: '',
     Hire_date: '',
@@ -24,20 +27,22 @@ const initFormState = {
 const formReducer = (state = initFormState, action) => {
   
   if (action.type === UPDATE_FORM) {
-    return { ...state, data: { ...state.data, ...action.dataObj }}
-  }
-  
-  if (action.type === LOG_ERRORS) {
-    return { ...state, errors: action.payload };
+    return { ...state, data: { ...state.data, ...action.dataObj }};
   }
 
   if (action.type === RESET_FORM) {
     return { ...initFormState };
   }
 
-  // if (action.type === VALIDATE) {
-  //   return { ...state }
-  // }
+  if (action.type === VALIDATE) {
+    let fieldNameArr = action.fieldNameArr ? action.fieldNameArr : Object.keys(state.errors);
+    let updatedErrs = { ...state.errors };
+    fieldNameArr.forEach((name) => {
+      if ( !isValid[name](state.data[name])  ) updatedErrs[name] = errs[name];
+      else updatedErrs[name] = initFormState.errors[name]
+    });
+    return { ...state, errors: updatedErrs };
+  }
 
   return state;
 };

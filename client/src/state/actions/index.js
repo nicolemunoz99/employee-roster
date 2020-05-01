@@ -3,10 +3,11 @@ import {
   SELECT_EMPLOYEE, 
   TOGGLE_MODAL,
   TOGGLE_DATA_STATUS, 
-  UPDATE_FORM, LOG_ERRORS, RESET_FORM, 
+  UPDATE_FORM, VALIDATE, RESET_FORM, 
   UPDATE_EMPLOYEES 
 } from './action-types.js';
 import axios from 'axios';
+import _ from 'lodash';
 
 export const setEmployees = (payload) => {
   return { type: SET_EMPLOYEES, payload };
@@ -20,10 +21,6 @@ export const toggleModal = (modalName) => {
   return { type: TOGGLE_MODAL, modalName };
 };
 
-export const logErrors = (payload) => {
-  return { type: LOG_ERRORS, payload };
-};
-
 export const resetForm = (payload) => {
   return { type: RESET_FORM, payload };
 };
@@ -33,8 +30,12 @@ export const updateEmployees = (payload) => {
 };
 
 export const updateForm = (dataObj) => {
-  return { type: UPDATE_FORM, dataObj }
-}
+  return { type: UPDATE_FORM, dataObj };
+};
+
+export const validate = (fieldNameArr) => {
+  return { type: VALIDATE, fieldNameArr };
+};
 
 // ...async/thunks...
 
@@ -44,6 +45,12 @@ export const getAllEmployees = () => async (dispatch) => {
 };
 
 export const submitNewEmployee = () => async (dispatch, getState) => {
+  dispatch(validate());
+  let errors = getState().form.errors;
+  if ( !(_.every(errors, (err) => !err)) ) {
+    return;
+  }
+
   let newEmployee = getState().form.data;
   await axios.post(`${process.env.API}/employee`, newEmployee);
   await dispatch(getAllEmployees());
@@ -51,6 +58,11 @@ export const submitNewEmployee = () => async (dispatch, getState) => {
 };
 
 export const submitEditedEmployee = () => async (dispatch, getState) => {
+  dispatch(validate());
+  let errors = getState().form.errors;
+  if ( !(_.every(errors, (err) => !err)) ) {
+    return;
+  }
   let updatedEmployee = getState().form.data;
   await axios.put(`${process.env.API}/employee/${updatedEmployee._id}`, updatedEmployee);
   await dispatch(getAllEmployees());

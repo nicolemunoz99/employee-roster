@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Form, Row, Col } from 'react-bootstrap';
 
 export const ModalTitle = ({ title }) => {
@@ -24,25 +25,47 @@ export const FieldHeader = ({ name }) => {
   );
 };
 
+export const CustomControl = (props) => {
+  const errMsg = useSelector(state => state.form.errors[props.id]);
+  return (
+    <>
+      <Form.Control
+        {...props}
+      />
+      <Form.Text className="err">{errMsg}</Form.Text>
+    </>
+  );
+};
+
+export const CustomRadioGroup = ({ children, id }) => {
+  const errMsg = useSelector(state => state.form.errors[id]);
+  return  (  
+    <>
+    {children}
+    <Form.Text className="err">{errMsg}</Form.Text>
+    </>
+  );
+};
+
 export const FormFieldCol = ({ children }) => {
-  return(
-    <Col 
+  return (
+    <Col
       sm={7}
       className="pl-5 pl-sm-0 my-auto"
     >
-      { children }
+      {children}
     </Col>
-  )
-}
+  );
+};
 
 export const CustomFormGroup = ({ children, bootstrapProps }) => {
-  return(
-    <Form.Group 
-      as={Row} 
-      className="my-5" 
+  return (
+    <Form.Group
+      as={Row}
+      className="my-5"
       {...bootstrapProps}
     >
-      { children }
+      {children}
     </Form.Group>
-  )
-}
+  );
+};

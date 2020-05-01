@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import { FieldHeader, CustomFormGroup, FormFieldCol } from '../../ComponentBits.jsx';
+import { FieldHeader, CustomControl, CustomFormGroup, FormFieldCol, CustomRadioGroup } from '../../ComponentBits.jsx';
 import ModalWrapper from '../ModalWrapper.jsx';
 
-import { updateForm, resetForm } from '../../../state/actions/';
+import { updateForm, resetForm, validate } from '../../../state/actions/';
 
 
 const EmployeeForm = ({ title, modalName, handleSubmit }) => {
@@ -17,9 +17,9 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
     }
   }, []);
 
-  const handleInput = (e) => {
-    dispatch(updateForm({ [e.target.id]: e.target.value }));
-  };
+  const handleInput = (e) => dispatch(updateForm({ [e.target.id]: e.target.value }));
+
+  const handleBlur = (e) => dispatch(validate( [e.target.id] ));
 
 
   return (
@@ -35,18 +35,23 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
 
           <Col as={FormFieldCol}>
             <Form.Control
+              as={CustomControl}
               type="text"
               placeholder="Last"
               onChange={handleInput}
+              onBlur={handleBlur}
               id="Last_name"
               value={data.Last_name}
             />
+            
             <Row>
               <Col sm={8}>
                 <Form.Control
+                  as={CustomControl}
                   type="text"
                   placeholder="First"
                   onChange={handleInput}
+                  onBlur={handleBlur}
                   id="First_name"
                   value={data.First_name}
                   className="mt-2"
@@ -55,9 +60,11 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
 
               <Col sm={4}>
                 <Form.Control
+                  as={CustomControl}
                   type="text"
                   placeholder="MI"
                   onChange={handleInput}
+                  onBlur={handleBlur}
                   id="MI"
                   value={data.MI}
                   className="mt-2"
@@ -72,8 +79,10 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
           <FieldHeader name="Hire date" />
           <Col as={FormFieldCol}>
             <Form.Control
+              as={CustomControl}
               type="date"
               onChange={handleInput}
+              onBlur={handleBlur}
               id="Hire_date"
               value={data.Hire_date}
             />
@@ -85,8 +94,10 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
           <FieldHeader name="DOB" />
           <Col as={FormFieldCol}>
             <Form.Control
+              as={CustomControl}
               type="date"
               onChange={handleInput}
+              onBlur={handleBlur}
               id="DOB"
               value={data.DOB}
             />
@@ -97,6 +108,7 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
         <Form.Group as={CustomFormGroup}>
           <FieldHeader name="Status" />
           <Col as={FormFieldCol}>
+            <CustomRadioGroup id="Status">
             <Row className="align-items-center">
               <Col sm="4" className="align-items-center">
                 <Form.Check
@@ -106,7 +118,7 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
                   value="active"
                   checked={data.Status === 'active' ? true : false}
                   onChange={handleInput}
-                  className="my-auto"
+                  onBlur={handleBlur}
                 />
               </Col>
               <Col sm="4">
@@ -117,9 +129,11 @@ const EmployeeForm = ({ title, modalName, handleSubmit }) => {
                   value="inactive"
                   checked={data.Status === 'inactive' ? true : false}
                   onChange={handleInput}
+                  onBlur={handleBlur}
                 />
               </Col>
             </Row>
+            </CustomRadioGroup>
           </Col>
         </Form.Group>
       </Form>

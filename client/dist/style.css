@@ -134,6 +134,10 @@ body {
   pointer-events: none;
 }
 
+.err {
+  color: var(--color-error);
+}
+
 .my-btn {
   border: 1px solid var(--main-bg-color);
   background-color: rgb(59, 59, 59);

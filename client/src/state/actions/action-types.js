@@ -6,6 +6,6 @@ export const TOGGLE_MODAL = "CHANGE_MODAL";
 export const TOGGLE_DATA_STATUS = "TOGGLE_DATA_STATUS";
 
 export const UPDATE_FORM = "UPDATE_FORM";
-export const LOG_ERRORS = "LOG_ERRORS";
+export const VALIDATE = "VALIDATE";
 export const RESET_FORM = "RESET_FORM";
 
