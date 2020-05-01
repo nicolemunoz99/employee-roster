@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import Employee from './Employee.jsx'
 import { useDispatch, useSelector } from 'react-redux';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Employee from './Employee.jsx'
 import { toggleModal, getAllEmployees } from '../state/actions/';
 
+// authentication
 import Amplify from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
 import config from "../../../aws-exports";
@@ -27,9 +29,19 @@ const EmployeeList = () => {
         <div className="col-auto mr-auto ml-auto text-center mb-4 h2">
           Employees
         </div>
+
+
+      <OverlayTrigger
+        placement="top"
+        overlay={
+          <Tooltip id="add">Add Employee</Tooltip>
+        }
+      >
         <div className="col-auto h2 mx-auto" onClick={()=>dispatch(toggleModal("newEmployeeForm"))}>
           <i className="material-icons pointer h2">add_circle_outline</i>
         </div>
+      </OverlayTrigger>
+
       </div>
 
       <div className="row list-wrapper py-4 mx-1">
