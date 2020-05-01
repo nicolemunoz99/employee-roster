@@ -17,6 +17,7 @@ export const selectEmployee = (payload) => {
   return { type: SELECT_EMPLOYEE, payload };
 };
 
+ 
 export const toggleModal = (modalName) => {
   return { type: TOGGLE_MODAL, modalName };
 };
@@ -56,7 +57,15 @@ export const submitNewEmployee = () => async (dispatch, getState) => {
   let formIsValid = getState().form.formIsValid;
   if (!formIsValid) return;
   let newEmployee = getState().form.data;
-  await axios.post(`${process.env.API}/employee`, newEmployee);
+  try {
+    dispatch(toggleModal('isWaitingForData'));
+    await axios.post(`${process.env.API}/employee`, newEmployee);
+    dispatch(toggleModal('isWaitingForData'));
+  }
+  catch {
+    dispatch(toggleModal('dataError'));
+  }
+  
   await dispatch(getAllEmployees());
   dispatch(toggleModal('newEmployeeForm'));
 };
@@ -75,4 +84,8 @@ export const validateForm = () => (dispatch, getState) => {
   let errors = getState().form.errors;
   if ( !(_.every(errors, (err) => !err)) ) dispatch(setFormIsValid(false));
   else dispatch(setFormIsValid(true));
+}
+
+export const toggleEmployeeStatus = () => (dispatch, getState) => {
+
 }

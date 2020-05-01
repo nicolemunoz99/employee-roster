@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
+import { Waiting, DataError } from './DataStatus.jsx';
 import { NewEmployeeForm, EditEmployeeForm } from './EmployeeForm/Index.jsx';
 import SubmitResult from './SubmitResult.jsx';
 
@@ -14,6 +14,10 @@ const ModalIndex = () => {
       { modal.newEmployeeForm && <NewEmployeeForm /> }
 
       { modal.editEmployeeForm && <EditEmployeeForm /> }
+
+      { modal.isWaitingForData && <Waiting /> }
+
+      { modal.dataError && <DataError /> }
       
       { modal.submitResult && <SubmitResult /> }
 

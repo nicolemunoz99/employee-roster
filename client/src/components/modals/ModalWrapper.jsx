@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { toggleModal } from '../../state/actions/';
 import { ModalTitle } from '../ComponentBits.jsx';
 
-const ModalWrapper = ({ title, children, name }) => {
+const ModalWrapper = ({ title, children, name, cancelClose=false }) => {
   const [isAtBottom, setIsAtBottom] = useState(false);
   const [bottomPos, setBottomPos] = useState('0px')
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const ModalWrapper = ({ title, children, name }) => {
         <div className="col-11 col-md-6 my-modal" onScroll={handleScroll}>
 
           <div className="col-12 position-absolute mt-3 pointer text-right">
-            <i onClick={closeHandler} className="material-icons">close</i>
+            {!cancelClose && <i onClick={closeHandler} className="material-icons">close</i>}
           </div>
 
           <div className="row no-gutters pb-5">

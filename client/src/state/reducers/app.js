@@ -5,8 +5,9 @@ const initModalState = {
   newEmployeeForm: false,
   editEmployee: false,
   submitResult: false,
-  dataStatus: false
-}
+  isWaitingForData: false,
+  dataError: false
+};
 
 
 export const modalReducer = (state = initModalState, action) => {
@@ -18,9 +19,9 @@ export const modalReducer = (state = initModalState, action) => {
   return state;
 }
 
-const initDataStatusState = 'ok'
+const initIsWaitingForData = false;
 
-export const dataStatusReducer = (state = initDataStatusState, action) => {
+export const dataStatusReducer = (state = initIsWaitingForData, action) => {
   return state;
 }
 

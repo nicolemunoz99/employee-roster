@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { selectEmployee, toggleModal, submitEditedEmployee } from '../state/actions/';
+import { selectEmployee, toggleModal, toggleEmployeeStatus } from '../state/actions/';
 
 const Employee = ({ employee }) => {
   const selectedEmployee = useSelector(state => state.employee.selected);
@@ -15,16 +15,8 @@ const Employee = ({ employee }) => {
     dispatch(toggleModal('editEmployeeForm'));
   };
 
-  const handleClickActivate = (e) => {
-    let employeeData = { ...selectedEmployee };
-    delete employeeData._id
-    employeeData.Status = employee.Status === 'active' ? 'inactive' : 'active';
-    let payload = {
-      modalName: 'editEmployee',
-      data: employeeData,
-      id: selectedEmployee._id
-    };
-    dispatch(submitEditedEmployee(payload));
+  const handleToggleStatus = (e) => {
+    dispatch(toggleEmployeeStatus());
   }
 
   let active = employee.Status === 'active' ? true : false;
@@ -103,7 +95,7 @@ const Employee = ({ employee }) => {
                         <Tooltip id="change-status">Change Status</Tooltip>
                       }
                     >
-                      <div className="details-btn text-center center-hack" onClick={handleClickActivate}>
+                      <div className="details-btn text-center center-hack" onClick={handleToggleStatus}>
                         <div className="h4 d-inline-block m-auto my-sm-3">{active ? 'deactivate' : 'activate'}</div>
                       </div>
 
