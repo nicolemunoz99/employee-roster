@@ -16,7 +16,7 @@ const Employee = ({ employee }) => {
   };
 
   const handleClickActivate = (e) => {
-    let employeeData = {...selectedEmployee};
+    let employeeData = { ...selectedEmployee };
     delete employeeData._id
     employeeData.Status = employee.Status === 'active' ? 'inactive' : 'active';
     let payload = {
@@ -37,11 +37,23 @@ const Employee = ({ employee }) => {
             <div className="col-8">
               <span className={`align-middle ${!active ? 'inactive' : null}`}>{`${employee.Last_name}, ${employee.First_name} ${employee.MI}${employee.MI ? '.' : ''}`} </span>
             </div>
-            <div className="col-auto pointer" onClick={handleEmployeeClick}>
-              <i className="material-icons align-middle">
-                {employee._id === selectedEmployee._id ? 'expand_less' : 'expand_more'}
-              </i>
-            </div>
+            <OverlayTrigger
+              placement="left"
+              overlay={
+                <Tooltip>
+                  {employee._id === selectedEmployee._id ? 'Hide details' : 'View details'}
+                </Tooltip>
+              }
+            >
+              <div className="col-auto pointer" onClick={handleEmployeeClick}>
+                <i className="material-icons align-middle">
+                  {employee._id === selectedEmployee._id ? 'expand_less' : 'expand_more'}
+                </i>
+              </div>
+
+            </OverlayTrigger>
+
+
           </div>
         </div>
         {selectedEmployee._id === employee._id ?
@@ -68,7 +80,7 @@ const Employee = ({ employee }) => {
 
               <div className="col-sm-4 p-2">
                 <div className="row control-wrapper">
-                  
+
                   <div className="col-6 col-sm-12 m-auto my-sm-2">
 
                     <OverlayTrigger
@@ -78,22 +90,30 @@ const Employee = ({ employee }) => {
                       }
                     >
                       <div className="details-btn text-center center-hack" onClick={handleEditClick}>
-                        <i className="material-icons h4 m-auto my-sm-3">edit</i> 
+                        <i className="material-icons h4 m-auto my-sm-3">edit</i>
                       </div>
                     </OverlayTrigger>
 
                   </div>
 
                   <div className="col-6 col-sm-12 m-auto my-sm-2">
-                    
-                    <div className="details-btn text-center center-hack" onClick={handleClickActivate}>
-                      <div className="h4 d-inline-block m-auto my-sm-3">{active ? 'deactivate' : 'activate'}</div> 
-                    </div>
-                    
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="change-status">Change Status</Tooltip>
+                      }
+                    >
+                      <div className="details-btn text-center center-hack" onClick={handleClickActivate}>
+                        <div className="h4 d-inline-block m-auto my-sm-3">{active ? 'deactivate' : 'activate'}</div>
+                      </div>
+
+                    </OverlayTrigger>
+
+
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
           :
