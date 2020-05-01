@@ -117,13 +117,21 @@ body {
 }
 
 .my-modal {
-  position: fixed;
   background-color: rgb(var(--modal-bg-rgb));
-  z-index: 1500;
   min-height: 60vh;
   max-height: 95vh;
   overflow: auto;
   border: 3px solid var(--details-wrapper-bg-color)
+}
+
+
+.scroll-more {
+  position: absolute;
+  background-image: linear-gradient(rgba(var(--modal-bg-rgb), 0), rgb(var(--modal-bg-rgb)));
+  left: 0px;
+  height: 5rem;
+  width: 100%;
+  pointer-events: none;
 }
 
 .my-btn {
@@ -141,12 +149,5 @@ body {
   margin: 5rem;
 }
 
-.scroll-more {
-  position: absolute;
-  background-image: linear-gradient(rgba(var(--modal-bg-rgb), 0), rgb(var(--modal-bg-rgb)));
-  bottom: 0px;
-  left: 0px;
-  height: 5rem;
-  width: 100%;
-  pointer-events: none;
-}
+
+

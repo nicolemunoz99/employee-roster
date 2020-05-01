@@ -41,7 +41,7 @@ const ModalWrapper = ({ title, children, name }) => {
           <div className="row no-gutters pb-5">
 
             <div className="col-12 mt-2 my-5">
-              
+
               <ModalTitle title={title} />
 
               {children}
@@ -50,11 +50,12 @@ const ModalWrapper = ({ title, children, name }) => {
 
           </div>
 
+          {/* indicator to scroll more */}
           {!isAtBottom &&
             <div className="scroll-more" style={{ bottom: bottomPos }} />
           }
-        </div>
 
+        </div>
       </div>
 
     </div>

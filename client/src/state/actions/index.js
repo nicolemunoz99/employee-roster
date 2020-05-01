@@ -43,17 +43,15 @@ export const getAllEmployees = () => async (dispatch) => {
   dispatch(setEmployees(employees));
 };
 
-export const submitEdits = (payload) => async (dispatch) => {
-  if (payload.modalName === 'newEmployee') {
-    await axios.post(`${process.env.API}/employee`, payload.data);
-  } else {
-    await axios.put(`${process.env.API}/employee/${payload.id}`, payload.data);
-  }
-  let employees = (await axios.get(`${process.env.API}/employee`)).data;
-  dispatch(updateEmployees(employees));
+export const submitNewEmployee = () => async (dispatch, getState) => {
+  let newEmployee = getState().form.data;
+  await axios.post(`${process.env.API}/employee`, newEmployee);
+  await dispatch(getAllEmployees());
+  dispatch(toggleModal('newEmployeeForm'));
 };
 
-export const closeForm = () => (dispatch) => {
-  dispatch(resetForm);
-  dispatch(toggleModal('employeeForm'));
-}
+export const submitEditedEmployee = (employeeData) => async (dispatch) => {
+  await axios.put(`${process.env.API}/employee/${employeeData._id}`, employeeData);
+  await dispatch(getAllEmployees());
+  dispatch(toggleModal('editEmployeeForm'));
+};

@@ -30,7 +30,7 @@ app.get('/api/employee', async (req, res) => {
 
 app.post('/api/employee', async (req, res) => {
   let newEmployee = await insert('employee', req.body);
-  res.send(newEmployee);
+  res.sendStatus(200);
 });
 
 app.put('/api/employee/:_id', async (req, res) => {

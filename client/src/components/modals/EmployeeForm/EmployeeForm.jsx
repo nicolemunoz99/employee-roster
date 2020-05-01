@@ -7,23 +7,18 @@ import ModalWrapper from '../ModalWrapper.jsx';
 import { updateForm, resetForm, submitEdits } from '../../../state/actions/';
 
 
-const EmployeeForm = () => {
+const EmployeeForm = ({ title, handleSubmit }) => {
   const { data, errors: formErrors } = useSelector(state => state.form);
   const dispatch = useDispatch();
 
   useEffect(() => {
-
     return () => {
       dispatch(resetForm());
     }
   }, []);
 
   const handleInput = (e) => {
-    dispatch(updateForm({ [e.target.id]: e.target.value }))
-  };
-
-  const handleSubmit = () => {
-
+    dispatch(updateForm({ [e.target.id]: e.target.value }));
   };
 
 
@@ -31,9 +26,9 @@ const EmployeeForm = () => {
     <ModalWrapper
       name="newEmployeeForm"
       width={6}
-      title="New Employee"
+      title={title}
     >
-      <Form className="pr-5" onSubmit={handleSubmit}>
+      <Form className="pr-5">
 
         <Form.Group as={CustomFormGroup}>
           <FieldHeader name="Name" />

@@ -1,17 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectEmployee, toggleModal, submitEdits } from '../state/actions/';
+import { selectEmployee, toggleModal, submitEditedEmployee } from '../state/actions/';
 
 const Employee = ({ employee }) => {
   const selectedEmployee = useSelector(state => state.employee.selected);
   const dispatch = useDispatch();
 
-  const handleEmployeeClick = (e) => {
+  const handleEmployeeClick = () => {
     dispatch(selectEmployee(employee));
   };
 
-  const handleEditClick = (e) => {
-    dispatch(toggleModal('editEmployee'));
+  const handleEditClick = () => {
+    dispatch(toggleModal('editEmployeeForm'));
   };
 
   const handleClickActivate = (e) => {
@@ -23,7 +23,7 @@ const Employee = ({ employee }) => {
       data: employeeData,
       id: selectedEmployee._id
     };
-    dispatch(submitEdits(payload));
+    dispatch(submitEditedEmployee(payload));
   }
 
   let active = employee.Status === 'active' ? true : false;
