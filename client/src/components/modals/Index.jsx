@@ -11,13 +11,13 @@ const ModalIndex = () => {
   }, [modal])
 
   return (
-    <div>
+    <>
 
       { modal.newEmployeeForm && <EmployeeForm /> }
       
       { modal.submitResult && <SubmitResult /> }
 
-    </div>
+    </>
   )
 };
 

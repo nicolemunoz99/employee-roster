@@ -129,7 +129,7 @@ const EmployeeForm = () => {
         </Form.Group>
       </Form>
 
-      <Row className="px-5">
+      <Row className="px-5" noGutters>
         <Col>
           <Button bsPrefix="my-btn" onClick={handleSubmit} type="button" className="btn my-btn w-100">Submit</Button>
         </Col>

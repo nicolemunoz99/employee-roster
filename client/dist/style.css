@@ -143,11 +143,10 @@ body {
 
 .scroll-more {
   position: absolute;
-
   background-image: linear-gradient(rgba(var(--modal-bg-rgb), 0), rgb(var(--modal-bg-rgb)));
   bottom: 0px;
   left: 0px;
-  height: 10rem;
+  height: 5rem;
   width: 100%;
   pointer-events: none;
 }

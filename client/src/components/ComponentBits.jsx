@@ -3,7 +3,7 @@ import { Form, Row, Col } from 'react-bootstrap';
 
 export const ModalTitle = ({ title }) => {
   return (
-    <div className="row no-gutters justify-content-end">
+    <div className="row no-gutters justify-content-end my-5">
       <div className="col-10 h3 mb-5 text-left modal-title pl-3">
         {title}
       </div>
