@@ -53,14 +53,14 @@ const Employee = ({ employee }) => {
 
             <div className="row no-gutters">
 
-              <div key={employee._id} className="col-sm-8 mr-auto ml-auto my-3 z-neg">
+              <div className="col-sm-8 mr-auto ml-auto my-3 z-neg">
 
                 {
                   Object.keys(employee).map((dataLabel, i) => {
                     let label = dataLabel.split('_').join(' ')
                     return (
-                      <div key={i} className="container">
-                        <div key={dataLabel} className={`row ${i % 2 === 0 ? 'details-l1' : 'details-l2'}`}>
+                      <div key={dataLabel} className="container">
+                        <div className={`row ${i % 2 === 0 ? 'details-l1' : 'details-l2'}`}>
                           <div className="col-5">{`${label}:`}</div>
                           <div className="col-7">{`${employee[dataLabel]}`}</div>
                         </div>

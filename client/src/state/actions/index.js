@@ -67,10 +67,7 @@ export const submitNewEmployee = () => async (dispatch) => {
 };
 
 export const submitEditedEmployee = () => async (dispatch) => {
-  const apiRequest = async (data) => {
-    await axios.put(`${process.env.API}/employee/${data._id}`, data);
-  }
-  await dispatch(sendForm(apiRequest, 'edit'));
+  await dispatch(sendForm(editEmpRequest, 'edit'));
 };
 
 const sendForm = (apiRequest2, formType) => async(dispatch, getState) => {
@@ -103,4 +100,9 @@ export const validateForm = () => (dispatch, getState) => {
 
 export const toggleEmployeeStatus = () => (dispatch, getState) => {
 
+}
+
+
+const editEmpRequest = async (data) => {
+  await axios.put(`${process.env.API}/employee/${data._id}`, data);
 }
