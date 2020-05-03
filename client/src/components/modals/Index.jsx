@@ -14,7 +14,7 @@ const ModalIndex = () => {
 
       { modal.editEmployeeForm && <EditEmployeeForm /> }
 
-      { modal.confirmToggleStatus && <Confirm/> }
+      { modal.confirm && <Confirm /> }
 
       { modal.isWaitingForData && 
         <DataStatus

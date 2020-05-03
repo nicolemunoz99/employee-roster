@@ -1,12 +1,12 @@
 import { 
-  SET_EMPLOYEES, 
-  SELECT_EMPLOYEE, 
-  TOGGLE_MODAL,
+  SET_EMPLOYEES, SELECT_EMPLOYEE, 
+  TOGGLE_MODAL, CLOSE_ALL_MODALS,
   UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
-  UPDATE_EMPLOYEES 
 } from './action-types.js';
 import axios from 'axios';
 import _ from 'lodash';
+
+// ... employees ...
 
 export const setEmployees = (payload) => {
   return { type: SET_EMPLOYEES, payload };
@@ -16,19 +16,26 @@ export const selectEmployee = (payload) => {
   return { type: SELECT_EMPLOYEE, payload };
 };
 
+
+
+// ... modals ...
+
 export const toggleModal = (modalName) => {
   return { type: TOGGLE_MODAL, modalName };
 };
+
+export const closeAllModals = () => {
+  return { type: CLOSE_ALL_MODALS };
+};
+
+// new/edit employee form
 
 export const resetForm = (payload) => {
   return { type: RESET_FORM, payload };
 };
 
-export const updateEmployees = (payload) => {
-  return { type: UPDATE_EMPLOYEES, payload };
-};
-
 export const updateField = (data) => {
+  // 'data' is object with props 1) fieldName, and 2) value
   return { type: UPDATE_FIELD, data };
 };
 
@@ -48,6 +55,7 @@ export const setFormIsValid = (isValid) => {
 
 export const getAllEmployees = () => async (dispatch) => {
   try {
+    console.log('getting emps')
     dispatch(toggleModal('isWaitingForData'));
     let employees = (await axios.get(`${process.env.API}/employee`)).data;
     dispatch(setEmployees(employees));
@@ -98,11 +106,26 @@ export const validateForm = () => (dispatch, getState) => {
   else dispatch(setFormIsValid(true));
 }
 
-export const toggleEmployeeStatus = () => (dispatch, getState) => {
+export const confirmToggleStatus = () => async (dispatch, getState) => {
+  try {
+    dispatch(toggleModal('isWaitingForData')); // show 'waiting' modal
+    let { _id, Status } = getState().employee.selected;
+    Status = Status === 'active' ? 'inactive' : 'active';
+    console.log({_id, Status})
+    await editEmpRequest({ _id, Status });
+    dispatch(toggleModal('confirm')); // close 'confirm' modal
+    dispatch(toggleModal('isWaitingForData')); // close 'waiting' modal
+    dispatch(toggleModal('success')); // show 'success' modal
+    await dispatch(getAllEmployees());
+  }
 
-}
+  catch {
+    dispatch(toggleModal('dataError'));
+  }
+};
 
 
 const editEmpRequest = async (data) => {
+  console.log('here')
   await axios.put(`${process.env.API}/employee/${data._id}`, data);
-}
+};

@@ -24,7 +24,7 @@ const EmployeeForm = ({ title, modalName, submitAction }) => {
   const handleSubmit = () => {
     dispatch(validateForm());
     submitAction();
-  }
+  };
 
 
   return (

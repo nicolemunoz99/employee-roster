@@ -5,10 +5,11 @@ import { ModalTitle } from '../ComponentBits.jsx';
 
 const ModalWrapper = ({ title, children, name, cancelClose=false }) => {
   const [isAtBottom, setIsAtBottom] = useState(false);
-  const [bottomPos, setBottomPos] = useState('0px')
+  const [bottomPos, setBottomPos] = useState('0px'); // position of scroll-more indicator 
   const dispatch = useDispatch();
 
   const closeHandler = (e) => {
+    if ( cancelClose ) return; // ability to close modal based on prop
     if (e.target === e.currentTarget) {
       dispatch(toggleModal(name));
     }

@@ -1,6 +1,7 @@
 import { 
   SET_EMPLOYEES, SELECT_EMPLOYEE
 } from "../actions/action-types.js";
+import _ from 'lodash';
 
 const initEmployeeState = {
   roster: [],
