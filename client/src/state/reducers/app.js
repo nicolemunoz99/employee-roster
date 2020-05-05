@@ -1,4 +1,9 @@
-import { TOGGLE_MODAL, CLOSE_ALL_MODALS } from '../actions/action-types.js';
+import { 
+  TOGGLE_MODAL, 
+  CLOSE_ALL_MODALS, 
+  LOGIN, 
+  LOGOUT 
+} from '../actions/action-types.js';
 
 const initModalState = {
   newEmployeeForm: false,
@@ -23,9 +28,16 @@ export const modalReducer = (state = initModalState, action) => {
   return state;
 }
 
-// const initIsWaitingForData = false;
+const initIsLoggedInState = false;
 
-// export const dataStatusReducer = (state = initIsWaitingForData, action) => {
-//   return state;
-// }
+export const isLoggedInReducer = (state = initIsLoggedInState, action) => {
+  if (action.type === LOGIN) {
+    return true;
+  }
+  if (action.type === LOGOUT) {
+    return false;
+  }
+
+  return state;
+}
 

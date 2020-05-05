@@ -1,6 +1,7 @@
 import { 
   SET_EMPLOYEES, SELECT_EMPLOYEE, 
-  TOGGLE_MODAL, CLOSE_ALL_MODALS,
+  LOGIN, LOGOUT,
+  TOGGLE_MODAL, CLOSE_ALL_MODALS, 
   UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
 } from './action-types.js';
 import axios from 'axios';
@@ -16,6 +17,15 @@ export const selectEmployee = (payload) => {
   return { type: SELECT_EMPLOYEE, payload };
 };
 
+
+// ... login status ...
+export const login = () => {
+  return { type: LOGIN };
+};
+
+export const logout = () => {
+  return { type: LOGOUT };
+};
 
 
 // ... modals ...

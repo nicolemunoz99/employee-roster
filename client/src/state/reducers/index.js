@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { modalReducer } from './app.js';
+import { modalReducer, isLoggedInReducer } from './app.js';
 import formReducer from './form.js';
 import employeeReducer from './employee.js';
 
@@ -8,5 +8,6 @@ import employeeReducer from './employee.js';
 export default combineReducers({
   form: formReducer,
   employee: employeeReducer,
-  modal: modalReducer
+  modal: modalReducer,
+  isLoggedIn: isLoggedInReducer
 });

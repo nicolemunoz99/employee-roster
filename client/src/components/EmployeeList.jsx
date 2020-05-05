@@ -4,11 +4,11 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Employee from './Employee.jsx'
 import { toggleModal, getAllEmployees } from '../state/actions/';
 
-// authentication
-import Amplify from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react";
+// Amplify authentication
+import Amplify, { Auth } from "aws-amplify";
 import config from "../../../aws-exports";
 Amplify.configure(config);
+
 
 
 const EmployeeList = () => {
@@ -20,16 +20,16 @@ const EmployeeList = () => {
   }, []);
 
 
+
+
   return (
-    <div>
+    <>
 
     <div className="container my-5">
-      
       <div className="row justify-content-md-center">
         <div className="col-auto mr-auto ml-auto text-center mb-4 h2">
           Employees
         </div>
-
 
       <OverlayTrigger
         placement="top"
@@ -61,9 +61,33 @@ const EmployeeList = () => {
       </div>
     </div>
 
-    </div>
+    </>
   )
 };
 
-export default withAuthenticator(EmployeeList, true);
-// export default EmployeeList;
+
+
+const signUpConfig = {
+  header: 'Sign Up With Email',
+  hideAllDefaults: true,
+  defaultCountryCode: '1',
+  signUpFields: [
+    {
+      label: 'Email',
+      key: 'username',
+      required: true,
+      displayOrder: 1,
+      type: 'string'
+    },
+    {
+      label: 'Password',
+      key: 'password',
+      required: true,
+      displayOrder: 2,
+      type: 'password'
+    }
+  ]
+};
+
+
+export default EmployeeList;
