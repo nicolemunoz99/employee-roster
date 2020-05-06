@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Dropdown, Col, Row } from 'react-bootstrap';
-import { sortEmployees } from '../state/actions/';
+import { setSortOption, sortEmployees } from '../state/actions/';
 
 const SortBy = () => {
   const selectedOption = useSelector(state => state.employee.sort.option);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-
+    dispatch(sortEmployees());
   }, [selectedOption])
 
-
-  // let options = {
-  //   'First name': {fieldName: 'First_name'},
-  //   'Last name': {fieldName: 'Last_name'},
-  //   'Status': {fieldName: 'Status'},
-  //   'Hire date': {fieldName: 'Hire_date'}
-  // };
 
   let options = {
     'First_name': {title: 'First name'},
@@ -25,34 +19,33 @@ const SortBy = () => {
     'Hire_date': {title: 'Hire date'}
   };
 
-  const handleSort = (e) => {
-    console.log('e.target', e.target.attributes)
-  };
+  const handleSort = (e) => dispatch(setSortOption(e.target.id));
 
   return (
-  <Row>
-    <Col sm="auto">
+  <Row noGutters>
+    <Col sm="12">
       Sort by:
     </Col>
-    <Col sm="auto">
-    <Dropdown>
-      <Dropdown.Toggle childBsPrefix='my-btn' id="sort-by" className="p-2 px-3 px-sm-5">
-        {options[selectedOption].title}
-      </Dropdown.Toggle>
+    <Col sm="12">
+      <Dropdown>
+        <Dropdown.Toggle childBsPrefix='my-btn' id="sort-by" className="w-100 p-1" >
+          {options[selectedOption].title}
+        </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        {Object.keys(options).map((name) => {
-          return (
-            <Dropdown.Item key={name} onClick={handleSort} id={name}>
-              {options[name].title}
-            </Dropdown.Item>
-          )
-        })
+        <Dropdown.Menu className="w-100">
+          {Object.keys(options).map((name) => {
+            if (selectedOption === name) return null
+            return (
+              <Dropdown.Item className="text-center" key={name} onClick={handleSort} id={name}>
+                {options[name].title}
+              </Dropdown.Item>
+            )
+          })
 
-        }
-      </Dropdown.Menu>
+          }
+        </Dropdown.Menu>
 
-    </Dropdown>
+      </Dropdown>
     </Col>
   </Row>
   );

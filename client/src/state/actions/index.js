@@ -1,5 +1,5 @@
 import { 
-  SET_EMPLOYEES, SELECT_EMPLOYEE, 
+  SET_EMPLOYEES, SELECT_EMPLOYEE, SET_SORT_OPTION,
   LOGIN, LOGOUT, SET_REDIRECT, SET_AUTH_STATE,
   TOGGLE_MODAL, CLOSE_ALL_MODALS, 
   UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
@@ -15,6 +15,10 @@ export const setEmployees = (payload) => {
 
 export const selectEmployee = (payload) => {
   return { type: SELECT_EMPLOYEE, payload };
+};
+
+export const setSortOption = (option) => {
+  return { type: SET_SORT_OPTION, option };
 };
 
 
@@ -142,10 +146,16 @@ export const confirmToggleStatus = () => async (dispatch, getState) => {
 
 
 const editEmpRequest = async (data) => {
-  console.log('here')
   await axios.put(`${process.env.API}/employee/${data._id}`, data);
 };
 
-const sortEmployees = () => {
-
+export const sortEmployees = () => (dispatch, getState) => {
+  let { roster, sort: {option, ascending} } = getState().employee;
+  roster.sort((a, b) => {
+    let aCheck = a[option].toLowerCase();
+    let bCheck = b[option].toLowerCase();
+    if (ascending) return aCheck > bCheck ? 1 : -1;
+    return  aCheck < bCheck ? 1 : -1;
+  });
+  dispatch(setEmployees(roster));
 };

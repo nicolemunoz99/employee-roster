@@ -33,7 +33,7 @@ const EmployeeList = () => {
           <div className="col-md-8 col-lg-7  py-3 py-md-0 p-md-3 p-lg-4">
             <div className="row justify-content-between my-auto vert-center pb-5">
               
-              <div className="col-6">
+              <div className="col-7">
                 <SortBy />
               </div>
 
@@ -43,8 +43,8 @@ const EmployeeList = () => {
                   <Tooltip id="add">Add Employee</Tooltip>
                 }
               >
-                <div className="col-2" onClick={() => dispatch(toggleModal("newEmployeeForm"))}>
-                  <i className="material-icons pointer h2 my-auto">add_circle_outline</i>
+                <div className="col-3 my-auto vert-center text-right" onClick={() => dispatch(toggleModal("newEmployeeForm"))}>
+                  <i className="d-inline material-icons pointer h2">add_circle_outline</i>
                 </div>
               </OverlayTrigger>
 
