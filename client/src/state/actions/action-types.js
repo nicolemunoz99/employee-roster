@@ -5,6 +5,8 @@ export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const CLOSE_ALL_MODALS = "CLOSE_ALL_MODALS";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const SET_REDIRECT = "SET_REDIRECT";
+export const SET_AUTH_STATE = "SET_AUTH_STATE"
 
 export const UPDATE_FIELD = "UPDATE_FIELD";
 export const UPDATE_FORM = "UPDATE_FORM";

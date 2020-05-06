@@ -1,6 +1,6 @@
 import { 
   SET_EMPLOYEES, SELECT_EMPLOYEE, 
-  LOGIN, LOGOUT,
+  LOGIN, LOGOUT, SET_REDIRECT, SET_AUTH_STATE,
   TOGGLE_MODAL, CLOSE_ALL_MODALS, 
   UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
 } from './action-types.js';
@@ -27,6 +27,13 @@ export const logout = () => {
   return { type: LOGOUT };
 };
 
+export const setRedirect = (redirectRoute) => {
+  return { type: SET_REDIRECT, redirectRoute };
+};
+
+export const setAuthState2 = (authState) => {
+  return { type: SET_AUTH_STATE, authState };
+};
 
 // ... modals ...
 

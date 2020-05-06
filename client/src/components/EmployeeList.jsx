@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { withRouter } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Employee from './Employee.jsx'
@@ -18,8 +19,6 @@ const EmployeeList = () => {
   useEffect (() => {
     dispatch(getAllEmployees());
   }, []);
-
-
 
 
   return (
@@ -62,32 +61,10 @@ const EmployeeList = () => {
     </div>
 
     </>
-  )
+  );
 };
 
 
 
-const signUpConfig = {
-  header: 'Sign Up With Email',
-  hideAllDefaults: true,
-  defaultCountryCode: '1',
-  signUpFields: [
-    {
-      label: 'Email',
-      key: 'username',
-      required: true,
-      displayOrder: 1,
-      type: 'string'
-    },
-    {
-      label: 'Password',
-      key: 'password',
-      required: true,
-      displayOrder: 2,
-      type: 'password'
-    }
-  ]
-};
 
-
-export default EmployeeList;
+export default withRouter(EmployeeList);

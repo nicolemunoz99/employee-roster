@@ -1,55 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { useParams } from 'react-router';
-import { login } from '../state/actions/';
+import { login, setRedirect, setAuthState2 } from '../state/actions/';
 
 // Amplify auth components
-import { Authenticator, SignIn, SignUp, ConfirmSignUp, Greetings } from 'aws-amplify-react';
+import { Authenticator, SignIn, SignUp, ConfirmSignUp, ForgotPassword } from 'aws-amplify-react';
 
- // render component (e.g., EmployeeList) if logged in; other wise redirect to Login route
-export const ProtectedEmployeeList = (props) => {
+
+
+ // render EmployeeList if logged in; other wise redirect to Login route
+export const ProtectedEmployeeList = ({ exact, path, render }) => {
   const { isLoggedIn } = useSelector(state => state);
+  const dispatch = useDispatch();
 
-  const render = isLoggedIn ? props.component : LoginRedirect
+
+  useEffect(() => {
+    // define route to redirect to after successful login
+    if (!isLoggedIn) dispatch(setRedirect(route));
+  }, []);
+
+  let route = '/employees'
+
+  render = isLoggedIn ? render : () => <Redirect to="/login" />
 
   return (
     <Route 
-      exact={props.exact}
-      path={props.path}
-      component={render}
+      exact={exact}
+      path={path}
+      render={render}
     />
   );
 };
 
 
-const LoginRedirect = (props) => {
-  return (
-    <Redirect to={`/login?redirect=${props.location.pathname}`} />
-  );
-};
 
-
-export const Login = (props) => {
-  const { isLoggedIn } = useSelector(state => state);
+export const Login = ({ location, history }) => {
+  const { isLoggedIn, redirectAfterLogin, authState } = useSelector(state => state);
   const dispatch = useDispatch();
   
+  useEffect(() => {
+    return () => {
+      dispatch(setRedirect(''));
+      dispatch(setAuthState2(''));
+    };
+  }, []);
+
+  // redirect after successful login
+  useEffect(() => {
+    if (isLoggedIn) history.replace(redirectAfterLogin ? redirectAfterLogin : '/employees')
+  }, [isLoggedIn]);
+
+
   const handleAuthStateChange = (state) => {
-    if (state === 'signedIn') {
-      dispatch(login());
-    }
+    if (state === 'signedIn') dispatch(login());
   };
 
-  // get route to redirect to from query
-  let redirectRoute = props.location.search.split('?redirect=')[1];
 
   return (
-  <>
+
     <Authenticator 
       hideDefault={true} 
       onStateChange={handleAuthStateChange}
-      authState='signUp'
-      header='Sign up with Email'
+      authState={authState}
       usernameAttributes="Email"
     >
         <SignIn />
@@ -57,17 +69,16 @@ export const Login = (props) => {
           signUpConfig={signUpConfig}
         />
         <ConfirmSignUp />
+        <ForgotPassword />
 
     </Authenticator>
 
-    { isLoggedIn && <Redirect to={redirectRoute ? redirectRoute : '/employees'} />}
-</>
   );
 };
 
-// config Amplify UI
+// Amplify UI config
 const signUpConfig = {
-  header: 'Sign Up With Email',
+  header: 'Create Account',
   hideAllDefaults: true,
   signUpFields: [
     {
