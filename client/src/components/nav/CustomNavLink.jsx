@@ -17,6 +17,7 @@ const CustomNavLink = ({ history, to, onClick, tag: Tag, staticContext, classNam
       }}
       disabled={disabled}
       className={`pointer ${className}`}
+      eventKey={to}
   />
 )};
 

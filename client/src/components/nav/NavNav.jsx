@@ -32,7 +32,7 @@ const NavNav = () => {
 
 
         <Navbar sticky="top" collapseOnSelect expand="sm" >
-          <Navbar.Brand href="#home">Company Name</Navbar.Brand>
+          <Navbar.Brand>Company Name</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -44,11 +44,11 @@ const NavNav = () => {
               }
               {location.pathname === '/employees' &&
                 <NavDropdown title="Sort by" id="collasible-nav-dropdown">
-                  <NavDropdown.Item id="last" onClick={handleSort}>Last name</NavDropdown.Item>
-                  <NavDropdown.Item id="first" onClick={handleSort}>First name</NavDropdown.Item>
+                  <NavDropdown.Item eventKey="1" id="last" onClick={handleSort}>Last name</NavDropdown.Item>
+                  <NavDropdown.Item eventKey="2" id="first" onClick={handleSort}>First name</NavDropdown.Item>
                   
-                  <NavDropdown.Item id="status" onClick={handleSort}>Status</NavDropdown.Item>
-                  <NavDropdown.Item id="hireDate" onClick={handleSort}>Hire date</NavDropdown.Item>
+                  <NavDropdown.Item eventKey="3" id="status" onClick={handleSort}>Status</NavDropdown.Item>
+                  <NavDropdown.Item eventKey="4" id="hireDate" onClick={handleSort}>Hire date</NavDropdown.Item>
                 </NavDropdown>
               }
             </Nav>
