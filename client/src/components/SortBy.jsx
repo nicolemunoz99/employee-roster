@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Dropdown, Button, Col, Row } from 'react-bootstrap';
+import { Dropdown, Button, OverlayTrigger, Tooltip, Col, Row } from 'react-bootstrap';
 import { setSortOption, toggleOrder, sortEmployees } from '../state/actions/';
 
 const SortBy = () => {
@@ -51,9 +51,22 @@ const SortBy = () => {
     </Col>
 
     <Col xs="2">
-      <Button bsPrefix="my-btn" className="p-1 w-100" onClick={handleToggleOrder}>
-        icon
-      </Button>
+      <OverlayTrigger
+        placement="top"
+        overlay={
+          <Tooltip id="sort-order">
+            {`Sort ${ascending ? 'descending' : 'ascending'}`}
+          </Tooltip>
+        }
+      >
+
+        <Button bsPrefix="my-btn" className="w-100 p-1" onClick={handleToggleOrder}>
+          <span className="d-block material-icons my-auto">
+            {`trending_${ascending ? 'down' : 'up'}`}
+          </span>
+        </Button>
+      </OverlayTrigger>
+
     </Col>
   </Row>
   );
