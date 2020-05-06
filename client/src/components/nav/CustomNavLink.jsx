@@ -17,7 +17,6 @@ const CustomNavLink = ({ history, to, onClick, tag: Tag, staticContext, classNam
       }}
       active={active}
       className={`pointer ${className}`}
-      // bsPrefix="c-nav-link"
       eventKey={to}
   />
 )};
