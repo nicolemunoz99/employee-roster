@@ -116,6 +116,10 @@ body {
   z-index: 1500;
 }
 
+.vert-center {
+  align-items: center;
+}
+
 .my-modal {
   background-color: rgb(var(--modal-bg-rgb));
   min-height: 60vh;
@@ -140,6 +144,7 @@ body {
 
 .my-btn {
   border: 1px solid var(--main-bg-color);
+  border-radius: 0.5rem;
   background-color: rgb(59, 59, 59);
   color: white;
 }

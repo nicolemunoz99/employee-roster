@@ -5,10 +5,15 @@ import _ from 'lodash';
 
 const initEmployeeState = {
   roster: [],
-  selected: {}
+  selected: {},
+  sort: {
+    option: 'Last_name',
+    ascending: true
+  }
 };
 
 const employeeReducer = (state = initEmployeeState, action) => {
+  
   if (action.type === SET_EMPLOYEES) {
     return { ...state, roster: [...action.payload] };
   }

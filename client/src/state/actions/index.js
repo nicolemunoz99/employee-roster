@@ -72,7 +72,6 @@ export const setFormIsValid = (isValid) => {
 
 export const getAllEmployees = () => async (dispatch) => {
   try {
-    console.log('getting emps')
     dispatch(toggleModal('isWaitingForData'));
     let employees = (await axios.get(`${process.env.API}/employee`)).data;
     dispatch(setEmployees(employees));
@@ -145,4 +144,8 @@ export const confirmToggleStatus = () => async (dispatch, getState) => {
 const editEmpRequest = async (data) => {
   console.log('here')
   await axios.put(`${process.env.API}/employee/${data._id}`, data);
+};
+
+const sortEmployees = () => {
+
 };

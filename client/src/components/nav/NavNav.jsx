@@ -42,15 +42,6 @@ const NavNav = () => {
               {isLoggedIn && 
                 <CustomNavLink tag={Nav.Link} to="/employees">Employees</CustomNavLink>
               }
-              {location.pathname === '/employees' &&
-                <NavDropdown title="Sort by" id="collasible-nav-dropdown">
-                  <NavDropdown.Item eventKey="1" id="last" onClick={handleSort}>Last name</NavDropdown.Item>
-                  <NavDropdown.Item eventKey="2" id="first" onClick={handleSort}>First name</NavDropdown.Item>
-                  
-                  <NavDropdown.Item eventKey="3" id="status" onClick={handleSort}>Status</NavDropdown.Item>
-                  <NavDropdown.Item eventKey="4" id="hireDate" onClick={handleSort}>Hire date</NavDropdown.Item>
-                </NavDropdown>
-              }
             </Nav>
 
           
