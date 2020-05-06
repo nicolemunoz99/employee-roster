@@ -1,5 +1,5 @@
 import { 
-  SET_EMPLOYEES, SELECT_EMPLOYEE, SET_SORT_OPTION
+  SET_EMPLOYEES, SELECT_EMPLOYEE, SET_SORT_OPTION, TOGGLE_ORDER
 } from "../actions/action-types.js";
 import _ from 'lodash';
 
@@ -23,7 +23,11 @@ const employeeReducer = (state = initEmployeeState, action) => {
   }
 
   if (action.type === SET_SORT_OPTION) {
-    return { ...state, sort: {...state.sort, option: action.option }}
+    return { ...state, sort: { ...state.sort, option: action.option }};
+  }
+
+  if (action.type === TOGGLE_ORDER) {
+    return { ...state, sort: { ...state.sort, ascending: !state.sort.ascending }};
   }
 
   return state;

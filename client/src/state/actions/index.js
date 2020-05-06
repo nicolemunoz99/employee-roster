@@ -1,5 +1,5 @@
 import { 
-  SET_EMPLOYEES, SELECT_EMPLOYEE, SET_SORT_OPTION,
+  SET_EMPLOYEES, SELECT_EMPLOYEE, SET_SORT_OPTION, TOGGLE_ORDER,
   LOGIN, LOGOUT, SET_REDIRECT, SET_AUTH_STATE,
   TOGGLE_MODAL, CLOSE_ALL_MODALS, 
   UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
@@ -19,6 +19,10 @@ export const selectEmployee = (payload) => {
 
 export const setSortOption = (option) => {
   return { type: SET_SORT_OPTION, option };
+};
+
+export const toggleOrder = (ascending) => {
+  return{ type: TOGGLE_ORDER, ascending };
 };
 
 
@@ -79,6 +83,7 @@ export const getAllEmployees = () => async (dispatch) => {
     dispatch(toggleModal('isWaitingForData'));
     let employees = (await axios.get(`${process.env.API}/employee`)).data;
     dispatch(setEmployees(employees));
+    dispatch(sortEmployees());
     dispatch(toggleModal('isWaitingForData'));
   }
   catch {
