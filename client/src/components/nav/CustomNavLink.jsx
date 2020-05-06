@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-const CustomNavLink = ({ history, to, onClick, tag: Tag, staticContext, className, ...rest }) => {
+const CustomNavLink = ({ history, to, onClick, tag: Tag, staticContext, className='', ...rest }) => {
 
 
-  let disabled = history.location.pathname === to ? true : false;
+  let active = history.location.pathname === to ? true : false;
 
   return (
 
@@ -15,8 +15,9 @@ const CustomNavLink = ({ history, to, onClick, tag: Tag, staticContext, classNam
         onClick(event);
         history.push(to)
       }}
-      disabled={disabled}
+      active={active}
       className={`pointer ${className}`}
+      // bsPrefix="c-nav-link"
       eventKey={to}
   />
 )};

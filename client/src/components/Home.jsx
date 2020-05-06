@@ -12,7 +12,7 @@ const Home = () => {
   return (
 
       <div className="container-flex home-wrapper">
-        <div className="row justify-content-md-center">
+        <div className="row justify-content-center">
           <div className="col-12 text-center display-4">
 
               <span className="white-link pointer" onClick={handleLoginClick}>

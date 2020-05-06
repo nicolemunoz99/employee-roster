@@ -153,5 +153,26 @@ body {
   margin: 5rem;
 }
 
+/* ... nav ... */
 
+.navbar {
+  background-color: rgb(255, 255, 255, 0.85);
+  
+}
 
+.nav-link.active {
+  /* color: var(--list-wrapper-bg-color) !important; */
+  border: 1px solid;
+  opacity: 0.8;
+  border-radius: 1rem;
+  cursor: default;
+  pointer-events: none;
+}
+
+.nav-link {
+  color: black !important;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+}

@@ -17,16 +17,16 @@ const Employee = ({ employee }) => {
 
   const handleToggleStatus = (e) => {
     dispatch(toggleModal('confirm'));
-  }
+  };
 
   let active = employee.Status === 'active' ? true : false;
 
   return (
-    <div className="col-12 no-gutters">
-      <div className="col-md-8 mx-auto my-2">
-        <div className="employee w-100">
-          <div className="row justify-content-center my-2">
-            <div className="col-8">
+    
+      <div className="col-12 p-2">
+        <div className="employee">
+          <div className="row justify-content-between my-2 px-4">
+            <div className="col-auto">
               <span className={`align-middle ${!active ? 'inactive' : null}`}>{`${employee.Last_name}, ${employee.First_name} ${employee.MI}${employee.MI ? '.' : ''}`} </span>
             </div>
             <OverlayTrigger
@@ -48,7 +48,7 @@ const Employee = ({ employee }) => {
 
           </div>
         </div>
-        {selectedEmployee._id === employee._id ?
+        {selectedEmployee._id === employee._id &&
           <div className="my-border details-wrapper p-1">
 
             <div className="row no-gutters">
@@ -108,12 +108,11 @@ const Employee = ({ employee }) => {
 
             </div>
           </div>
-          :
-          null
         }
-      </div>
+
       <div className="w-100"></div>
     </div>
+
   )
 };
 

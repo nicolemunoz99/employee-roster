@@ -25,7 +25,7 @@ const EmployeeList = () => {
     <>
 
     <div className="container my-5">
-      <div className="row justify-content-md-center">
+      <div className="row justify-content-center">
         <div className="col-auto mr-auto ml-auto text-center mb-4 h2">
           Employees
         </div>
@@ -43,8 +43,9 @@ const EmployeeList = () => {
 
       </div>
 
-      <div className="row list-wrapper py-4 mx-1">
-        
+      <div className="row py-4 justify-content-center no-gutters">
+        <div className="col-md-8 col-lg-6 list-wrapper py-3 py-md-0 p-md-3 p-lg-4">
+        <div className="row no-gutters">
         { employees.length > 0 ?
 
           employees.map(el => {
@@ -56,7 +57,8 @@ const EmployeeList = () => {
           :
           <div className="mx-auto">No employees</div>
         }
-
+        </div>
+        </div>
       </div>
     </div>
 
