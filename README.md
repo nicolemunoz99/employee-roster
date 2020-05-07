@@ -26,6 +26,11 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
 # UI
 
 ## Basic Features
+- Login
+- Tooltips
+- Modals: confirm submit, successful data submission, wait-for-data, errors
+- Uniform styling across modals
+
 
 __________________________
 
@@ -34,6 +39,8 @@ __________________________
 __________________________
 
 ## Form Validation
+- Fields validated onBlur
+- Entire form validated onSubmit
 
 __________________________
 
