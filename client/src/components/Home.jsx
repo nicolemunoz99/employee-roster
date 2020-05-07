@@ -7,7 +7,7 @@ const Home = () => {
   return (
 
     <Container>
-
+      <h1 className="text-center mt-5">Employee Roster App</h1>
 
         <Col as={homeSection} title="Demo Options">
           Accessing the frontend /employees route requires authentication and employee API resources 
@@ -42,21 +42,20 @@ const Home = () => {
           </ul>
         </Col>
 
-        <Col as={homeSection} title="View code">
-          <a href="https://github.com/nicolemunoz99/employee-roster" className="text-link">
+        <Col as={homeSection} title="Code">
+          <a href="https://github.com/nicolemunoz99/employee-roster" className="text-link" target="NONE">
             <img src="/img/github_logo4.png" /> /nicolemunoz99/employee-roster
           </a>
         </Col>
 
         <Col as={homeSection} title="Read Me">
-            <a href="https://github.com/nicolemunoz99/employee-roster" className="text-link my-auto">
+            <a href="https://github.com/nicolemunoz99/employee-roster/blob/master/README.md" className="text-link my-auto" target="NONE">
               Readme.md 
             </a>
         </Col>
 
 
     </Container>
-
 
   );
 };

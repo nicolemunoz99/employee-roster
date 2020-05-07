@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { selectEmployee, toggleModal } from '../state/actions/';
 
+
 const Employee = ({ employee }) => {
   const selectedEmployee = useSelector(state => state.employee.selected);
   const dispatch = useDispatch();

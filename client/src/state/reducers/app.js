@@ -2,8 +2,6 @@ import {
   TOGGLE_MODAL, 
   CLOSE_ALL_MODALS, 
   SET_REDIRECT,
-  LOGIN, 
-  LOGOUT,
   SET_AUTH_STATE,
   SET_LOGIN_ERR
 } from '../actions/action-types.js';
@@ -31,18 +29,6 @@ export const modalReducer = (state = initModalState, action) => {
   return state;
 }
 
-// const initIsLoggedInState = false;
-
-// export const isLoggedInReducer = (state = initIsLoggedInState, action) => {
-//   if (action.type === LOGIN) {
-//     return true;
-//   }
-//   if (action.type === LOGOUT) {
-//     return false;
-//   }
-
-//   return state;
-// }
 
 const initRedirectAfterLogin = '';
 export const redirectAfterLoginReducer = (state = initRedirectAfterLogin, action) => {

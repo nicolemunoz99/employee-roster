@@ -1,8 +1,8 @@
 import { 
   SET_EMPLOYEES, SELECT_EMPLOYEE, SET_SORT_OPTION, TOGGLE_ORDER,
-  LOGIN, LOGOUT, SET_REDIRECT, SET_AUTH_STATE, SET_LOGIN_ERR,
+  SET_REDIRECT, SET_AUTH_STATE, SET_LOGIN_ERR,
   TOGGLE_MODAL, CLOSE_ALL_MODALS, 
-  UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM, 
+  UPDATE_FIELD, UPDATE_FORM, VALIDATE_FIELD, SET_FORM_IS_VALID, RESET_FORM
 } from './action-types.js';
 import axios from 'axios';
 import _ from 'lodash';
@@ -27,13 +27,6 @@ export const toggleOrder = (ascending) => {
 
 
 // ... login status ...
-export const login = () => {
-  return { type: LOGIN };
-};
-
-export const logout = () => {
-  return { type: LOGOUT };
-};
 
 export const setRedirect = (redirectRoute) => {
   return { type: SET_REDIRECT, redirectRoute };
@@ -64,7 +57,6 @@ export const resetForm = (payload) => {
 };
 
 export const updateField = (data) => {
-  // 'data' is object with props 1) fieldName, and 2) value
   return { type: UPDATE_FIELD, data };
 };
 
@@ -126,21 +118,20 @@ const sendForm = (apiRequest2, formType) => async(dispatch, getState) => {
     dispatch(toggleModal('dataError'));
   }
 
-}
+};
 
 export const validateForm = () => (dispatch, getState) => {
   dispatch(validateField());
   let errors = getState().form.errors;
   if ( !(_.every(errors, (err) => !err)) ) dispatch(setFormIsValid(false));
   else dispatch(setFormIsValid(true));
-}
+};
 
 export const confirmToggleStatus = () => async (dispatch, getState) => {
   try {
     dispatch(toggleModal('isWaitingForData')); // show 'waiting' modal
     let { _id, Status } = getState().employee.selected;
     Status = Status === 'active' ? 'inactive' : 'active';
-    console.log({_id, Status})
     await editEmpRequest({ _id, Status });
     dispatch(toggleModal('confirm')); // close 'confirm' modal
     dispatch(toggleModal('isWaitingForData')); // close 'waiting' modal

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Nav } from 'react-bootstrap';
-import { logout, toggleModal, setAuthState2 } from '../../state/actions/';
+import { toggleModal, setAuthState2 } from '../../state/actions/';
 import CustomNavLink from './CustomNavLink.jsx';
 
 

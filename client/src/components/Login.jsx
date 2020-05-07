@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap'
-import { login, setRedirect, setAuthState2, setLoginErr } from '../state/actions/';
+import { setRedirect, setAuthState2, setLoginErr } from '../state/actions/';
 
 // Amplify auth components
 import { Authenticator, SignIn, SignUp, ConfirmSignUp, ForgotPassword } from 'aws-amplify-react';
@@ -58,7 +58,6 @@ export const Login = ({ history }) => {
 
   // Amplify utility - listen for login errors
   Hub.listen('auth', res => {
-    console.log('res: ', res);
     if (/failure/.test(res.payload.event)) dispatch(setLoginErr(res.payload.event));
   });
 

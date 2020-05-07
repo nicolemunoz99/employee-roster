@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Row, Col, Button } from 'react-bootstrap';
 import ModalWrapper from './ModalWrapper.jsx';
 import { toggleModal, confirmToggleStatus } from '../../state/actions/'

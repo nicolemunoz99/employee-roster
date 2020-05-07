@@ -5,8 +5,6 @@ export const TOGGLE_ORDER = "TOGGLE_ORDER";
 
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const CLOSE_ALL_MODALS = "CLOSE_ALL_MODALS";
-export const LOGIN = "LOGIN";
-export const LOGOUT = "LOGOUT";
 export const SET_REDIRECT = "SET_REDIRECT";
 export const SET_AUTH_STATE = "SET_AUTH_STATE";
 export const SET_LOGIN_ERR = "SET_LOGIN_ERR";
@@ -14,6 +12,6 @@ export const SET_LOGIN_ERR = "SET_LOGIN_ERR";
 export const UPDATE_FIELD = "UPDATE_FIELD";
 export const UPDATE_FORM = "UPDATE_FORM";
 export const VALIDATE_FIELD = "VALIDATE_FIELD";
-export const SET_FORM_IS_VALID = "SET_FORM_IS_VALID"
+export const SET_FORM_IS_VALID = "SET_FORM_IS_VALID";
 export const RESET_FORM = "RESET_FORM";
 
