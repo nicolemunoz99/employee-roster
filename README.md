@@ -1,7 +1,6 @@
 # employee-roster
 
 ### Demo
-View and interact with app at https://nicolemunoz.xyz
 
 You will need to create a user account and verify it through email.
 
@@ -39,6 +38,7 @@ Edit and toggle-status buttons located at bottom of details component on smaller
 - Node
 - Express
 - Mongoose
+- MongoDB
 - AWS
   - Cognito (user identity management)
   - Amplify (auth platform)
