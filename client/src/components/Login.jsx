@@ -47,8 +47,8 @@ export const Login = ({ history }) => {
     };
   }, []);
 
-  // redirect after successful login
   useEffect(() => {
+    // redirect upon successful login
     if (authState === 'signedIn') history.replace(redirectAfterLogin ? redirectAfterLogin : '/employees')
   }, [authState]);
 
@@ -56,7 +56,7 @@ export const Login = ({ history }) => {
     window.scrollTo(0, 0);
   }, [loginErr]);
 
-  // Amplify utility - listen for login errors
+  // Amplify utility; listen for login errors
   Hub.listen('auth', res => {
     if (/failure/.test(res.payload.event)) dispatch(setLoginErr(res.payload.event));
   });
@@ -66,18 +66,34 @@ export const Login = ({ history }) => {
   return (
     <>
       <Container>
-        
+
 
         <Row className="justify-content-center my-4">
-          <Col xs={8} sm={6} md={5} lg={4}>
-            
+
+          {/* <Col xs={10} >
+              {(authState === 'signUp' || authState === 'signIn') &&
+                <Row xs={1} className="py-3 justify-content-center">
+                  <Col xs="auto" className="small">
+                    <div>Feel free to login using an existing account: </div>
+                    <ul>
+                      <li>demo_this [a t] protonmail [d o t] com</li>
+                      <li>P/W: demo123</li>
+                    </ul>
+                  </Col>
+                </Row>
+              }
+            </Col> */}
+
+
+          <Col xs={10} className="mt-3">
+
             {/* sign in/up errors */}
             {loginErr &&
-              <Row xs={1} className="err err-wrapper p-3">
-                {errMap[loginErr]}
+              <Row xs={1} className="err err-wrapper py-3 justify-content-center">
+                <Col xs="auto" className="small">{errMap[loginErr]}</Col>
               </Row>
             }
-            
+
             {/* tell user to check emai */}
             {authState === 'confirmSignUp' &&
               <Row xs={1} className="info-wrapper p-3 text-center">
@@ -86,10 +102,15 @@ export const Login = ({ history }) => {
             }
 
           </Col>
+
         </Row>
 
 
-        
+
+
+
+
+
       </Container>
 
       <Authenticator

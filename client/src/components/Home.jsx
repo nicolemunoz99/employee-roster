@@ -7,10 +7,10 @@ const Home = () => {
   return (
 
     <Container>
-      <h1 className="text-center mt-5">Employee Roster App</h1>
+      <h1 className="text-center mt-5">Employee Roster Instructions</h1>
 
         <Col as={homeSection} title="Demo Options">
-          Accessing the frontend /employees route requires authentication and employee API resources 
+          Viewing the front end <CustomNavLink to="/employees" tag="span" className="text-link">/employees</CustomNavLink> route requires authentication and the employee API resources 
           are protected via Amazon Cognito. You can demo this app by one of the following:
           <ul className="mt-2">
             <li>
@@ -23,7 +23,7 @@ const Home = () => {
             </li>
 
             <li>
-              <CustomNavLink to="/signup" tag="span" className="text-link">Create an account.</CustomNavLink>
+              <CustomNavLink to="/signup" tag="span" className="text-link">Create an account</CustomNavLink>.
                {' You will need to verify it through email.'}
             </li>
           </ul>

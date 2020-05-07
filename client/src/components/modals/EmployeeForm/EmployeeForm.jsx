@@ -8,7 +8,7 @@ import { updateField, resetForm, validateField, validateForm } from '../../../st
 
 
 const EmployeeForm = ({ title, modalName, submitAction }) => {
-  const { data } = useSelector(state => state.form);
+  const { data, formIsValid} = useSelector(state => state.form);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,13 +17,16 @@ const EmployeeForm = ({ title, modalName, submitAction }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (formIsValid) submitAction();
+  }, [formIsValid]);
+
   const handleInput = (e) => dispatch(updateField({ fieldName: e.target.id, value: e.target.value }));
 
   const handleBlur = (e) => dispatch(validateField( [e.target.id] ));
 
   const handleSubmit = () => {
     dispatch(validateForm());
-    submitAction();
   };
 
 

@@ -36,7 +36,7 @@ const EmployeeList = () => {
               <div className="col-7">
                 <SortBy />
               </div>
-              <div className="col-3 my-auto vert-center text-right" onClick={() => dispatch(toggleModal("newEmployeeForm"))}>
+              <div className="col-3 my-auto vert-center text-right">
                 <OverlayTrigger
                   placement="top"
                   overlay={
@@ -44,7 +44,9 @@ const EmployeeList = () => {
                   }
                 >
 
-                  <i className="d-inline material-icons pointer h2">add_circle_outline</i>
+                  <i className="d-inline material-icons pointer h2" onClick={() => dispatch(toggleModal("newEmployeeForm"))}>
+                    add_circle_outline
+                  </i>
 
                 </OverlayTrigger>
               </div>
