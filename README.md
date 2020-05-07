@@ -26,7 +26,8 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
 # UI
 
 ## Basic Features
-- Login
+[Basic features video demo](https://youtu.be/amgjbuwtIhE)
+- Login/signup/logout
 - Tooltips
 - Modals: confirm submit, successful data submission, wait-for-data, errors
 - Uniform styling across modals
@@ -34,17 +35,20 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
 
 __________________________
 
+<br><br>
 ## Responsive
+[Responsive UI video demo](https://youtu.be/eGvXd54dMis)
 
 __________________________
 
 ## Form Validation
+[Form validation video demo](https://youtu.be/dSxuA-_tvjo)
 - Fields validated onBlur
 - Entire form validated onSubmit
 
 __________________________
 
-# High-level Auth Flow
+# High-level Auth & API Flow
 
 
 
