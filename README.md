@@ -26,9 +26,8 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
 # UI
 
 ## Basic Features
-[Tour basic features by video](https://youtu.be/amgjbuwtIhE)
 
-<a href='https://youtu.be/amgjbuwtIhE' target="NONE">
+<a href='https://youtu.be/amgjbuwtIhE' target="_blank">
   <p align="center">
     Tour basic features by video
   </p>
