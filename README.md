@@ -51,7 +51,7 @@ __________________________
     See responsive UI by video
   </p>
   <p align="center">
-    <img src="readme-files/responsive.png" width="600">
+    <img src="readme-files/responsive.jpg" width="600">
   </p>
 </a>
 
@@ -61,7 +61,7 @@ __________________________
 ## Form Validation
 <a href='https://youtu.be/dSxuA-_tvjo' target="_blank">
   <p align="center">
-    See form validation features by video
+    See form validation by video
   </p>
   <p align="center">
     <img src="readme-files/form-validation.png" width="600">
