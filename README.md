@@ -36,7 +36,6 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
   </p>
 </a>
 
-
 - Login/signup/logout
 - Tooltips
 - Modals: confirm submit, successful data submission, wait-for-data, errors
@@ -47,12 +46,28 @@ __________________________
 
 <br><br>
 ## Responsive
-[Responsive UI video demo](https://youtu.be/eGvXd54dMis)
+<a href='https://youtu.be/eGvXd54dMis' target="_blank">
+  <p align="center">
+    See responsive UI by video
+  </p>
+  <p align="center">
+    <img src="readme-files/responsive.png" width="600">
+  </p>
+</a>
+
 
 __________________________
 
 ## Form Validation
-[Form validation video demo](https://youtu.be/dSxuA-_tvjo)
+<a href='https://youtu.be/dSxuA-_tvjo' target="_blank">
+  <p align="center">
+    See form validation features by video
+  </p>
+  <p align="center">
+    <img src="readme-files/form-validation.png" width="600">
+  </p>
+</a>
+
 - Fields validated onBlur
 - Entire form validated onSubmit
 
