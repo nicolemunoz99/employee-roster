@@ -26,7 +26,18 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
 # UI
 
 ## Basic Features
-[Basic features video demo](https://youtu.be/amgjbuwtIhE)
+[Tour basic features by video](https://youtu.be/amgjbuwtIhE)
+
+<a href='https://youtu.be/amgjbuwtIhE' target="NONE">
+  <p align="center">
+    Tour basic features by video
+  </p>
+  <p align="center">
+    <img src="readme-files/login.png" width="600">
+  </p>
+</a>
+
+
 - Login/signup/logout
 - Tooltips
 - Modals: confirm submit, successful data submission, wait-for-data, errors
