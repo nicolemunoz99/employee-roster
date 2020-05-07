@@ -51,7 +51,7 @@ __________________________
     See responsive UI by video
   </p>
   <p align="center">
-    <img src="readme-files/responsive.jpg" width="600">
+    <img src="readme-files/responsive.jpg"">
   </p>
 </a>
 
