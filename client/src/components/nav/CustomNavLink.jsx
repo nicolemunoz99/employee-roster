@@ -6,6 +6,12 @@ const CustomNavLink = ({ history, to, onClick, tag: Tag, staticContext, classNam
 
 
   let active = history.location.pathname === to ? true : false;
+  let eventKey = to;
+
+  if (Tag === 'span') {
+    active = null;
+    // eventKey = null;
+  }
 
   return (
 
@@ -17,7 +23,7 @@ const CustomNavLink = ({ history, to, onClick, tag: Tag, staticContext, classNam
       }}
       active={active}
       className={`pointer ${className}`}
-      eventKey={to}
+      // eventKey={eventKey}
   />
 )};
 

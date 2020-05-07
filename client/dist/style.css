@@ -11,6 +11,16 @@
   --form-color: var(--emp-main-bg-color) !important;
 }
 
+.text-link {
+  color: white;
+  text-decoration: underline;
+}
+
+.text-link:hover {
+  color: var(--details-wrapper-bg-color);
+  text-decoration: none;
+}
+
 .col-form-label {
   padding-left: 1rem;
   padding-right: 1rem;
