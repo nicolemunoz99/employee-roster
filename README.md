@@ -1,10 +1,8 @@
-# employee-roster
-
-### Employee Roster App
+# Employee Roster App
 Basic full-stack app implementing a Node.js RESTful API, React UI, front end routing, single-source-of-truth state management and 3rd-party authentication and authorization.
 
 
-### Built with
+# Built with
 | Tech              | Role                           |
 |-------------------|--------------------------------|
 | React             | UI                             |
@@ -25,7 +23,21 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
 | npm               | Package management             |
 
 
+# UI
 
+## Basic Features
+
+__________________________
+
+## Responsive
+
+__________________________
+
+## Form Validation
+
+__________________________
+
+# High-level Auth Flow
 
 
 
