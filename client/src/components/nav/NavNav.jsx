@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { logout, toggleModal, setAuthState2 } from '../../state/actions/';
 import CustomNavLink from './CustomNavLink.jsx';
 
@@ -9,14 +8,15 @@ import CustomNavLink from './CustomNavLink.jsx';
 import { Auth } from 'aws-amplify';
 
 const NavNav = () => {
-  const { isLoggedIn } = useSelector(state => state);
+  const { authState } = useSelector(state => state);
   const dispatch = useDispatch();
-  const location = useLocation();
+
+  let isLoggedIn = authState === 'signedIn';
 
   const handleLogout = async () => {
     try {
-      await Auth.signOut();
-      dispatch(logout());
+      await Auth.signOut(); // Amplify invalidates tokens
+      dispatch(setAuthState2('signIn'));
     }
     catch (err) {
       dispatch(toggleModal('dataError'));

@@ -1,5 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 const Home = () => {

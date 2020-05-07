@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { login, setRedirect, setAuthState2 } from '../state/actions/';
+import { Container, Row, Col } from 'react-bootstrap'
+import { login, setRedirect, setAuthState2, setLoginErr } from '../state/actions/';
 
 // Amplify auth components
 import { Authenticator, SignIn, SignUp, ConfirmSignUp, ForgotPassword } from 'aws-amplify-react';
+import { Hub } from 'aws-amplify';
 
 
-
- // render EmployeeList if logged in; other wise redirect to Login route
+// render EmployeeList if logged in; other wise redirect to Login route
 export const ProtectedEmployeeList = ({ exact, path, render }) => {
-  const { isLoggedIn } = useSelector(state => state);
+  const { authState } = useSelector(state => state);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    // define route to redirect to after successful login
-    if (!isLoggedIn) dispatch(setRedirect(route));
-  }, []);
+    // if user not signed in, specify route to redirect to after successful login
+    if (authState !== 'signedIn') dispatch(setRedirect(route));
+  }, [authState]);
 
-  let route = '/employees'
+  let route = '/employees';
+
+  let isLoggedIn = authState === 'signedIn';
 
   render = isLoggedIn ? render : () => <Redirect to="/login" />
 
   return (
-    <Route 
+    <Route
       exact={exact}
       path={path}
       render={render}
@@ -34,36 +36,69 @@ export const ProtectedEmployeeList = ({ exact, path, render }) => {
 
 
 
-export const Login = ({ location, history }) => {
-  const { isLoggedIn, redirectAfterLogin, authState } = useSelector(state => state);
+export const Login = ({ history }) => {
+  const { redirectAfterLogin, authState, loginErr } = useSelector(state => state);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     return () => {
       dispatch(setRedirect(''));
-      dispatch(setAuthState2(''));
+      dispatch(setLoginErr(''));
     };
   }, []);
 
   // redirect after successful login
   useEffect(() => {
-    if (isLoggedIn) history.replace(redirectAfterLogin ? redirectAfterLogin : '/employees')
-  }, [isLoggedIn]);
+    if (authState === 'signedIn') history.replace(redirectAfterLogin ? redirectAfterLogin : '/employees')
+  }, [authState]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [loginErr]);
 
-  const handleAuthStateChange = (state) => {
-    if (state === 'signedIn') dispatch(login());
-  };
+  // Amplify utility - listen for login errors
+  Hub.listen('auth', res => {
+    console.log('res: ', res);
+    if (/failure/.test(res.payload.event)) dispatch(setLoginErr(res.payload.event));
+  });
 
+  const handleAuthStateChange = (state) => dispatch(setAuthState2(state));
 
   return (
+    <>
+      <Container>
+        
 
-    <Authenticator 
-      hideDefault={true} 
-      onStateChange={handleAuthStateChange}
-      authState={authState}
-      usernameAttributes="Email"
-    >
+        <Row className="justify-content-center my-4">
+          <Col xs={8} sm={6} md={5} lg={4}>
+            
+            {/* sign in/up errors */}
+            {loginErr &&
+              <Row xs={1} className="err err-wrapper p-3">
+                {errMap[loginErr]}
+              </Row>
+            }
+            
+            {/* tell user to check emai */}
+            {authState === 'confirmSignUp' &&
+              <Row xs={1} className="info-wrapper p-3 text-center">
+                <Col>Check your email for verification code and enter below.</Col>
+              </Row>
+            }
+
+          </Col>
+        </Row>
+
+
+        
+      </Container>
+
+      <Authenticator
+        hideDefault={true}
+        onStateChange={handleAuthStateChange}
+        authState={authState}
+        usernameAttributes="Email"
+      >
         <SignIn />
         <SignUp
           signUpConfig={signUpConfig}
@@ -71,8 +106,8 @@ export const Login = ({ location, history }) => {
         <ConfirmSignUp />
         <ForgotPassword />
 
-    </Authenticator>
-
+      </Authenticator>
+    </>
   );
 };
 
@@ -96,4 +131,26 @@ const signUpConfig = {
       type: 'password'
     }
   ]
+};
+
+
+const errMap = {
+  'signUp_failure': (
+    <>
+      <Col>Error Creating Account</Col>
+      <ul>
+        <li className="small">Username must be an email address.</li>
+        <li className="small">Password must be at least 6 characters.</li>
+      </ul>
+    </>
+  ),
+  'signIn_failure': (
+    <>
+      <Col>Sign In Error</Col>
+      <ul>
+        <li className="small">Incorrect email or password.</li>
+        <li className="small">Email is case sensitive.</li>
+      </ul>
+    </>
+  )
 };

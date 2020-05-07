@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {DataStatus, Confirm } from './DataModals.jsx';
+import { DataStatus, Confirm } from './DataModals.jsx';
 import { NewEmployeeForm, EditEmployeeForm } from './EmployeeForm/Index.jsx';
 
 const ModalIndex = () => {

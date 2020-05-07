@@ -4,7 +4,8 @@ import {
   SET_REDIRECT,
   LOGIN, 
   LOGOUT,
-  SET_AUTH_STATE
+  SET_AUTH_STATE,
+  SET_LOGIN_ERR
 } from '../actions/action-types.js';
 
 const initModalState = {
@@ -30,18 +31,18 @@ export const modalReducer = (state = initModalState, action) => {
   return state;
 }
 
-const initIsLoggedInState = false;
+// const initIsLoggedInState = false;
 
-export const isLoggedInReducer = (state = initIsLoggedInState, action) => {
-  if (action.type === LOGIN) {
-    return true;
-  }
-  if (action.type === LOGOUT) {
-    return false;
-  }
+// export const isLoggedInReducer = (state = initIsLoggedInState, action) => {
+//   if (action.type === LOGIN) {
+//     return true;
+//   }
+//   if (action.type === LOGOUT) {
+//     return false;
+//   }
 
-  return state;
-}
+//   return state;
+// }
 
 const initRedirectAfterLogin = '';
 export const redirectAfterLoginReducer = (state = initRedirectAfterLogin, action) => {
@@ -59,4 +60,12 @@ export const authStateReducer = (state = initAuthState, action) => {
   }
   return state;
 };
+
+const initLoginErr = '';
+export const loginErrReducer = (state = initLoginErr, action) => {
+  if (action.type === SET_LOGIN_ERR) {
+    return action.error;
+  };
+  return state;
+}
 

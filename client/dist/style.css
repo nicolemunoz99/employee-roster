@@ -6,29 +6,9 @@
   --details-wrapper-bg-color: rgb(58, 58, 58);
   --details-contrast-color: rgb(70, 70, 70);
   --modal-bg-rgb: 44, 39, 39;
-  /* aws auth form */
+  /* Amplify UI */
   --button-background-color: var(--list-wrapper-bg-color) !important;
   --form-color: var(--emp-main-bg-color) !important;
-}
-
-.Section__sectionHeader___2djyg, .Input__inputLabel___3VF0S {
-  color: white !important;
-}
-
-.Button__button___vS7Mv {
-  border: 1px solid var(--main-bg-color) !important;
-}
-
-.Anchor__a___1_Iz8 {
-  text-decoration: underline !important;
-}
-
-.Nav__nav___2Dx2Y, .Nav__navBar___xtCFA {
-  background-color: rgba(0, 0, 0, 0) !important;
-}
-
-.Nav__navBar___xtCFA {
-  border-width: 0px !important;
 }
 
 .col-form-label {
@@ -51,9 +31,6 @@ html {
   min-height: 100%;
 }
 
-.white-link {
-  color:white !important;
-}
 
 body {
   /* transparent bg */
@@ -142,6 +119,18 @@ body {
   color: var(--color-error);
 }
 
+.err-wrapper {
+  background-color: rgb(136, 1, 1);
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.info-wrapper {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+}
+
 .my-btn {
   border: 1px solid var(--main-bg-color);
   border-radius: 0.5rem;
@@ -166,7 +155,6 @@ body {
 }
 
 .nav-link.active {
-  /* color: var(--list-wrapper-bg-color) !important; */
   border: 1px solid;
   opacity: 0.8;
   border-radius: 1rem;
@@ -187,3 +175,28 @@ body {
   background-color: white;
 }
 
+/* Amplify UI */
+
+.Section__sectionHeader___2djyg, .Input__inputLabel___3VF0S {
+  color: white !important;
+}
+
+.Button__button___vS7Mv {
+  border: 1px solid var(--main-bg-color) !important;
+}
+
+.Anchor__a___1_Iz8 {
+  text-decoration: underline !important;
+}
+
+.Nav__nav___2Dx2Y, .Nav__navBar___xtCFA {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.Nav__navBar___xtCFA {
+  border-width: 0px !important;
+}
+
+.Toast__toast___XXr3v {
+  display: none !important;
+}

@@ -50,7 +50,7 @@ const SortBy = () => {
       </Dropdown>
     </Col>
 
-    <Col xs="2">
+    <Col xs="3" sm="2">
       <OverlayTrigger
         placement="top"
         overlay={
