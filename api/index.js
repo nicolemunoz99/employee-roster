@@ -1,7 +1,28 @@
+const CognitoExpress = require("cognito-express"); // verifies JWT tokens
+require('custom-env').env(true);
 const apiRoute = require('express').Router();
 
-// abstracted PG queries
-const { insert, get, update } = require('./db.js'); 
+const { insert, get, update } = require('./db.js'); // abstracted PG queries
+
+
+
+const cognitoExpress = new CognitoExpress({
+  region: "us-east-2",
+  cognitoUserPoolId: process.env.COGNITO_USER_POOL_ID,
+  tokenUse: "access", // access | id
+  tokenExpiration: 3600000 // default expiration (3600000 ms)
+});
+
+// verify JWT tokens
+apiRoute.use((req, res, next) => {
+  let accessTokenFromClient = req.headers.accesstoken;
+  if (!accessTokenFromClient) return res.status(401).send('Cognito Access Token missing from headers');
+
+  cognitoExpress.validate(accessTokenFromClient, (err, cognitoResponse) => {
+    if (err) return res.status(401).send(err);
+    next();
+  });
+});
 
 
 // TO DO move to db.js - DERIVED PROPERTY
