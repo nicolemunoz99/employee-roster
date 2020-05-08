@@ -7,6 +7,14 @@ import {
 import axios from 'axios';
 import _ from 'lodash';
 
+// ... auth stuff ...
+import Amplify, { Auth } from "aws-amplify";
+import config from "../../../../aws-exports.js";
+Amplify.configure(config);
+
+
+// ... ACTIONS ....
+
 // ... employees ...
 
 export const setEmployees = (payload) => {
@@ -77,7 +85,8 @@ export const setFormIsValid = (isValid) => {
 export const getAllEmployees = () => async (dispatch) => {
   try {
     dispatch(toggleModal('isWaitingForData'));
-    let employees = (await axios.get(`${process.env.API}/employee`)).data;
+    let tokenHeader = await getTokens();
+    let employees = (await axios.get(`${process.env.API}/employee`, tokenHeader)).data;
     dispatch(setEmployees(employees));
     dispatch(sortEmployees());
     dispatch(toggleModal('isWaitingForData'));
@@ -90,7 +99,8 @@ export const getAllEmployees = () => async (dispatch) => {
 
 export const submitNewEmployee = () => async (dispatch) => {
   const apiRequest = async (data) => {
-    await axios.post(`${process.env.API}/employee`, data);
+    let tokenHeader = await getTokens();
+    await axios.post(`${process.env.API}/employee`, data, tokenHeader);
   }
   await dispatch(sendForm(apiRequest, 'new'));
 };
@@ -145,10 +155,6 @@ export const confirmToggleStatus = () => async (dispatch, getState) => {
 };
 
 
-const editEmpRequest = async (data) => {
-  await axios.put(`${process.env.API}/employee/${data._id}`, data);
-};
-
 export const sortEmployees = () => (dispatch, getState) => {
   let { roster, sort: {option, ascending} } = getState().employee;
   roster.sort((a, b) => {
@@ -158,4 +164,24 @@ export const sortEmployees = () => (dispatch, getState) => {
     return  aCheck < bCheck ? 1 : -1;
   });
   dispatch(setEmployees(roster));
+};
+
+
+// ... vanilla helpers
+
+const editEmpRequest = async (data) => {
+  let tokenHeader = await getTokens();
+  await axios.put(`${process.env.API}/employee/${data._id}`, data, tokenHeader);
+};
+
+const getTokens = async () => {
+  try {
+    let authData = await Auth.currentAuthenticatedUser();
+    return {
+      headers: { accesstoken: authData.signInUserSession.accessToken.jwtToken }
+    };
+  }
+  catch {
+    dispatch(toggleModal('dataError'));
+  }
 };
