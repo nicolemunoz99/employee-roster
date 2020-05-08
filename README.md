@@ -3,24 +3,24 @@ Basic full-stack app implementing a Node.js RESTful API, React UI, front end rou
 
 
 # Built with
-| Tech              | Role                           |
-|-------------------|--------------------------------|
-| React             | UI                             |
-| Redux             | State management               |
-| React Router      | Front end routing              |
-| React-Boostrap    | Styling components             |
-| vanilla Bootstrap | Responsive styling             |
-| vanilla CSS       | Styling                        |
-| Webpack           | Bundler                        |
-| Babel             | JSX transpiler                 |
-| AWS Amplify       | Auth platform, user management |
-| Amazon Cognito    | Secure back end resources      |
-| Cognito-Express   | User verification middleware   |
-| Node.js           | JS runtime env                 |
-| Express           | Server framework               |
-| Mongoose          | ODM library                    |
-| MongoDB           | noSQL database                 |
-| npm               | Package management             |
+| Tech              | Role                             |
+|-------------------|----------------------------------|
+| React             | UI                               |
+| Redux             | State management                 |
+| React Router      | Front end routing                |
+| React-Boostrap    | Styling components               |
+| vanilla Bootstrap | Responsive styling               |
+| vanilla CSS       | Styling                          |
+| Webpack           | Bundler                          |
+| Babel             | JSX transpiler                   |
+| AWS Amplify       | Auth platform                    |
+| Amazon Cognito    | Serverless Auth, user management |
+| Cognito-Express   | User verification middleware     |
+| Node.js           | JS runtime env                   |
+| Express           | Server framework                 |
+| Mongoose          | ODM library                      |
+| MongoDB           | noSQL database                   |
+| npm               | Package management               |
 
 
 # UI
@@ -72,8 +72,5 @@ __________________________
 - Entire form validated onSubmit
 
 __________________________
-
-# High-level Auth & API Flow
-
 
 
