@@ -67,22 +67,20 @@ export const Login = ({ history }) => {
     <>
       <Container>
 
-
         <Row className="justify-content-center my-4">
-
-          {/* <Col xs={10} >
-              {(authState === 'signUp' || authState === 'signIn') &&
-                <Row xs={1} className="py-3 justify-content-center">
-                  <Col xs="auto" className="small">
-                    <div>Feel free to login using an existing account: </div>
-                    <ul>
-                      <li>demo_this [a t] protonmail [d o t] com</li>
-                      <li>P/W: demo123</li>
-                    </ul>
-                  </Col>
-                </Row>
-              }
-            </Col> */}
+          <Col xs={10} >
+            {(authState === 'signUp' || authState === 'signIn') &&
+              <Row xs={1} className="py-3 justify-content-center">
+                <Col xs="auto" className="small">
+                  <div>Feel free to login using an existing account: </div>
+                  <ul>
+                    <li>demo_this [a t] protonmail [d o t] com</li>
+                    <li>P/W: demo123</li>
+                  </ul>
+                </Col>
+              </Row>
+            }
+          </Col>
 
 
           <Col xs={10} className="mt-3">
@@ -102,16 +100,10 @@ export const Login = ({ history }) => {
             }
 
           </Col>
-
         </Row>
 
-
-
-
-
-
-
       </Container>
+
 
       <Authenticator
         hideDefault={true}
